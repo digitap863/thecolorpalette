@@ -60,7 +60,7 @@ export default function AboutSection() {
           </div>
 
           {/* Script Subtitle */}
-          <span className="font-script text-3xl sm:text-5xl text-[#dfcca5] tracking-wide mb-1 select-none">
+          <span className="font-script text-3xl sm:text-5xl text-[#cfbf9d] tracking-wide mb-1 select-none">
             about us
           </span>
 
@@ -81,7 +81,7 @@ trends that may not stand the test of time.
             {/* Outlined Button */}
             <Link
               href="#about"
-              className="font-belleza px-6 py-3 border border-black/80 text-[#dfcca5] hover:bg-[#dfcca5] hover:text-[#1e2617] text-xs sm:text-sm uppercase tracking-[0.2em] font-medium transition-colors duration-300"
+              className="font-belleza px-6 py-3 border border-black/80 text-[#cfbf9d] hover:bg-[#dfcca5] hover:text-[#1e2617] text-xs sm:text-sm uppercase tracking-[0.2em] font-medium transition-colors duration-300"
             >
               More About Us
             </Link>

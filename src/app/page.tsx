@@ -1,5 +1,8 @@
 import Banner from "@/components/Banner";
 import AboutSection from "@/components/AboutSection";
+import VideoSection from "@/components/VideoSection";
+import ServicesSection from "@/components/ServicesSection";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -10,7 +13,16 @@ export default function Home() {
 
         {/* About Us Section */}
         <AboutSection />
+
+        {/* Fullscreen Autoplay Video Section */}
+        <VideoSection />
+
+        {/* Services Section */}
+        <ServicesSection />
       </main>
+
+      {/* Footer Section */}
+      <Footer />
     </div>
   );
 }
