@@ -35,7 +35,7 @@ const DEFAULT_SERVICES: ServiceItem[] = [
 
 export default function ServicesSection() {
   return (
-    <section className="w-full bg-white text-black py-20 sm:py-28 px-6 sm:px-12 md:px-16 overflow-hidden">
+    <section id="services" className="w-full bg-white text-black py-20 sm:py-28 px-6 sm:px-12 md:px-16 overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
         {/* Left Column: Asymmetrical Arch Framed Service Image */}

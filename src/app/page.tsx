@@ -1,8 +1,11 @@
-import Banner from "@/components/Banner";
-import AboutSection from "@/components/AboutSection";
-import VideoSection from "@/components/VideoSection";
-import ServicesSection from "@/components/ServicesSection";
-import Footer from "@/components/Footer";
+import Banner from "@/components/home/Banner";
+import AboutSection from "@/components/home/AboutSection";
+import VideoSection from "@/components/home/VideoSection";
+import ServicesSection from "@/components/home/ServicesSection";
+import FeaturesSection from "@/components/home/FeaturesSection";
+import TestimonialSection from "@/components/home/TestimonialSection";
+import BookingSection from "@/components/contact/BookingSection";
+import FaqSection from "@/components/contact/FaqSection";
 
 export default function Home() {
   return (
@@ -19,10 +22,21 @@ export default function Home() {
 
         {/* Services Section */}
         <ServicesSection />
+        
+        {/* Features Grid Section */}
+        <FeaturesSection />
+
+        {/* Customer Testimonials Section */}
+        <TestimonialSection />
+
+
+        {/* Book A Seat / Contact Section */}
+        <BookingSection />
+      
+        {/* FAQ Section */}
+        <FaqSection />
       </main>
 
-      {/* Footer Section */}
-      <Footer />
     </div>
   );
 }

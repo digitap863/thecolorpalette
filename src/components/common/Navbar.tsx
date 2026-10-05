@@ -36,7 +36,7 @@ const Navbar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
 
   const navLinksLeft = [
-    { name: "Home", path: "#" },
+    { name: "Home", path: "/" },
     { name: "About", path: "#" },
     
   ];
@@ -88,7 +88,7 @@ const Navbar = () => {
           {/* Far Left: Outlined Contact Us Button */}
           <div className="flex items-center shrink-0">
             <Link
-              href="#contact"
+              href="/contact"
               className="px-4 py-2 border border-neutral-800 text-xs sm:text-sm uppercase tracking-[0.2em] font-medium text-neutral-900 hover:bg-neutral-900 hover:text-white transition-colors"
             >
               Contact Us
@@ -205,7 +205,7 @@ const Navbar = () => {
           </p>
           <div className="mt-6 flex flex-col gap-1 text-base font-light text-neutral-800">
             <p>P: +91 8547977486</p>
-            <p>E: [EMAIL_ADDRESS]</p>
+            <p>E: Info@thecolorpalette.in</p>
           </div>
         </div>
 

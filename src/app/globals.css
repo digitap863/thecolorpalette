@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Belleza&family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Belleza&family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -19,6 +19,10 @@
 
 .font-belleza {
   font-family: 'Belleza', sans-serif;
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
 }
 
 @keyframes oldSlideDownFade {

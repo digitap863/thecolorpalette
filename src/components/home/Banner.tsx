@@ -128,7 +128,7 @@ export default function Banner({
               key={`col-${imgIndex}`}
               className="group relative flex-1 h-full overflow-hidden border-r border-white/10 last:border-r-0"
             >
-              {/* Layer 1: Old Image (Persists underneath, slides down slightly & fades out - NO black background flash) */}
+              {/* Layer 1: Old Image */}
               {isTransitioning && (
                 <div
                   key={`old-${slideKey}-${imgIndex}`}
@@ -146,7 +146,7 @@ export default function Banner({
                 </div>
               )}
 
-              {/* Layer 2: New Incoming Image (Slides down from top directly over old image) */}
+              {/* Layer 2: New Incoming Image */}
               <div
                 key={`new-${slideKey}-${imgIndex}`}
                 className={`absolute inset-0 w-full h-full ${
@@ -213,8 +213,6 @@ export default function Banner({
             <ChevronRight className="w-8 h-8 sm:w-12 sm:h-12 stroke-[1.5]" />
           </button>
         )}
-
-       
       </div>
     </section>
   );
