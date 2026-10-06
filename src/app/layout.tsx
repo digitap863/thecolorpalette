@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ColorPellet | Master Hair Artistry & Color Studio",
-  description: "Bespoke hair coloring, precision cuts, and luxury studio transformations.",
+  title: "The Color Palette",
+  description: "",
 };
 
 export default function RootLayout({

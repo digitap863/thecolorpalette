@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { ArrowUp, ArrowRight } from "lucide-react";
 
 export interface FaqItem {
@@ -12,33 +13,51 @@ export interface FaqItem {
 const FAQ_DATA: FaqItem[] = [
   {
     id: "faq-1",
-    question: "How can I book an appointment?",
+    question: "What treatments does The Color Pallete offer?",
     answer:
-      "You can easily reserve your slot by filling out our online booking form below, calling our reception at +91 8547977486, or visiting our salon location at Geo Centre, Kochi.",
+      "We offer a range of advanced aesthetic, skin, hair and scalp treatments, including medifacials, chemical peels, mesotherapy, laser treatments, RF treatments, LED light therapy, Korean Hair Spa and specialised scalp care.",
   },
   {
     id: "faq-2",
-    question: "How often do you update your services menu?",
+    question: "How do I know which treatment is right for me?",
     answer:
-      "We regularly review and update our beauty, aesthetic, and skincare treatments every season to incorporate the latest proven techniques and organic product innovations.",
+      "Our treatments are designed around individual skin, hair and aesthetic needs. A consultation can help determine the most suitable treatment approach based on your specific concerns and goals.",
   },
   {
     id: "faq-3",
-    question: "How can I change or cancel my booking?",
+    question: "Do I need a consultation before treatment?",
     answer:
-      "To reschedule or cancel your appointment, please give us a call or contact us via email at least 24 hours prior to your scheduled booking time.",
+      "For personalised aesthetic treatments, we recommend discussing your concerns with our professional team before proceeding so the treatment can be selected according to your individual needs.",
   },
   {
     id: "faq-4",
-    question: "What special packages or offers are available?",
+    question: "What skin treatments are available?",
     answer:
-      "We offer bespoke bridal packages, comprehensive skin aesthetic bundles, and seasonal hair treatment passes. Contact our team to request our current package menu.",
+      "Our skin-focused treatments include medifacials, chemical peels, carbon laser, RF skin tightening, Oxy/Oxygen facials, microneedling and mesotherapy.",
   },
   {
     id: "faq-5",
-    question: "What hair & skin care products do you use?",
+    question: "What hair and scalp treatments do you offer?",
     answer:
-      "At The Color Palette, we exclusively utilize dermatologist-certified, premium, cruelty-free hair care and aesthetic skincare formulations tailored to your unique skin and hair texture.",
+      "Hair and scalp services include Korean Hair Spa, anti-dandruff treatment, hair spa, microneedling for hair and other specialised scalp treatments.",
+  },
+  {
+    id: "faq-6",
+    question: "What is the Korean Luxury Hair Spa?",
+    answer:
+      "It is a holistic hair and scalp ritual combining advanced scalp care with relaxation. The treatment includes a specially designed spa-bath experience and integrated massage, with a focus on scalp care, hydration, circulation and relaxation.",
+  },
+  {
+    id: "faq-7",
+    question: "Do you offer bridal beauty services?",
+    answer:
+      "Yes. The Color Pallete offers bridal makeup, HD Premium Makeup, Airbrush Makeup, Luxury Packages and pre-bridal treatments. Bridal services are designed around personalised consultation, skin preparation and the desired final look.",
+  },
+  {
+    id: "faq-8",
+    question: "How can I book an appointment?",
+    answer:
+      "You can contact The Color Pallete directly to enquire about treatments and appointment availability. We recommend booking in advance for specialised and bridal services.",
   },
 ];
 
@@ -55,7 +74,7 @@ export default function FaqSection() {
   return (
     <section
       id="faq"
-      className="w-full bg-[#f7f1eb] text-[#1e2617] py-8 sm:py-8 px-6 sm:px-12 md:px-16 overflow-hidden"
+      className="w-full bg-[#f7f1eb] text-[#1e2617] py-16 sm:py-24 px-6 sm:px-12 md:px-16 overflow-hidden"
     >
       <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
         
@@ -118,6 +137,34 @@ export default function FaqSection() {
           >
             {showAll ? "FEWER QUESTIONS" : "MORE QUESTIONS"}
           </button>
+        </div>
+
+        {/* CTA Container below FAQ */}
+        <div className="w-full mt-16 p-8 sm:p-12 bg-white/80 backdrop-blur-xs border border-[#1e2617]/15 text-center flex flex-col items-center shadow-xs">
+          <h3 className="font-belleza text-2xl sm:text-3xl font-light uppercase tracking-wider text-[#1e2617] mb-3">
+            Still have questions?
+          </h3>
+          <p className="text-sm sm:text-base font-light text-[#1e2617]/80 max-w-lg mb-8 leading-relaxed">
+            Our team is happy to help you find the right treatment for your needs.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+            <Link
+              href="/contact"
+              className="w-full sm:w-auto font-belleza px-8 py-3.5 bg-[#1e2617] text-[#f7f1eb] hover:bg-[#dfcca5] hover:text-[#1e2617] text-xs sm:text-sm uppercase tracking-[0.2em] font-medium transition-all duration-300 text-center"
+            >
+              Book a Consultation
+            </Link>
+
+            <a
+              href="https://wa.me/918547977486"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto font-belleza px-8 py-3.5 border border-[#1e2617] text-[#1e2617] hover:bg-[#1e2617] hover:text-white text-xs sm:text-sm uppercase tracking-[0.2em] font-medium transition-all duration-300 text-center"
+            >
+              WhatsApp Us
+            </a>
+          </div>
         </div>
 
       </div>

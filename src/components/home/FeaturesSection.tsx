@@ -2,8 +2,11 @@
 
 import React from "react";
 
-// Crisp SVG Icons matching the reference image
-const IconSalonTools = ({ className = "w-11 h-11" }: { className?: string }) => (
+const IconAdvancedTechnology = ({
+  className = "w-11 h-11",
+}: {
+  className?: string;
+}) => (
   <svg
     className={className}
     viewBox="0 0 64 64"
@@ -13,21 +16,34 @@ const IconSalonTools = ({ className = "w-11 h-11" }: { className?: string }) => 
     strokeLinecap="round"
     strokeLinejoin="round"
   >
-    <circle cx="18" cy="46" r="6" />
-    <circle cx="32" cy="48" r="6" />
-    <line x1="22.5" y1="41.5" x2="44" y2="16" />
-    <line x1="28" y1="43" x2="16" y2="28" />
-    <circle cx="29" cy="34" r="1.3" fill="currentColor" />
-    <path d="M38 18 L54 34" strokeWidth="2.2" />
-    <line x1="41" y1="21" x2="47" y2="15" />
-    <line x1="44" y1="24" x2="50" y2="18" />
-    <line x1="47" y1="27" x2="53" y2="21" />
-    <line x1="50" y1="30" x2="56" y2="24" />
-    <line x1="53" y1="33" x2="59" y2="27" />
+    {/* Central Precision Scanner Chip */}
+    <rect x="20" y="20" width="24" height="24" rx="4" />
+    {/* Micro-processor Core */}
+    <rect x="27" y="27" width="10" height="10" rx="2" />
+    <circle cx="32" cy="32" r="2" fill="currentColor" />
+    {/* Tech Pins / Laser Pulse Guides */}
+    <path d="M32 10 V20" />
+    <path d="M32 44 V54" />
+    <path d="M10 32 H20" />
+    <path d="M44 32 H54" />
+    {/* Diagonal Sensors */}
+    <path d="M16 16 L22 22" />
+    <path d="M42 42 L48 48" />
+    <path d="M48 16 L42 22" />
+    <path d="M22 42 L16 48" />
+    {/* Outer Tech Sparkles */}
+    <circle cx="32" cy="6" r="1.5" fill="currentColor" />
+    <circle cx="58" cy="32" r="1.5" fill="currentColor" />
+    <circle cx="32" cy="58" r="1.5" fill="currentColor" />
+    <circle cx="6" cy="32" r="1.5" fill="currentColor" />
   </svg>
 );
 
-const IconOpenSign = ({ className = "w-11 h-11" }: { className?: string }) => (
+const IconPersonalizedCare = ({
+  className = "w-11 h-11",
+}: {
+  className?: string;
+}) => (
   <svg
     className={className}
     viewBox="0 0 64 64"
@@ -37,27 +53,23 @@ const IconOpenSign = ({ className = "w-11 h-11" }: { className?: string }) => (
     strokeLinecap="round"
     strokeLinejoin="round"
   >
-    <path d="M32 10 L20 22" />
-    <path d="M32 10 L44 22" />
-    <circle cx="32" cy="10" r="2.5" />
-    <rect x="13" y="22" width="38" height="26" rx="3" strokeWidth="1.8" />
-    <text
-      x="32"
-      y="39"
-      textAnchor="middle"
-      fontSize="9.5"
-      fontWeight="bold"
-      letterSpacing="1.8"
-      fill="currentColor"
-      stroke="none"
-      fontFamily="sans-serif"
-    >
-      OPEN
-    </text>
+    {/* Heart Motif with Tailored Care Sparkle */}
+    <path d="M32 48 C 23 41, 14 34, 14 24 C 14 17, 19 13, 25 13 C 29 13, 31 15, 32 18 C 33 15, 35 13, 39 13 C 45 13, 50 17, 50 24 C 50 34, 41 41, 32 48 Z" />
+    {/* Caring spark / bespoke goal star */}
+    <path d="M32 23 V 33 M 27 28 H 37" strokeWidth="1.4" />
+    {/* Radiance Accent Orbs */}
+    <circle cx="21" cy="20" r="1.5" fill="currentColor" />
+    <circle cx="43" cy="20" r="1.5" fill="currentColor" />
+    <path d="M12 48 C 18 42, 26 40, 32 43" />
+    <path d="M52 48 C 46 42, 38 40, 32 43" />
   </svg>
 );
 
-const IconSalonChair = ({ className = "w-11 h-11" }: { className?: string }) => (
+const IconClinicalEnvironment = ({
+  className = "w-11 h-11",
+}: {
+  className?: string;
+}) => (
   <svg
     className={className}
     viewBox="0 0 64 64"
@@ -67,18 +79,23 @@ const IconSalonChair = ({ className = "w-11 h-11" }: { className?: string }) => 
     strokeLinecap="round"
     strokeLinejoin="round"
   >
-    <rect x="28" y="9" width="8" height="5" rx="1.5" />
-    <line x1="32" y1="14" x2="32" y2="18" />
-    <path d="M22 18 H42 C44 18 45 19 45 21 V35 C45 36 44 37 42 37 H22 C20 37 19 36 19 35 V21 C19 19 20 18 22 18 Z" />
-    <path d="M15 27 H19 V34 H15 V27 Z" />
-    <path d="M45 27 H49 V34 H45 V27 Z" />
-    <rect x="18" y="37" width="28" height="6" rx="2" />
-    <line x1="32" y1="43" x2="32" y2="52" strokeWidth="2.2" />
-    <ellipse cx="32" cy="53" rx="14" ry="4" />
+    {/* Clinical Shield Contour */}
+    <path d="M32 10 L 50 16 V 32 C 50 44, 32 54, 32 54 C 32 54, 14 44, 14 32 V 16 L 32 10 Z" />
+    {/* Aesthetic Medical Cross */}
+    <path d="M32 22 V 38" strokeWidth="2" />
+    <path d="M24 30 H 40" strokeWidth="2" />
+    {/* Hygiene & Serenity Sparkles */}
+    <circle cx="32" cy="18" r="1.5" fill="currentColor" />
+    <circle cx="44" cy="24" r="1.5" fill="currentColor" />
+    <circle cx="20" cy="24" r="1.5" fill="currentColor" />
   </svg>
 );
 
-const IconProProducts = ({ className = "w-11 h-11" }: { className?: string }) => (
+const IconSkinRejuvenation = ({
+  className = "w-11 h-11",
+}: {
+  className?: string;
+}) => (
   <svg
     className={className}
     viewBox="0 0 64 64"
@@ -88,17 +105,22 @@ const IconProProducts = ({ className = "w-11 h-11" }: { className?: string }) =>
     strokeLinecap="round"
     strokeLinejoin="round"
   >
-    <path d="M14 34 C14 46 22 52 32 52 C42 52 50 46 50 34 H14 Z" />
-    <line x1="11" y1="34" x2="53" y2="34" strokeWidth="2" />
-    <path d="M20 34 C22 29 26 29 28 34 C30 29 34 29 36 34" strokeWidth="1.2" />
-    <path d="M42 42 L55 16" strokeWidth="1.8" />
-    <line x1="51" y1="13" x2="58" y2="20" />
-    <line x1="54" y1="11" x2="60" y2="17" />
-    <line x1="48" y1="15" x2="55" y2="22" />
+    {/* Pure Hydration Water Droplet */}
+    <path d="M32 10 C 32 10, 16 30, 16 40 C 16 48.8, 23.2 56, 32 56 C 40.8 56, 48 48.8, 48 40 C 48 30, 32 10, 32 10 Z" />
+    {/* Inner Rejuvenation Layer */}
+    <path d="M26 34 C 26 29, 32 20, 32 20 C 32 20, 38 29, 38 34 C 38 38, 35 41, 32 41 C 29 41, 26 38, 26 34 Z" />
+    {/* Radiant Renewal Sparkles */}
+    <path d="M52 14 L 54 18 L 58 20 L 54 22 L 52 26 L 50 22 L 46 20 L 50 18 Z" fill="currentColor" stroke="none" />
+    <circle cx="14" cy="20" r="2" fill="currentColor" />
+    <circle cx="10" cy="26" r="1.2" fill="currentColor" />
   </svg>
 );
 
-const IconQuickDry = ({ className = "w-11 h-11" }: { className?: string }) => (
+const IconLaserLight = ({
+  className = "w-11 h-11",
+}: {
+  className?: string;
+}) => (
   <svg
     className={className}
     viewBox="0 0 64 64"
@@ -108,16 +130,27 @@ const IconQuickDry = ({ className = "w-11 h-11" }: { className?: string }) => (
     strokeLinecap="round"
     strokeLinejoin="round"
   >
-    <rect x="20" y="18" width="22" height="14" rx="3" />
-    <path d="M20 21 H12 V29 H20" />
-    <path d="M25 32 L21 48 C20.5 50 22 52 24 52 H28 C30 52 31 50 30.5 48 L28 32" />
-    <line x1="47" y1="21" x2="55" y2="19" />
-    <line x1="47" y1="25" x2="57" y2="25" strokeWidth="2" />
-    <line x1="47" y1="29" x2="55" y2="31" />
+    {/* Laser Emitter Device Wand */}
+    <rect x="12" y="38" width="14" height="14" rx="3" transform="rotate(-45 19 45)" strokeWidth="1.8" />
+    <path d="M24 35 L 36 23" strokeWidth="2" />
+    {/* Emitter Tip */}
+    <path d="M34 21 L 40 15" strokeWidth="2.2" />
+    {/* Focused Laser Rays */}
+    <path d="M42 13 L 56 7" strokeWidth="2" strokeDasharray="3 2" />
+    <path d="M45 18 L 59 18" strokeWidth="1.6" />
+    <path d="M43 23 L 55 31" strokeWidth="1.6" />
+    {/* Light Therapy Burst Sparkle */}
+    <path d="M48 38 L 50 42 L 54 44 L 50 46 L 48 50 L 46 46 L 42 44 L 46 42 Z" fill="currentColor" stroke="none" />
+    <circle cx="36" cy="48" r="1.5" fill="currentColor" />
+    <circle cx="26" cy="14" r="1.5" fill="currentColor" />
   </svg>
 );
 
-const IconHairExperts = ({ className = "w-11 h-11" }: { className?: string }) => (
+const IconHairScalp = ({
+  className = "w-11 h-11",
+}: {
+  className?: string;
+}) => (
   <svg
     className={className}
     viewBox="0 0 64 64"
@@ -127,19 +160,22 @@ const IconHairExperts = ({ className = "w-11 h-11" }: { className?: string }) =>
     strokeLinecap="round"
     strokeLinejoin="round"
   >
-    <circle cx="20" cy="46" r="6" />
-    <circle cx="44" cy="46" r="6" />
-    <line x1="24.5" y1="41.5" x2="48" y2="16" />
-    <line x1="39.5" y1="41.5" x2="16" y2="16" />
-    <circle cx="32" cy="33.5" r="1.5" fill="currentColor" />
-    <path
-      d="M32 9 L33.5 13 L37.5 13 L34.5 16 L35.5 20 L32 17.5 L28.5 20 L29.5 16 L26.5 13 L30.5 13 Z"
-      fill="currentColor"
-      stroke="none"
-    />
+    {/* Scalp Surface Layer */}
+    <path d="M12 46 C 24 42, 40 42, 52 46" strokeWidth="2" />
+    {/* Hair Follicle Roots */}
+    <path d="M22 45 V 53 C 22 56, 26 56, 26 53 V 44" />
+    <path d="M32 44 V 54 C 32 57, 36 57, 36 54 V 43" />
+    <path d="M42 45 V 53 C 42 56, 46 56, 46 53 V 44" />
+    {/* Silky Flowing Hair Strands */}
+    <path d="M24 43 C 24 30, 16 22, 20 10" strokeWidth="1.8" />
+    <path d="M32 43 C 32 28, 30 18, 34 8" strokeWidth="2" />
+    <path d="M40 43 C 40 30, 48 22, 44 10" strokeWidth="1.8" />
+    {/* Spa Droplets & Radiance */}
+    <circle cx="28" cy="16" r="2" fill="currentColor" />
+    <circle cx="38" cy="22" r="1.5" fill="currentColor" />
+    <path d="M50 16 L 51.5 19 L 54.5 20.5 L 51.5 22 L 50 25 L 48.5 22 L 45.5 20.5 L 48.5 19 Z" fill="currentColor" stroke="none" />
   </svg>
 );
-
 export interface FeatureCardItem {
   id: string;
   subtitle: string;
@@ -151,51 +187,57 @@ export interface FeatureCardItem {
 
 const FEATURE_CARDS: FeatureCardItem[] = [
   {
-    id: "salon-tools",
-    subtitle: "Pro Equipment",
-    title: "SALON TOOLS",
-    description: "State-of-the-art precision tools and ergonomic equipment engineered for flawless hair transformations.",
-    icon: <IconSalonTools />,
+    id: "advanced-technology",
+    subtitle: "Advanced Aesthetics",
+    title: "ADVANCED TECHNOLOGY",
+    description:
+      "Modern aesthetic technologies designed to support targeted skin and scalp treatments.",
+    icon: <IconAdvancedTechnology />,
     variant: "dark",
   },
   {
-    id: "open-24-7",
-    subtitle: "Available Anytime",
-    title: "OPEN 24/7",
-    description: "Flexible scheduling around the clock, tailored to accommodate your busy lifestyle whenever you need.",
-    icon: <IconOpenSign />,
+    id: "personalized-care",
+    subtitle: "Tailored Approach",
+    title: "PERSONALIZED CARE",
+    description:
+      "Treatment approaches tailored to individual skin, hair and aesthetic goals.",
+    icon: <IconPersonalizedCare />,
     variant: "light",
   },
   {
-    id: "interior",
-    subtitle: "Comfort Zone",
-    title: "INTERIOR",
-    description: "A serene, luxurious sanctuary designed with plush seating and ambient lighting for ultimate relaxation.",
-    icon: <IconSalonChair />,
+    id: "clinical-environment",
+    subtitle: "Professional Setting",
+    title: "CLINICAL ENVIRONMENT",
+    description:
+      "A calm, professional setting designed around comfort, hygiene and focused treatment.",
+    icon: <IconClinicalEnvironment />,
     variant: "dark",
   },
   {
-    id: "pro-products",
-    subtitle: "Styling Essentials",
-    title: "PRO PRODUCTS",
-    description: "Exclusive hair care formulations and premium organic products that nourish and protect your hair.",
-    icon: <IconProProducts />,
+    id: "skin-rejuvenation",
+    subtitle: "Advanced Skin Care",
+    title: "SKIN REJUVENATION",
+    description:
+      "Advanced treatments focused on hydration, texture, clarity, radiance and skin renewal.",
+    icon: <IconSkinRejuvenation />,
     variant: "light",
   },
   {
-    id: "quick-dry",
-    subtitle: "Fast Styling",
-    title: "QUICK DRY",
-    description: "Advanced ionic drying technology that minimizes heat exposure while delivering sleek, rapid results.",
-    icon: <IconQuickDry />,
+    id: "laser-light",
+    subtitle: "Targeted Treatments",
+    title: "LASER & LIGHT",
+    description:
+      "Laser and light-based treatments including carbon laser, laser hair reduction and LED therapy.",
+    icon: <IconLaserLight />,
     variant: "dark",
   },
   {
-    id: "hair-experts",
-    subtitle: "Certified",
-    title: "HAIR EXPERTS",
-    description: "Master stylists and color specialists dedicated to personalized care and stunning custom artistry.",
-    icon: <IconHairExperts />,
+    id: "hair-scalp",
+    subtitle: "Scalp & Hair Care",
+    title: "HAIR & SCALP CARE",
+    description:
+      "Specialised treatments including Korean Hair Spa, mesotherapy and advanced scalp therapies.",
+    icon: <IconHairScalp />,
     variant: "light",
   },
 ];

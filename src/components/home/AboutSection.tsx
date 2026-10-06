@@ -13,7 +13,7 @@ export default function AboutSection() {
         <div className="lg:col-span-6 flex justify-center w-full">
           <div className="relative w-full max-w-[500px] aspect-[4/5] rounded-full overflow-hidden border border-black/10 shadow-2xl group">
             <Image
-              src="/images/spa.webp"
+              src="/images/about.png"
               alt="Colorpellet Salon Interior"
               fill
               className="object-cover object-center transform transition-transform duration-1000 group-hover:scale-105"
@@ -71,16 +71,14 @@ export default function AboutSection() {
 
           {/* Paragraph Description */}
           <p className="text-black/80 text-sm sm:text-base font-light leading-relaxed max-w-lg mb-10">
-            At The Color Pallete, we believe every bride deserves to feel
-            confident and radiant, without falling prey to fleeting beauty
-            trends that may not stand the test of time.
+           We believe beauty is personal. Through advanced technology, professional expertise, and personalised care, we create thoughtful treatment experiences designed around your individual needs and goals.
           </p>
 
           {/* Action Area: Outlined Button + Phone Badge */}
           <div className="flex flex-wrap items-center gap-8 sm:gap-10">
             {/* Outlined Button */}
             <Link
-              href="#about"
+              href="/about"
               className="font-belleza px-6 py-3 border border-black/80 text-[#cfbf9d] hover:bg-[#dfcca5] hover:text-[#1e2617] text-xs sm:text-sm uppercase tracking-[0.2em] font-medium transition-colors duration-300"
             >
               More About Us

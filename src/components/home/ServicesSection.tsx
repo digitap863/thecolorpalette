@@ -12,41 +12,68 @@ export interface ServiceItem {
 const DEFAULT_SERVICES: ServiceItem[] = [
   {
     id: "facial-treatments",
-    name: "FACIAL TREATMENTS",
-  },
-  {
-    id: "bridal-makeup",
-    name: "BRIDAL MAKEUP",
-    isSpecial: true,
-  },
-  {
-    id: "premium-medi-facials",
-    name: "PREMIUM MEDI FACIALS",
+    name: "Facials & Medifacials",
   },
   {
     id: "laser-treatments",
-    name: "LASER TREATMENTS",
+    name: "Laser & Light-Based Treatments",
+  },
+  {
+    id: "chemical-peels",
+    name: "Chemical Peels",
+  },
+  {
+    id: "advance-skin-procedures",
+    name: "Advance Skin Procedures",
+  },
+  {
+    id: "gfc",
+    name: "GFC",
+  },
+  {
+    id: "prp",
+    name: "PRP",
+  },
+  {
+    id: "skin-boosters",
+    name: "Skin Boosters",
   },
   {
     id: "hair-treatments",
-    name: "HAIR TREATMENTS",
+    name: "Hair & Scalp Treatments",
+  },
+  {
+    id: "body-hand-foot-care",
+    name: "Body, Hand & Foot Care",
+  },
+  {
+    id: "iv-therapy",
+    name: "IV Therapy",
+  },
+  {
+    id: "nail-services",
+    name: "Nail Services",
+  },
+  {
+    id: "lash-services",
+    name: "Lash Services",
   },
 ];
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="w-full bg-white text-black py-20 sm:py-28 px-6 sm:px-12 md:px-16 overflow-hidden">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+    <section id="services" className="w-full bg-white text-black py-20 sm:py-28 px-6 sm:px-12 md:px-16 lg:px-20 overflow-hidden">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
         
         {/* Left Column: Asymmetrical Arch Framed Service Image */}
-        <div className="lg:col-span-6 flex justify-center w-full">
-          <div className="relative w-full max-w-[480px] aspect-[4/5] rounded-tl-[160px] sm:rounded-tl-[200px] rounded-br-[160px] sm:rounded-br-[200px] rounded-tr-md rounded-bl-md overflow-hidden border border-black/10 shadow-2xl group">
+        <div className="lg:col-span-5 flex justify-center w-full">
+          <div className="relative w-full max-w-[440px] aspect-[4/5] rounded-tl-[160px] sm:rounded-tl-[200px] rounded-br-[160px] sm:rounded-br-[200px] rounded-tr-md rounded-bl-md overflow-hidden border border-black/10 shadow-2xl group">
             <Image
               src="/Banner/vlcsnap-2026-09-30-11h16m23s869.png"
               alt="Colorpellet Salon Services"
               fill
               className="object-cover object-center transform transition-transform duration-1000 group-hover:scale-105"
-              sizes="(max-width: 1024px) 100vw, 50vw"
+              sizes="(max-width: 1024px) 100vw, 40vw"
             />
             {/* Soft vignette overlay */}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20 pointer-events-none" />
@@ -54,7 +81,7 @@ export default function ServicesSection() {
         </div>
 
         {/* Right Column: Menu Header & Service List */}
-        <div className="lg:col-span-6 flex flex-col items-start text-left w-full">
+        <div className="lg:col-span-7 flex flex-col items-center text-center w-full">
           
           {/* Cursive Subtitle */}
           <span className="font-script text-4xl sm:text-5xl md:text-6xl text-[#dfcca5] tracking-wide mb-1 select-none">
@@ -67,21 +94,21 @@ export default function ServicesSection() {
           </h2>
 
           {/* Services List */}
-          <div className="w-full space-y-6 mb-12">
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-x-6 sm:gap-x-8 gap-y-5 sm:gap-y-6 mb-12">
             {DEFAULT_SERVICES.map((service) => (
-              <div key={service.id} className="w-full flex items-center">
-                <span className="font-belleza text-base sm:text-lg md:text-xl font-medium uppercase tracking-wider text-[#1e2617] shrink-0">
+              <div key={service.id} className="w-full flex items-center min-w-0">
+                <span className="font-belleza text-xs sm:text-sm md:text-base font-medium uppercase tracking-wider text-[#1e2617] shrink-0">
                   {service.name}
                 </span>
 
                 {service.isSpecial && (
-                  <span className="ml-3 bg-[#dfcca5] text-[#1e2617] text-[10px] sm:text-[11px] font-bold tracking-widest px-2 py-0.5 uppercase shrink-0">
+                  <span className="ml-2 bg-[#dfcca5] text-[#1e2617] text-[9px] sm:text-[10px] font-bold tracking-widest px-1.5 py-0.5 uppercase shrink-0">
                     SPECIAL
                   </span>
                 )}
 
                 {/* Dotted border connector */}
-                <div className="flex-1 ml-3 border-b border-dotted border-black/20 h-1 min-w-[20px]" />
+                <div className="flex-1 ml-2 border-b border-dotted border-black/20 h-1 min-w-[12px]" />
               </div>
             ))}
           </div>

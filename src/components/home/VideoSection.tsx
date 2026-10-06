@@ -8,7 +8,7 @@ export interface VideoSectionProps {
 }
 
 export default function VideoSection({
-  videoSrc = "/Video/envato_video_gen_Nov_10_2025_19_55_28.mp4",
+  videoSrc = "/Video/home.mp4",
 }: VideoSectionProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -45,7 +45,7 @@ export default function VideoSection({
       />
 
       {/* Dark subtle overlay for contrast */}
-      <div className="absolute inset-0 bg-black/10 pointer-events-none" />
+      <div className="absolute inset-0 bg-black/30 pointer-events-none" />
 
       {/* Hover-only Center Play/Pause Button */}
       <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">

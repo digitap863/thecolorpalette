@@ -37,7 +37,7 @@ const Navbar = () => {
 
   const navLinksLeft = [
     { name: "Home", path: "/" },
-    { name: "About", path: "#about" },
+    { name: "About", path: "/about" },
     
   ];
 

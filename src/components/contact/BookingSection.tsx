@@ -4,6 +4,62 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { User, Mail, Calendar, LayoutGrid, MessageSquare, ChevronDown, Check } from "lucide-react";
 
+export interface ServiceItem {
+  id: string;
+  name: string;
+}
+
+const DEFAULT_SERVICES: ServiceItem[] = [
+  {
+    id: "facial-treatments",
+    name: "Facials & Medifacials",
+  },
+  {
+    id: "laser-treatments",
+    name: "Laser & Light-Based Treatments",
+  },
+  {
+    id: "chemical-peels",
+    name: "Chemical Peels",
+  },
+  {
+    id: "advance-skin-procedures",
+    name: "Advance Skin Procedures",
+  },
+  {
+    id: "gfc",
+    name: "GFC",
+  },
+  {
+    id: "prp",
+    name: "PRP",
+  },
+  {
+    id: "skin-boosters",
+    name: "Skin Boosters",
+  },
+  {
+    id: "hair-treatments",
+    name: "Hair & Scalp Treatments",
+  },
+  {
+    id: "body-hand-foot-care",
+    name: "Body, Hand & Foot Care",
+  },
+  {
+    id: "iv-therapy",
+    name: "IV Therapy",
+  },
+  {
+    id: "nail-services",
+    name: "Nail Services",
+  },
+  {
+    id: "lash-services",
+    name: "Lash Services",
+  },
+];
+
 export default function BookingSection() {
   const [formData, setFormData] = useState({
     name: "",
@@ -109,11 +165,11 @@ export default function BookingSection() {
                   <option value="" disabled className="text-gray-500 bg-[#f7f1eb]">
                     Service type
                   </option>
-                  <option value="bridal-makeup" className="bg-[#f7f1eb]">Bridal Makeup</option>
-                  <option value="facial-treatments" className="bg-[#f7f1eb]">Facial Treatments</option>
-                  <option value="laser-treatments" className="bg-[#f7f1eb]">Laser Treatments</option>
-                  <option value="hair-treatments" className="bg-[#f7f1eb]">Hair Treatments</option>
-                  <option value="medi-facials" className="bg-[#f7f1eb]">Premium Medi Facials</option>
+                  {DEFAULT_SERVICES.map((service) => (
+                    <option key={service.id} value={service.id} className="bg-[#f7f1eb]">
+                      {service.name}
+                    </option>
+                  ))}
                 </select>
                 <ChevronDown className="w-4 h-4 text-[#1e2617]/60 pointer-events-none absolute right-0 shrink-0" />
               </div>
