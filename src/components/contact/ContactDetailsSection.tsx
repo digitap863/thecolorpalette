@@ -29,7 +29,7 @@ const IconLinkedin = () => (
 
 export default function ContactDetailsSection() {
   return (
-    <section className="w-full bg-[#f7f1eb] text-[#1e2617] pt-16 pb-12 sm:pt-24 sm:pb-16 px-6 sm:px-12 md:px-16 overflow-hidden">
+    <section className="w-full bg-[#f7f1eb] text-[#1e2617]  pb-6  px-6 sm:px-12 md:px-16 overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col items-center">
         
         {/* Header Title */}

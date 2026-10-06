@@ -37,13 +37,13 @@ const Navbar = () => {
 
   const navLinksLeft = [
     { name: "Home", path: "/" },
-    { name: "About", path: "#" },
+    { name: "About", path: "#about" },
     
   ];
 
   const navLinksRight = [
-    { name: "Services", path: "#" },
-    { name: "Gallery", path: "#" },
+    { name: "Services", path: "#services" },
+    { name: "Gallery", path: "#gallery" },
   ];
 
   useEffect(() => {
