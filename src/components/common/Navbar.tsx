@@ -3,8 +3,64 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import NavLink from "./NavLink";
+
+export interface ServiceItem {
+  id: string;
+  name: string;
+}
+
+const DEFAULT_SERVICES: ServiceItem[] = [
+  {
+    id: "facial-treatments",
+    name: "Facials & Medifacials",
+  },
+  {
+    id: "laser-treatments",
+    name: "Laser & Light-Based Treatments",
+  },
+  {
+    id: "chemical-peels",
+    name: "Chemical Peels",
+  },
+  {
+    id: "advance-skin-procedures",
+    name: "Advance Skin Procedures",
+  },
+  {
+    id: "gfc",
+    name: "GFC",
+  },
+  {
+    id: "prp",
+    name: "PRP",
+  },
+  {
+    id: "skin-boosters",
+    name: "Skin Boosters",
+  },
+  {
+    id: "hair-treatments",
+    name: "Hair & Scalp Treatments",
+  },
+  {
+    id: "body-hand-foot-care",
+    name: "Body, Hand & Foot Care",
+  },
+  {
+    id: "iv-therapy",
+    name: "IV Therapy",
+  },
+  {
+    id: "nail-services",
+    name: "Nail Services",
+  },
+  {
+    id: "lash-services",
+    name: "Lash Services",
+  },
+];
 
 const IconX = () => (
   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -34,16 +90,11 @@ const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
 
   const navLinksLeft = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
-    
-  ];
-
-  const navLinksRight = [
-    { name: "Services", path: "#services" },
-    { name: "Gallery", path: "#gallery" },
   ];
 
   useEffect(() => {
@@ -120,22 +171,50 @@ const Navbar = () => {
                 alt="colorpellet logo"
                 width={250}
                 height={100}
-              className="h-25 sm:h-50 w-auto object-contain transition-transform group-hover:scale-105"
+                className="h-25 sm:h-50 w-auto object-contain transition-transform group-hover:scale-105"
                 priority
               />
             </Link>
 
             {/* Right Nav Links (next to logo) */}
             <nav className="hidden lg:flex items-center gap-6 sm:gap-8">
-              {navLinksRight.map((link) => (
-                <NavLink
-                  key={link.name}
-                  href={link.path}
-                  className="text-xs sm:text-sm uppercase tracking-[0.2em] transition-colors"
+              {/* Services Dropdown */}
+              <div className="relative group py-2">
+                <Link
+                  href="/#services"
+                  className="text-xs sm:text-sm uppercase tracking-[0.2em] font-medium text-neutral-700 hover:text-black transition-colors flex items-center gap-1.5"
                 >
-                  {link.name}
-                </NavLink>
-              ))}
+                  Services
+                  <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" />
+                </Link>
+
+                {/* Dropdown Menu */}
+                <div className="absolute top-full right-0 lg:left-1/2 lg:-translate-x-1/2 mt-2 w-[460px] bg-white/95 backdrop-blur-md border border-neutral-200 shadow-2xl rounded-xl p-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out z-50">
+                  <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 mb-3 border-b border-neutral-100 pb-2">
+                    Our Specialised Services
+                  </div>
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                    {DEFAULT_SERVICES.map((service) => (
+                      <Link
+                        key={service.id}
+                        href="/#services"
+                        className="text-xs font-poppins tracking-wider uppercase text-neutral-700 hover:text-balck-900 hover:translate-x-0.5 transition-all py-1.5 px-2 rounded-md hover:bg-neutral-50 flex items-center gap-2 group/item"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-800/40 group-hover/item:bg-black-600 transition-colors shrink-0" />
+                        <span className="truncate">{service.name}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <NavLink
+                key="Gallery"
+                href="/gallery"
+                className="text-xs sm:text-sm uppercase tracking-[0.2em] transition-colors"
+              >
+                Gallery
+              </NavLink>
             </nav>
           </div>
 
@@ -182,7 +261,7 @@ const Navbar = () => {
 
         {/* Sidebar Navigation Links (Mobile Only - Hidden on Desktop) */}
         <nav className="flex flex-col gap-4 mb-12 border-b border-neutral-300/60 pb-8 lg:hidden">
-          {[...navLinksLeft, ...navLinksRight].map((link) => (
+          {navLinksLeft.map((link) => (
             <Link
               key={link.name}
               href={link.path}
@@ -192,6 +271,53 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
+
+          {/* Services Accordion in Mobile Sidebar */}
+          <div>
+            <div className="flex items-center justify-between">
+              <Link
+                href="/#services"
+                onClick={closeSidebar}
+                className="text-lg uppercase tracking-[0.2em] font-light text-neutral-900 hover:text-amber-800 transition-colors flex-1"
+              >
+                Services
+              </Link>
+              <button
+                onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                className="p-1 text-neutral-800 hover:text-black transition-colors"
+                aria-label="Toggle services list"
+              >
+                <ChevronDown
+                  className={`w-5 h-5 transition-transform duration-200 ${
+                    isMobileServicesOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+            </div>
+
+            {isMobileServicesOpen && (
+              <div className="flex flex-col gap-2 mt-3 pl-3 border-l-2 border-amber-800/30 my-2">
+                {DEFAULT_SERVICES.map((service) => (
+                  <Link
+                    key={service.id}
+                    href="/#services"
+                    onClick={closeSidebar}
+                    className="text-xs uppercase tracking-wider text-neutral-700 hover:text-amber-800 transition-colors py-1"
+                  >
+                    {service.name}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <Link
+            href="/gallery"
+            onClick={closeSidebar}
+            className="text-lg uppercase tracking-[0.2em] font-light text-neutral-900 hover:text-amber-800 transition-colors"
+          >
+            Gallery
+          </Link>
         </nav>
 
         {/* CONTACT Section */}
@@ -200,7 +326,7 @@ const Navbar = () => {
             CONTACT
           </h3>
           <p className="text-base font-light text-neutral-800 leading-relaxed">
-           Geo Centre, Chakkaraparambu, <br />
+            Geo Centre, Chakkaraparambu, <br />
             Vennala, Kochi, Kerala – 682032
           </p>
           <div className="mt-6 flex flex-col gap-1 text-base font-light text-neutral-800">

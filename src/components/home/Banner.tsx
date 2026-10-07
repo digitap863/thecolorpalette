@@ -21,8 +21,8 @@ interface BannerProps {
 const DEFAULT_SLIDES: BannerSlide[] = [
   {
     id: 1,
-    title: "sanctuary",
-    subtitle: "Luxury Salon Experience",
+    title: "aesthetic",
+    subtitle: "Where Luxury Meets Science",
     images: [
       "/Banner/IMG_4090.jpg.jpeg",
       "/Banner/vlcsnap-2026-09-30-11h14m36s905.png",
@@ -31,8 +31,8 @@ const DEFAULT_SLIDES: BannerSlide[] = [
   },
   {
     id: 2,
-    title: "creations",
-    subtitle: "Vibrant Colors & Precision Cuts",
+    title: "precision",
+    subtitle: "Advanced Treatments, Thoughtfully Delivered",
     images: [
       "/Banner/vlcsnap-2026-09-30-11h16m23s869.png",
       "/Banner/vlcsnap-2026-09-30-11h17m33s991.png",
@@ -41,20 +41,20 @@ const DEFAULT_SLIDES: BannerSlide[] = [
   },
   {
     id: 3,
-    title: "artists",
-    subtitle: "Master Stylists & Colorists",
+    title: "personalised",
+    subtitle: "Care Designed Around You",
     images: [
-      "/Banner/vlcsnap-2026-09-30-11h15m34s413.png",
+      "/Banner/1.jpg",
       "/Banner/vlcsnap-2026-09-30-11h14m36s905.png",
-      "/Banner/vlcsnap-2026-09-30-11h15m44s622.png",
+      "/Banner/2.jpg",
     ],
   },
   {
     id: 4,
-    title: "gallery",
-    subtitle: "Bespoke Palette Transformations",
+    title: "experience",
+    subtitle: "A Refined Approach to Skin, Hair & Aesthetics",
     images: [
-      "/Banner/vlcsnap-2026-09-30-11h15m44s622.png",
+      "/Banner/3.jpg",
       "/Banner/vlcsnap-2026-09-30-11h17m33s991.png",
       "/Banner/MR_00092%202.JPG.jpeg",
     ],
