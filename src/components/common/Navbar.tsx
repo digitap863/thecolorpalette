@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import NavLink from "./NavLink";
+import { useServicesContext } from "@/context/ServicesContext";
 
 export interface ServiceItem {
   id: string;
@@ -87,6 +88,7 @@ const IconLinkedin = () => (
 );
 
 const Navbar = () => {
+  const { categories } = useServicesContext();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -181,7 +183,7 @@ const Navbar = () => {
               {/* Services Dropdown */}
               <div className="relative group py-2">
                 <Link
-                  href="/#services"
+                  href="/services"
                   className="text-xs sm:text-sm uppercase tracking-[0.2em] font-medium text-neutral-700 hover:text-black transition-colors flex items-center gap-1.5"
                 >
                   Services
@@ -194,14 +196,14 @@ const Navbar = () => {
                     Our Specialised Services
                   </div>
                   <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-                    {DEFAULT_SERVICES.map((service) => (
+                    {categories.map((cat) => (
                       <Link
-                        key={service.id}
-                        href="/#services"
-                        className="text-xs font-poppins tracking-wider uppercase text-neutral-700 hover:text-balck-900 hover:translate-x-0.5 transition-all py-1.5 px-2 rounded-md hover:bg-neutral-50 flex items-center gap-2 group/item"
+                        key={cat.id || cat.slug}
+                        href={`/services?category=${cat.slug}`}
+                        className="text-xs font-poppins tracking-wider uppercase text-neutral-700 hover:text-black hover:translate-x-0.5 transition-all py-1.5 px-2 rounded-md hover:bg-neutral-50 flex items-center gap-2 group/item"
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-amber-800/40 group-hover/item:bg-black-600 transition-colors shrink-0" />
-                        <span className="truncate">{service.name}</span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-800/40 group-hover/item:bg-black transition-colors shrink-0" />
+                        <span className="truncate">{cat.name}</span>
                       </Link>
                     ))}
                   </div>
@@ -276,7 +278,7 @@ const Navbar = () => {
           <div>
             <div className="flex items-center justify-between">
               <Link
-                href="/#services"
+                href="/services"
                 onClick={closeSidebar}
                 className="text-lg uppercase tracking-[0.2em] font-light text-neutral-900 hover:text-amber-800 transition-colors flex-1"
               >
@@ -297,14 +299,14 @@ const Navbar = () => {
 
             {isMobileServicesOpen && (
               <div className="flex flex-col gap-2 mt-3 pl-3 border-l-2 border-amber-800/30 my-2">
-                {DEFAULT_SERVICES.map((service) => (
+                {categories.map((cat) => (
                   <Link
-                    key={service.id}
-                    href="/#services"
+                    key={cat.id || cat.slug}
+                    href={`/services?category=${cat.slug}`}
                     onClick={closeSidebar}
                     className="text-xs uppercase tracking-wider text-neutral-700 hover:text-amber-800 transition-colors py-1"
                   >
-                    {service.name}
+                    {cat.name}
                   </Link>
                 ))}
               </div>

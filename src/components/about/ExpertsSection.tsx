@@ -40,7 +40,7 @@ const EXPERTISE_POINTS: ExpertiseItem[] = [
 
 export default function ExpertsSection() {
   return (
-    <section className="w-full bg-[#f7f1eb] text-[#1e2617] py-20 sm:py-28 px-6 sm:px-12 md:px-16 overflow-hidden">
+    <section className="w-full bg-[#f7f1eb] text-[#1e2617] py-25 sm:py-20 px-6 sm:px-12 md:px-16 overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
         {/* LEFT COLUMN: Large Editorial Portrait of Safa Rastham Khan (45% Split / 5 cols) */}

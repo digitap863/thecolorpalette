@@ -45,7 +45,7 @@ export default function TestimonialSection() {
   const activeTestimonial = DEFAULT_TESTIMONIALS[currentIndex];
 
   return (
-    <section id="testimonials" className="w-full bg-[#f7f1eb] text-[#1e2617] pt-12 pb-6 sm:pt-16 sm:pb-8 px-6 sm:px-12 md:px-16 overflow-hidden">
+    <section id="testimonials" className="w-full bg-[#f7f1eb] text-[#1e2617] pt-6 pb-6 sm:pt-8 sm:pb-8 px-6 sm:px-12 md:px-16 overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
         {/* Left Column: Large Arch Shaped Framed Salon Image */}

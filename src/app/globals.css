@@ -70,6 +70,21 @@
   animation: textFadeUp 0.65s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
 
+@keyframes itemFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-item-fade {
+  animation: itemFadeIn 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;

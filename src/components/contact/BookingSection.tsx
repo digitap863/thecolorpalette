@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { User, Mail, Calendar, LayoutGrid, MessageSquare, ChevronDown, Check } from "lucide-react";
+import { User, Calendar, LayoutGrid, MessageSquare, ChevronDown, Check, Phone, Loader2, AlertCircle } from "lucide-react";
 
 export interface ServiceItem {
   id: string;
@@ -63,37 +63,69 @@ const DEFAULT_SERVICES: ServiceItem[] = [
 export default function BookingSection() {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
+    phone: "",
     date: "",
     service: "",
     message: "",
     agreed: false,
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.agreed) {
-      setSubmitted(true);
-      setTimeout(() => {
-        setSubmitted(false);
+    if (!formData.agreed) return;
+
+    setIsSubmitting(true);
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          date: formData.date,
+          service: formData.service,
+          message: formData.message,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setSubmitted(true);
         setFormData({
           name: "",
-          email: "",
+          phone: "",
           date: "",
           service: "",
           message: "",
           agreed: false,
         });
-      }, 5000);
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 7000);
+      } else {
+        setErrorMessage(data.error || "Failed to submit booking. Please try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      setErrorMessage("Something went wrong. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
     <section
       id="contact"
-      className="w-full bg-[#f7f1eb] text-[#1e2617] pt-6 pb-12 sm:pt-8 sm:pb-16 px-6 sm:px-12 md:px-16 overflow-hidden"
+      className="w-full bg-[#f7f1eb] text-[#1e2617] py-6 sm:py-12  px-6 sm:px-12 md:px-16 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
@@ -127,15 +159,15 @@ export default function BookingSection() {
                 />
               </div>
 
-              {/* Field 2: Your Email */}
+              {/* Field 2: Your phone */}
               <div className="relative flex items-center border-b border-[#1e2617]/30 focus-within:border-[#1e2617] transition-colors pb-2.5">
-                <Mail className="w-5 h-5 text-[#1e2617]/60 shrink-0 mr-3" strokeWidth={1.5} />
+                <Phone className="w-5 h-5 text-[#1e2617]/60 shrink-0 mr-3" strokeWidth={1.5} />
                 <input
-                  type="email"
+                  type="text"
                   required
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="Your Number"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="w-full bg-transparent text-sm sm:text-base text-[#1e2617] placeholder-[#1e2617]/60 focus:outline-none font-light"
                 />
               </div>
@@ -197,9 +229,17 @@ export default function BookingSection() {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="font-belleza px-9 py-3.5 border border-[#1e2617] text-[#1e2617] hover:bg-[#1e2617] hover:text-[#f7f1eb] text-xs sm:text-sm uppercase tracking-[0.2em] font-medium transition-colors duration-300 cursor-pointer shrink-0"
+                disabled={isSubmitting}
+                className="font-belleza px-9 py-3.5 border border-[#1e2617] text-[#1e2617] hover:bg-[#1e2617] hover:text-[#f7f1eb] text-xs sm:text-sm uppercase tracking-[0.2em] font-medium transition-colors duration-300 cursor-pointer shrink-0 disabled:opacity-60 disabled:cursor-not-allowed flex items-center gap-2"
               >
-                SUBMIT
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin text-[#1e2617]" />
+                    <span>SENDING...</span>
+                  </>
+                ) : (
+                  <span>SUBMIT</span>
+                )}
               </button>
 
               {/* Checkbox Agreement */}
@@ -224,9 +264,17 @@ export default function BookingSection() {
 
             {/* Success Notification Banner */}
             {submitted && (
-              <div className="mt-6 p-4 border border-[#1e2617]/30 bg-[#dfcca5]/20 text-[#1e2617] text-sm font-light flex items-center gap-3 animate-fade-in">
+              <div className="mt-6 p-4 border border-emerald-800/30 bg-emerald-50 text-[#1e2617] text-sm font-light flex items-center gap-3 animate-fade-in rounded-md">
                 <Check className="w-5 h-5 text-emerald-700 shrink-0" />
-                <span>Thank you! Your seat reservation request has been received. We will contact you shortly.</span>
+                <span>Thank you! Your appointment request has been submitted. Our team will contact you shortly.</span>
+              </div>
+            )}
+
+            {/* Error Alert Banner */}
+            {errorMessage && (
+              <div className="mt-6 p-4 border border-rose-800/30 bg-rose-50 text-rose-900 text-sm font-light flex items-center gap-3 animate-fade-in rounded-md">
+                <AlertCircle className="w-5 h-5 text-rose-700 shrink-0" />
+                <span>{errorMessage}</span>
               </div>
             )}
 
@@ -254,3 +302,4 @@ export default function BookingSection() {
     </section>
   );
 }
+

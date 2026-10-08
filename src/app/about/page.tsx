@@ -26,12 +26,6 @@ export default function AboutPage() {
         {/* Our Experts / Team Section */}
         <ExpertsSection />
 
-        {/* Salon Features */}
-        {/* <FeaturesSection /> */}
-
-        {/* Customer Testimonials */}
-        {/* <TestimonialSection /> */}
-
         {/* Booking / Reserve Form */}
         <BookingSection />
 

@@ -174,7 +174,7 @@ export default function GalleryGridSection() {
   };
 
   return (
-    <section className="w-full bg-white text-black py-16 sm:py-24 px-4 sm:px-8 md:px-12 lg:px-16 relative">
+    <section className="w-full bg-white/50 text-black py-16 sm:py-24 px-4 sm:px-8 md:px-12 lg:px-16 relative">
       <div className="max-w-[1360px] mx-auto">
         {/* Gallery Image Grid (3 Columns on Desktop like screenshot) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 mb-16">

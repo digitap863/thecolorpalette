@@ -6,7 +6,7 @@ import FeaturesSection from "@/components/home/FeaturesSection";
 import TestimonialSection from "@/components/home/TestimonialSection";
 import BookingSection from "@/components/contact/BookingSection";
 import FaqSection from "@/components/contact/FaqSection";
-
+ 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white text-black flex flex-col">

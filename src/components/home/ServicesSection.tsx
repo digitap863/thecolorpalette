@@ -2,65 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-
-export interface ServiceItem {
-  id: string;
-  name: string;
-  isSpecial?: boolean;
-}
-
-const DEFAULT_SERVICES: ServiceItem[] = [
-  {
-    id: "facial-treatments",
-    name: "Facials & Medifacials",
-  },
-  {
-    id: "laser-treatments",
-    name: "Laser & Light-Based Treatments",
-  },
-  {
-    id: "chemical-peels",
-    name: "Chemical Peels",
-  },
-  {
-    id: "advance-skin-procedures",
-    name: "Advance Skin Procedures",
-  },
-  {
-    id: "gfc",
-    name: "GFC",
-  },
-  {
-    id: "prp",
-    name: "PRP",
-  },
-  {
-    id: "skin-boosters",
-    name: "Skin Boosters",
-  },
-  {
-    id: "hair-treatments",
-    name: "Hair & Scalp Treatments",
-  },
-  {
-    id: "body-hand-foot-care",
-    name: "Body, Hand & Foot Care",
-  },
-  {
-    id: "iv-therapy",
-    name: "IV Therapy",
-  },
-  {
-    id: "nail-services",
-    name: "Nail Services",
-  },
-  {
-    id: "lash-services",
-    name: "Lash Services",
-  },
-];
+import { useServicesContext } from "@/context/ServicesContext";
 
 export default function ServicesSection() {
+  const { categories } = useServicesContext();
+
   return (
     <section id="services" className="w-full bg-white text-black py-20 sm:py-28 px-6 sm:px-12 md:px-16 lg:px-20 overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
@@ -95,27 +41,25 @@ export default function ServicesSection() {
 
           {/* Services List */}
           <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-x-6 sm:gap-x-8 gap-y-5 sm:gap-y-6 mb-12">
-            {DEFAULT_SERVICES.map((service) => (
-              <div key={service.id} className="w-full flex items-center min-w-0">
-                <span className="font-belleza text-xs sm:text-sm md:text-base font-medium uppercase tracking-wider text-[#1e2617] shrink-0">
-                  {service.name}
+            {categories.map((category) => (
+              <Link
+                key={category.id || category.slug}
+                href={`/services?category=${category.slug}`}
+                className="w-full flex items-center min-w-0 group hover:opacity-80 transition-opacity"
+              >
+                <span className="font-belleza text-xs sm:text-sm md:text-base font-medium uppercase tracking-wider text-[#1e2617] shrink-0 group-hover:text-amber-800 transition-colors">
+                  {category.name}
                 </span>
-
-                {service.isSpecial && (
-                  <span className="ml-2 bg-[#dfcca5] text-[#1e2617] text-[9px] sm:text-[10px] font-bold tracking-widest px-1.5 py-0.5 uppercase shrink-0">
-                    SPECIAL
-                  </span>
-                )}
 
                 {/* Dotted border connector */}
                 <div className="flex-1 ml-2 border-b border-dotted border-black/20 h-1 min-w-[12px]" />
-              </div>
+              </Link>
             ))}
           </div>
 
           {/* Action Button: VIEW MORE SERVICES */}
           <Link
-            href="#services"
+            href="/services"
             className="font-belleza px-8 py-3.5 border border-[#1e2617] text-[#1e2617] hover:bg-[#1e2617] hover:text-white text-xs sm:text-sm uppercase tracking-[0.2em] font-medium transition-colors duration-300 inline-block"
           >
             VIEW MORE SERVICES
@@ -127,3 +71,4 @@ export default function ServicesSection() {
     </section>
   );
 }
+

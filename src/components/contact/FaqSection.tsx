@@ -74,7 +74,7 @@ export default function FaqSection() {
   return (
     <section
       id="faq"
-      className="w-full bg-[#f7f1eb] text-[#1e2617] py-16 sm:py-24 px-6 sm:px-12 md:px-16 overflow-hidden"
+      className="w-full bg-[#f7f1eb] text-[#1e2617] py-8 sm:py-12 px-6 sm:px-12 md:px-16 overflow-hidden"
     >
       <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
         
