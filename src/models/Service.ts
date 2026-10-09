@@ -5,7 +5,11 @@ export interface IService extends Document {
   name: string;
   slug: string;
   shortDescription: string;
+  description?: string;
   image: string;
+  images?: string[];
+  points?: string[];
+  pdfUrl?: string | null;
   featured: boolean;
   isActive: boolean;
   order: number;
@@ -38,9 +42,25 @@ const ServiceSchema: Schema<IService> = new Schema(
       required: [true, "Short description is required"],
       trim: true,
     },
+    description: {
+      type: String,
+      default: "",
+    },
     image: {
       type: String,
       default: "",
+    },
+    images: {
+      type: [String],
+      default: [],
+    },
+    points: {
+      type: [String],
+      default: [],
+    },
+    pdfUrl: {
+      type: String,
+      default: null,
     },
     featured: {
       type: Boolean,

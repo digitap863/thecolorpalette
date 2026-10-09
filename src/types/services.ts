@@ -14,7 +14,11 @@ export interface ServiceData {
   name: string;
   slug: string;
   shortDescription: string;
+  description?: string;
   image: string;
+  images?: string[];
+  points?: string[];
+  pdfUrl?: string | null;
   featured: boolean;
   isActive: boolean;
   order: number;

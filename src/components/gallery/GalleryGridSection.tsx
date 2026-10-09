@@ -2,129 +2,43 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { ArrowUp, X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
-
-export interface GalleryItem {
-  id: number;
-  src: string;
-  alt: string;
-  category: string;
-  title: string;
-}
-
-const GALLERY_ITEMS: GalleryItem[] = [
-  {
-    id: 1,
-    src: "/Banner/1.jpg",
-    alt: "Medifacial Skincare Treatment",
-    category: "Medifacials",
-    title: "Glow Medifacial Session"
-  },
-  {
-    id: 2,
-    src: "/Banner/2.jpg",
-    alt: "Laser Treatment Studio",
-    category: "Laser",
-    title: "Advanced Laser Procedure"
-  },
-  {
-    id: 3,
-    src: "/Banner/3.jpg",
-    alt: "Hair & Scalp Care",
-    category: "Hair Care",
-    title: "Hair & Scalp Therapy"
-  },
-  {
-    id: 4,
-    src: "/Banner/vlcsnap-2026-09-30-11h14m36s905.png",
-    alt: "Aesthetic Consultation",
-    category: "Aesthetics",
-    title: "Personalised Skincare Consultation"
-  },
-  {
-    id: 5,
-    src: "/Banner/vlcsnap-2026-09-30-11h16m23s869.png",
-    alt: "Bespoke Facial Care",
-    category: "Medifacials",
-    title: "Bespoke Skin Rejuvenation"
-  },
-  {
-    id: 6,
-    src: "/Banner/vlcsnap-2026-09-30-11h17m33s991.png",
-    alt: "Chemical Peel Treatment",
-    category: "Chemical Peels",
-    title: "Deep Renewal Peel"
-  },
-  {
-    id: 13,
-    src: "/Banner/IMG_4090.jpg.jpeg",
-    alt: "Specialised Skin Treatment",
-    category: "Advance Skin",
-    title: "Skin Rejuvenation Therapy"
-  },
-  {
-    id: 14,
-    src: "/Banner/IMG_7467.jpg.jpeg",
-    alt: "Studio Experience",
-    category: "Studio",
-    title: "Treatment Room Interior"
-  },
-  {
-    id: 15,
-    src: "/Banner/MR_00092 2.JPG.jpeg",
-    alt: "IV Therapy Lounge",
-    category: "IV Therapy",
-    title: "Wellness & IV Therapy"
-  },
-  {
-    id: 16,
-    src: "/images/about.png",
-    alt: "Colorpellet Aesthetics",
-    category: "Aesthetics",
-    title: "Aesthetic Consultation Room"
-  },
-   {
-    id: 17,
-    src: "/Banner/1.jpg",
-    alt: "Medifacial Skincare Treatment",
-    category: "Medifacials",
-    title: "Glow Medifacial Session"
-  },
-  {
-    id: 22,
-    src: "/Banner/2.jpg",
-    alt: "Laser Treatment Studio",
-    category: "Laser",
-    title: "Advanced Laser Procedure"
-  },
-  {
-    id: 23,
-    src: "/Banner/3.jpg",
-    alt: "Hair & Scalp Care",
-    category: "Hair Care",
-    title: "Hair & Scalp Therapy"
-  },
-  {
-    id:24,
-    src: "/Banner/vlcsnap-2026-09-30-11h14m36s905.png",
-    alt: "Aesthetic Consultation",
-    category: "Aesthetics",
-    title: "Personalised Skincare Consultation"
-  },
-  {
-    id: 25,
-    src: "/Banner/vlcsnap-2026-09-30-11h16m23s869.png",
-    alt: "Bespoke Facial Care",
-    category: "Medifacials",
-    title: "Bespoke Skin Rejuvenation"
-  },
-
-];
+import { ArrowUp, X, ChevronLeft, ChevronRight, Maximize2, Loader2 } from "lucide-react";
+import { GalleryItem } from "@/types/gallery";
 
 export default function GalleryGridSection() {
+  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const [visibleCount, setVisibleCount] = useState<number>(12);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
+
+  // Fetch gallery images from API (backed by MongoDB database)
+  useEffect(() => {
+    let isMounted = true;
+    async function fetchGallery() {
+      try {
+        setLoading(true);
+        const res = await fetch("/api/gallery");
+        if (res.ok) {
+          const data: GalleryItem[] = await res.json();
+          if (isMounted) {
+            setGalleryItems(data);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch gallery images:", err);
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    }
+
+    fetchGallery();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Monitor scroll for Scroll-to-Top button
   useEffect(() => {
@@ -141,15 +55,15 @@ export default function GalleryGridSection() {
   }, []);
 
   const handleLoadMore = () => {
-    setVisibleCount((prev) => Math.min(prev + 12, GALLERY_ITEMS.length));
+    setVisibleCount((prev) => Math.min(prev + 12, galleryItems.length));
   };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const visibleItems = GALLERY_ITEMS.slice(0, visibleCount);
-  const hasMore = visibleCount < GALLERY_ITEMS.length;
+  const visibleItems = galleryItems.slice(0, visibleCount);
+  const hasMore = visibleCount < galleryItems.length;
 
   const openLightbox = (index: number) => {
     setSelectedImageIndex(index);
@@ -176,40 +90,54 @@ export default function GalleryGridSection() {
   return (
     <section className="w-full bg-white/50 text-black py-16 sm:py-24 px-4 sm:px-8 md:px-12 lg:px-16 relative">
       <div className="max-w-[1360px] mx-auto">
-        {/* Gallery Image Grid (3 Columns on Desktop like screenshot) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 mb-16">
-          {visibleItems.map((item, index) => (
-            <div
-              key={item.id}
-              onClick={() => openLightbox(index)}
-              className="group relative w-full aspect-square bg-neutral-100 overflow-hidden cursor-pointer shadow-xs hover:shadow-xl transition-all duration-500"
-            >
-              <Image
-                src={item.src}
-                alt={item.alt}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105"
+        {/* Loading State */}
+        {loading && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 mb-16">
+            {Array.from({ length: 6 }).map((_, idx) => (
+              <div
+                key={idx}
+                className="w-full aspect-square bg-neutral-200/60 animate-pulse rounded-xs"
               />
+            ))}
+          </div>
+        )}
 
-              {/* Hover Dark Overlay & Title */}
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
-                <span className="text-[10px] uppercase tracking-[0.25em] text-[#dfcca5] font-medium mb-1">
-                  {item.category}
-                </span>
-                <h3 className="font-belleza text-lg sm:text-xl font-light uppercase tracking-wider">
-                  {item.title}
-                </h3>
-                <div className="absolute top-4 right-4 p-2 rounded-full bg-black/40 backdrop-blur-xs text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Maximize2 size={16} />
+        {/* Gallery Image Grid (3 Columns on Desktop) */}
+        {!loading && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 mb-16">
+            {visibleItems.map((item, index) => (
+              <div
+                key={item.id || index}
+                onClick={() => openLightbox(index)}
+                className="group relative w-full aspect-square bg-neutral-100 overflow-hidden cursor-pointer shadow-xs hover:shadow-xl transition-all duration-500"
+              >
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+
+                {/* Hover Dark Overlay & Title */}
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                  <span className="text-[10px] uppercase tracking-[0.25em] text-[#dfcca5] font-medium mb-1">
+                    {item.category}
+                  </span>
+                  <h3 className="font-belleza text-lg sm:text-xl font-light uppercase tracking-wider">
+                    {item.title}
+                  </h3>
+                  <div className="absolute top-4 right-4 p-2 rounded-full bg-black/40 backdrop-blur-xs text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Maximize2 size={16} />
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* Load More Button */}
-        {hasMore && (
+        {!loading && hasMore && (
           <div className="w-full flex justify-center mt-8 mb-4">
             <button
               onClick={handleLoadMore}
@@ -220,7 +148,7 @@ export default function GalleryGridSection() {
           </div>
         )}
 
-        {!hasMore && GALLERY_ITEMS.length > 12 && (
+        {!loading && !hasMore && galleryItems.length > 12 && (
           <div className="w-full text-center mt-8 mb-4">
             <span className="font-belleza text-xs uppercase tracking-[0.25em] text-neutral-400">
               ALL PHOTOS DISPLAYED
@@ -229,7 +157,7 @@ export default function GalleryGridSection() {
         )}
       </div>
 
-      {/* Floating Scroll To Top Button (matching screenshot bottom right icon) */}
+      {/* Floating Scroll To Top Button */}
       {showScrollTop && (
         <button
           onClick={scrollToTop}
@@ -241,7 +169,7 @@ export default function GalleryGridSection() {
       )}
 
       {/* Lightbox Modal */}
-      {selectedImageIndex !== null && (
+      {selectedImageIndex !== null && visibleItems[selectedImageIndex] && (
         <div className="fixed inset-0 z-50 bg-black/92 backdrop-blur-md flex items-center justify-center p-4">
           {/* Close button */}
           <button

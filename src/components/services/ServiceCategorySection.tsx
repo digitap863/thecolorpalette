@@ -9,12 +9,14 @@ interface ServiceCategorySectionProps {
   category: ServiceCategoryData;
   treatments: ServiceData[];
   index: number;
+  onSelectTreatment?: (treatment: ServiceData) => void;
 }
 
 export default function ServiceCategorySection({
   category,
   treatments,
   index,
+  onSelectTreatment,
 }: ServiceCategorySectionProps) {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -118,7 +120,11 @@ export default function ServiceCategorySection({
               key={treatment.id}
               className="w-[85vw] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] xl:w-[calc(25%-18px)] shrink-0 snap-start flex flex-col"
             >
-              <TreatmentCard treatment={treatment} index={cardIdx} />
+              <TreatmentCard
+                treatment={treatment}
+                index={cardIdx}
+                onSelect={onSelectTreatment}
+              />
             </div>
           ))}
         </div>

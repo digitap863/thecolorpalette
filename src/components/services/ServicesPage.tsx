@@ -10,8 +10,10 @@ import ServicesCTA from "./ServicesCTA";
 import LoadingSkeleton from "./LoadingSkeleton";
 import EmptyState from "./EmptyState";
 import ErrorState from "./ErrorState";
+import ServiceDetailModal from "./ServiceDetailModal";
 import { useServicesContext } from "@/context/ServicesContext";
 import FaqSection from "../contact/FaqSection";
+import { ServiceData } from "@/types/services";
 
 export default function ServicesPage() {
   const router = useRouter();
@@ -24,6 +26,7 @@ export default function ServicesPage() {
 
   const [selectedCategory, setSelectedCategory] = useState<string>(currentCategoryFromUrl);
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [selectedTreatment, setSelectedTreatment] = useState<ServiceData | null>(null);
 
   const [, startTransition] = useTransition();
 
@@ -84,12 +87,16 @@ export default function ServicesPage() {
     return catTreatments.length > 0;
   });
 
+  const selectedCategoryName = selectedTreatment
+    ? categories.find(
+        (cat) => cat.slug === selectedTreatment.categoryId || cat.id === selectedTreatment.categoryId
+      )?.name
+    : undefined;
+
   return (
     <div className="w-full bg-[#F7F1EB] min-h-screen text-stone-900 flex flex-col font-sans">
       {/* 1. HERO SECTION */}
       <ServicesHero onExploreClick={handleExploreClick} />
-
-     
 
       {/* 3. TREATMENT SEARCH & FILTERS */}
       <div id="catalogue" className="scroll-mt-24">
@@ -143,6 +150,7 @@ export default function ServicesPage() {
                   category={category}
                   treatments={categoryTreatments}
                   index={index}
+                  onSelectTreatment={(treatment) => setSelectedTreatment(treatment)}
                 />
               );
             })}
@@ -150,9 +158,15 @@ export default function ServicesPage() {
         )}
       </main>
 
+      {/* DYNAMIC TREATMENT DETAILS MODAL */}
+      <ServiceDetailModal
+        treatment={selectedTreatment}
+        categoryName={selectedCategoryName}
+        onClose={() => setSelectedTreatment(null)}
+      />
+
       {/* 6. FINAL CTA SECTION */}
-      {/* <ServicesCTA /> */}
-      <FaqSection/>
+      <FaqSection />
     </div>
   );
 }
