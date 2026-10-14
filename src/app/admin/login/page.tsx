@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,7 +16,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-export default function AdminLoginPage() {
+function AdminLoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const returnTo = searchParams.get("from") || "/admin";
@@ -234,5 +234,19 @@ export default function AdminLoginPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+export default function AdminLoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-[#f7f1eb] flex items-center justify-center font-belleza text-stone-600">
+          Loading Admin Portal...
+        </div>
+      }
+    >
+      <AdminLoginForm />
+    </Suspense>
   );
 }
