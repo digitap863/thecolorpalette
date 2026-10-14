@@ -1,10 +1,23 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { X, ChevronLeft, ChevronRight, FileText, Calendar, CheckCircle2, Sparkles } from "lucide-react";
+import {
+  X,
+  ChevronLeft,
+  ChevronRight,
+  FileText,
+  Calendar,
+  CheckCircle2,
+  Sparkles,
+} from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 import { ServiceData } from "@/types/services";
+
+import "swiper/css";
+import "swiper/css/pagination";
 
 interface ServiceDetailModalProps {
   treatment: ServiceData | null;
@@ -24,7 +37,7 @@ export default function ServiceDetailModal({
   const closeBtnRef = useRef<HTMLButtonElement>(null);
 
   // Collect all available unique images (main image + gallery images)
-  const allImages: string[] = React.useMemo(() => {
+  const allImages: string[] = useMemo(() => {
     if (!treatment) return [];
     const set = new Set<string>();
     if (treatment.image?.trim()) {
@@ -87,33 +100,42 @@ export default function ServiceDetailModal({
   };
 
   const hasMultipleImages = allImages.length > 1;
-  const hasFullDescription = Boolean(treatment.description && treatment.description.trim().length > 0);
-  const hasPoints = Boolean(Array.isArray(treatment.points) && treatment.points.length > 0);
-  const hasPdfUrl = Boolean(treatment.pdfUrl && treatment.pdfUrl.trim().length > 0);
+  const hasFullDescription = Boolean(
+    treatment.description && treatment.description.trim().length > 0
+  );
+  const hasPoints = Boolean(
+    Array.isArray(treatment.points) && treatment.points.length > 0
+  );
+  const hasPdfUrl = Boolean(
+    treatment.pdfUrl && treatment.pdfUrl.trim().length > 0
+  );
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-stone-900/60 backdrop-blur-md animate-fade-in"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-stone-900/65 backdrop-blur-md animate-fade-in sm:p-6"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="treatment-modal-title"
     >
-      {/* Modal Card Container */}
+      {/* Modal / Sheet Card Container (Bottom Sheet on Mobile, Centered Modal on Desktop) */}
       <div
-        className="relative w-full max-w-4xl lg:max-w-5xl max-h-[90vh] bg-[#F7F1EB] text-stone-900 rounded-2xl shadow-2xl overflow-hidden flex flex-col border border-stone-300/60"
+        className="relative w-full sm:max-w-4xl lg:max-w-5xl h-[92vh] sm:h-auto sm:max-h-[90vh] bg-[#F7F1EB] text-stone-900 rounded-t-[28px] sm:rounded-2xl shadow-2xl overflow-hidden flex flex-col border-t sm:border border-stone-300/60 transition-transform duration-300"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Mobile Pull / Drag Indicator Pill */}
+        <div className="w-12 h-1 bg-stone-300 rounded-full mx-auto mt-2.5 mb-1 sm:hidden shrink-0" />
+
         {/* Top Header / Sticky Bar with Close Button */}
-        <div className="sticky top-0 z-20 flex items-center justify-between px-6 py-4 bg-[#F7F1EB]/90 backdrop-blur-md border-b border-stone-200/80">
+        <div className="sticky top-0 z-20 flex items-center justify-between px-5 sm:px-6 py-3.5 sm:py-4 bg-[#F7F1EB]/95 backdrop-blur-md border-b border-stone-200/80 shrink-0">
           <div className="flex items-center gap-2">
             {categoryName && (
-              <span className="text-xs uppercase tracking-[0.25em] text-[#b39556] font-medium">
+              <span className="text-xs uppercase tracking-[0.25em] text-[#b39556] font-medium font-belleza">
                 {categoryName}
               </span>
             )}
             {treatment.featured && (
-              <span className="inline-flex items-center gap-1 bg-stone-900 text-stone-100 text-[10px] uppercase tracking-[0.2em] px-2.5 py-0.5 rounded-full font-medium ml-2">
+              <span className="inline-flex items-center gap-1 bg-stone-900 text-stone-100 text-[10px] uppercase tracking-[0.2em] px-2.5 py-0.5 rounded-full font-medium ml-1">
                 <Sparkles className="w-3 h-3 text-amber-300" />
                 <span>Signature</span>
               </span>
@@ -131,18 +153,59 @@ export default function ServiceDetailModal({
         </div>
 
         {/* Scrollable Body Container */}
-        <div className="flex-1 overflow-y-auto p-6 sm:p-8 lg:p-10">
+        <div className="flex-1 overflow-y-auto px-5 py-4 pb-28 sm:p-8 lg:p-10 sm:pb-8">
+          
+          {/* ── MOBILE-ONLY SWIPER IMAGE GALLERY (hidden on md+) ── */}
+          <div className="block md:hidden w-full mb-5">
+            <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-stone-200 shadow-sm border border-stone-300/60">
+              <Swiper
+                modules={[Pagination]}
+                pagination={{
+                  clickable: true,
+                  bulletActiveClass: "!w-5 !bg-[#b39556] !rounded-full",
+                  bulletClass:
+                    "swiper-pagination-bullet !w-2 !h-2 !bg-stone-900/40 !transition-all !duration-300",
+                }}
+                className="w-full h-full"
+              >
+                {allImages.map((img, idx) => (
+                  <SwiperSlide key={idx} className="relative w-full h-full">
+                    <Image
+                      src={imgErrorMap[idx] ? FALLBACK_IMAGE : img}
+                      alt={`${treatment.name} ${idx + 1}`}
+                      fill
+                      sizes="100vw"
+                      className="object-cover"
+                      onError={() =>
+                        setImgErrorMap((prev) => ({ ...prev, [idx]: true }))
+                      }
+                      priority={idx === 0}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/30 via-transparent to-transparent pointer-events-none" />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+
+              {/* Photo Count Pill */}
+              {allImages.length > 1 && (
+                <div className="absolute top-3 right-3 z-10 bg-stone-900/75 backdrop-blur-xs text-white text-[10px] font-medium tracking-widest px-2.5 py-1 rounded-full pointer-events-none">
+                  {allImages.length} Photos
+                </div>
+              )}
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 items-start">
             
-            {/* LEFT COLUMN: Image Gallery & Navigation */}
-            <div className="md:col-span-6 flex flex-col gap-4">
+            {/* ── DESKTOP-ONLY IMAGE GALLERY & THUMBNAILS (hidden on mobile, flex on md+) ── */}
+            <div className="hidden md:flex md:col-span-6 flex-col gap-4">
               {/* Main Display Image */}
               <div className="relative w-full aspect-[4/3] bg-stone-200/70 rounded-xl overflow-hidden border border-stone-300/60 group shadow-xs">
                 <Image
                   src={currentImageSrc}
                   alt={treatment.name}
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="50vw"
                   onError={() => {
                     setImgErrorMap((prev) => ({ ...prev, [activeImageIndex]: true }));
                   }}
@@ -176,7 +239,7 @@ export default function ServiceDetailModal({
                 )}
               </div>
 
-              {/* Thumbnails Navigation (if multiple images) */}
+              {/* Thumbnails Navigation (Desktop) */}
               {hasMultipleImages && (
                 <div className="flex items-center gap-2.5 overflow-x-auto pb-1 scrollbar-thin">
                   {allImages.map((img, idx) => {
@@ -208,12 +271,12 @@ export default function ServiceDetailModal({
               )}
             </div>
 
-            {/* RIGHT COLUMN: Treatment Information & Actions */}
+            {/* ── RIGHT / DETAILS COLUMN: Information & Content ── */}
             <div className="md:col-span-6 flex flex-col justify-between h-full">
               <div>
                 {/* Category Subtitle */}
                 {categoryName && (
-                  <span className="text-xs uppercase tracking-[0.25em] text-[#b39556] font-semibold block mb-2">
+                  <span className="text-xs uppercase tracking-[0.25em] text-[#b39556] font-semibold block mb-2 font-belleza">
                     {categoryName}
                   </span>
                 )}
@@ -221,59 +284,60 @@ export default function ServiceDetailModal({
                 {/* Treatment Title */}
                 <h2
                   id="treatment-modal-title"
-                  className="font-serif text-2xl sm:text-3xl lg:text-4xl font-medium text-stone-900 tracking-tight leading-tight mb-4"
+                  className="font-serif text-2xl sm:text-3xl lg:text-4xl font-medium text-stone-900 tracking-tight leading-tight mb-3 sm:mb-4"
                 >
                   {treatment.name}
                 </h2>
 
                 {/* Short Description */}
-                <p className="text-base text-stone-700 leading-relaxed font-normal mb-6 pb-6 border-b border-stone-200/80">
+                <p className="text-sm sm:text-base text-stone-700 leading-relaxed font-normal mb-5 sm:mb-6 pb-5 sm:pb-6 border-b border-stone-200/80">
                   {treatment.shortDescription}
                 </p>
-
-                {/* Full Description (if available) */}
-                {hasFullDescription && (
-                  <div className="mb-6">
-                    <h3 className="text-xs uppercase tracking-[0.2em] font-semibold text-stone-800 mb-2">
-                      Overview
-                    </h3>
-                    <p className="text-sm text-stone-600 font-light leading-relaxed whitespace-pre-line">
-                      {treatment.description}
-                    </p>
-                  </div>
-                )}
 
                 {/* Bullet Points / Highlights (if available) */}
                 {hasPoints && (
                   <div className="mb-6">
-                    <h3 className="text-xs uppercase tracking-[0.2em] font-semibold text-stone-800 mb-3">
+                    <h3 className="text-xs uppercase tracking-[0.2em] font-semibold text-stone-800 mb-3 font-belleza">
                       Treatment Highlights
                     </h3>
                     <ul className="space-y-2.5">
                       {treatment.points!.map((point, idx) => (
-                        <li key={idx} className="flex items-start gap-3 text-sm text-stone-700 font-light">
+                        <li
+                          key={idx}
+                          className="flex items-start gap-2.5 text-xs sm:text-sm text-stone-700 font-light bg-stone-100/60 p-2.5 sm:p-0 sm:bg-transparent rounded-xl"
+                        >
                           <CheckCircle2 className="w-4 h-4 text-[#b39556] shrink-0 mt-0.5" />
-                          <span>{point}</span>
+                          <span className="leading-relaxed">{point}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                 )}
+
+                {/* Full Description (if available) */}
+                {hasFullDescription && (
+                  <div className="mb-6">
+                    <h3 className="text-xs uppercase tracking-[0.2em] font-semibold text-stone-800 mb-2 font-belleza">
+                      Overview & Care Approach
+                    </h3>
+                    <p className="text-xs sm:text-sm text-stone-600 font-light leading-relaxed whitespace-pre-line">
+                      {treatment.description}
+                    </p>
+                  </div>
+                )}
               </div>
 
-              {/* Action Buttons Area */}
-              <div className="mt-8 pt-6 border-t border-stone-200/80 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
-                {/* Book Consultation CTA */}
+              {/* Desktop-only action buttons placeholder (hidden on mobile, rendered at bottom of modal) */}
+              <div className="hidden sm:flex mt-8 pt-6 border-t border-stone-200/80 items-center gap-3.5">
                 <Link
                   href="/contact"
                   onClick={onClose}
-                  className="flex-1 inline-flex items-center justify-center gap-2 bg-stone-900 text-stone-100 hover:bg-stone-800 px-2 py-3.5 rounded-xl font-belleza text-xs sm:text-sm uppercase tracking-[0.2em] font-medium transition-colors cursor-pointer shadow-sm text-center"
+                  className="flex-1 inline-flex items-center justify-center gap-2 bg-stone-900 text-stone-100 hover:bg-stone-800 px-4 py-3.5 rounded-xl font-belleza text-xs sm:text-sm uppercase tracking-[0.2em] font-medium transition-colors cursor-pointer shadow-sm text-center"
                 >
-                  <Calendar className="w-4 h-4" />
+                  <Calendar className="w-4 h-4 text-[#dfcca5]" />
                   <span>BOOK A CONSULTATION</span>
                 </Link>
 
-                {/* View Treatment PDF Button (Only if pdfUrl exists!) */}
                 {hasPdfUrl && (
                   <a
                     href={treatment.pdfUrl!}
@@ -290,6 +354,34 @@ export default function ServiceDetailModal({
 
           </div>
         </div>
+
+        {/* ── MOBILE-ONLY STICKY BOTTOM ACTION BAR (Thumb Zone) ── */}
+        <div className="sm:hidden absolute bottom-0 inset-x-0 z-30 px-5 py-3.5 bg-[#F7F1EB]/95 backdrop-blur-md border-t border-stone-200/90 shadow-[0_-8px_20px_rgba(0,0,0,0.06)] flex items-center gap-2.5">
+          {/* Main Book CTA */}
+          <Link
+            href="/contact"
+            onClick={onClose}
+            className="flex-1 inline-flex items-center justify-center gap-2 bg-stone-900 text-stone-100 hover:bg-stone-800 py-3.5 px-4 rounded-xl font-belleza text-xs uppercase tracking-[0.2em] font-medium transition-colors cursor-pointer shadow-sm text-center active:scale-[0.98]"
+          >
+            <Calendar className="w-4 h-4 text-[#dfcca5]" />
+            <span>BOOK A CONSULTATION</span>
+          </Link>
+
+          {/* Brochure button if PDF exists */}
+          {hasPdfUrl && (
+            <a
+              href={treatment.pdfUrl!}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-1.5 border border-stone-800 text-stone-900 hover:bg-stone-900 hover:text-white px-3.5 py-3.5 rounded-xl font-belleza text-xs uppercase tracking-wider font-medium transition-colors cursor-pointer shrink-0 active:scale-[0.98]"
+              title="Download Brochure"
+            >
+              <FileText className="w-4 h-4" />
+              <span>PDF</span>
+            </a>
+          )}
+        </div>
+
       </div>
     </div>
   );

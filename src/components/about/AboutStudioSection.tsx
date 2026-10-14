@@ -32,7 +32,7 @@ export default function AboutStudioSection() {
   return (
     <section className="w-full bg-[#f7f1eb] text-[#1e2617] py-15 sm:py-20 px-6 sm:px-12 md:px-16 overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        
+
         {/* LEFT COLUMN: Large Portrait Clinical Aesthetic Image (45% Split / 5 cols) */}
         <div className="lg:col-span-5 flex justify-center w-full order-1">
           <div className="relative w-full max-w-[480px] aspect-[4/5] rounded-[24px] overflow-hidden border border-[#1e2617]/10 shadow-[0_12px_40px_rgba(30,38,23,0.06)] group">
@@ -51,7 +51,7 @@ export default function AboutStudioSection() {
 
         {/* RIGHT COLUMN: Content Area (55% Split / 7 cols) */}
         <div className="lg:col-span-7 flex flex-col items-start text-left w-full order-2">
-          
+
           {/* Eyebrow */}
           <span className="font-poppins text-xs sm:text-sm font-medium uppercase tracking-[0.25em] text-[#c2a878] mb-4 block">
             ABOUT THE COLOR PALLETE

@@ -1,9 +1,16 @@
 "use client";
 
 import React from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const IconAdvancedTechnology = ({
-  className = "w-11 h-11",
+  className = "w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11",
 }: {
   className?: string;
 }) => (
@@ -40,7 +47,7 @@ const IconAdvancedTechnology = ({
 );
 
 const IconPersonalizedCare = ({
-  className = "w-11 h-11",
+  className = "w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11",
 }: {
   className?: string;
 }) => (
@@ -66,7 +73,7 @@ const IconPersonalizedCare = ({
 );
 
 const IconClinicalEnvironment = ({
-  className = "w-11 h-11",
+  className = "w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11",
 }: {
   className?: string;
 }) => (
@@ -92,7 +99,7 @@ const IconClinicalEnvironment = ({
 );
 
 const IconSkinRejuvenation = ({
-  className = "w-11 h-11",
+  className = "w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11",
 }: {
   className?: string;
 }) => (
@@ -117,7 +124,7 @@ const IconSkinRejuvenation = ({
 );
 
 const IconLaserLight = ({
-  className = "w-11 h-11",
+  className = "w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11",
 }: {
   className?: string;
 }) => (
@@ -147,7 +154,7 @@ const IconLaserLight = ({
 );
 
 const IconHairScalp = ({
-  className = "w-11 h-11",
+  className = "w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11",
 }: {
   className?: string;
 }) => (
@@ -176,6 +183,7 @@ const IconHairScalp = ({
     <path d="M50 16 L 51.5 19 L 54.5 20.5 L 51.5 22 L 50 25 L 48.5 22 L 45.5 20.5 L 48.5 19 Z" fill="currentColor" stroke="none" />
   </svg>
 );
+
 export interface FeatureCardItem {
   id: string;
   subtitle: string;
@@ -244,46 +252,100 @@ const FEATURE_CARDS: FeatureCardItem[] = [
 
 export default function FeaturesSection() {
   return (
-    <section className="w-full bg-[#f7f1eb] py-12 sm:py-16 px-6 sm:px-12 md:px-16 overflow-hidden">
+    <section className="w-full bg-[#f7f1eb] py-8 sm:py-12 md:py-16 px-3.5 sm:px-8 md:px-16 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        
-        {/* Grid Container: 3 Columns on desktop, 2 on tablet, 1 on mobile */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {FEATURE_CARDS.map((card) => {
-            return (
-              <div
-                key={card.id}
-                className="group relative flex flex-col justify-between p-8 sm:p-10 min-h-[300px] sm:min-h-[340px] bg-white text-[#3c3530] border-none shadow-[0_8px_30px_rgba(74,65,58,0.04)] hover:shadow-[0_12px_40px_rgba(74,65,58,0.08)] transition-all duration-500 hover:-translate-y-1.5"
-              >
-                {/* Top Section: Subtitle (Left) & Icon (Right) */}
-                <div className="flex items-start justify-between w-full mb-8">
-                  <span className="font-sans text-xs sm:text-sm tracking-wider font-light text-[#3c3530]/75">
-                    {card.subtitle}
-                  </span>
+        {/* Swiper Header with Subtitle & Navigation Controls */}
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
+          <div className="flex items-center gap-2">
+            <span className="font-script text-3xl sm:text-5xl text-[#cfbf9d] tracking-wide mb-1 select-none">
+              Why Choose Us
+            </span>
+          </div>
 
-                  <div className="text-[#3c3530] transform transition-transform duration-500 group-hover:scale-110">
-                    {card.icon}
-                  </div>
-                </div>
-
-                {/* Middle Section: Main Uppercase Title */}
-                <div className="my-auto">
-                  <h3 className="font-belleza text-2xl sm:text-3xl md:text-3.5xl font-normal uppercase tracking-[0.12em] leading-tight text-[#3c3530]">
-                    {card.title}
-                  </h3>
-                </div>
-
-                {/* Bottom Section: Divider Line & Description Text */}
-                <div className="mt-8 pt-5 border-t border-[#3c3530]/15">
-                  <p className="text-xs sm:text-sm font-light leading-relaxed text-[#3c3530]/80">
-                    {card.description}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+          {/* Swiper Arrow Buttons */}
+          <div className="flex items-center gap-2">
+            <button
+              className="features-swiper-prev w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-[#3c3530]/20 bg-white/80 hover:bg-[#3c3530] hover:text-white text-[#3c3530] flex items-center justify-center transition-all duration-300 shadow-xs cursor-pointer hover:scale-105 active:scale-95 disabled:opacity-40"
+              aria-label="Previous feature"
+            >
+              <ChevronLeft className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+            </button>
+            <button
+              className="features-swiper-next w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-[#3c3530]/20 bg-white/80 hover:bg-[#3c3530] hover:text-white text-[#3c3530] flex items-center justify-center transition-all duration-300 shadow-xs cursor-pointer hover:scale-105 active:scale-95 disabled:opacity-40"
+              aria-label="Next feature"
+            >
+              <ChevronRight className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+            </button>
+          </div>
         </div>
 
+        {/* Swiper.js Carousel: 2 items per view on mobile, 3 on desktop */}
+        <Swiper
+          modules={[Autoplay, Navigation, Pagination]}
+          slidesPerView={2}
+          spaceBetween={12}
+          loop={true}
+          autoplay={{
+            delay: 3500,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 24,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 32,
+            },
+          }}
+          navigation={{
+            prevEl: ".features-swiper-prev",
+            nextEl: ".features-swiper-next",
+          }}
+          pagination={{
+            clickable: true,
+            el: ".features-swiper-pagination",
+          }}
+          className="w-full !pb-2"
+        >
+          {FEATURE_CARDS.map((card) => {
+            return (
+              <SwiperSlide key={card.id} className="!h-auto flex">
+                <div className="group relative flex flex-col justify-between p-3.5 sm:p-7 md:p-8 lg:p-10 min-h-[210px] sm:min-h-[280px] md:min-h-[340px] w-full h-full bg-white text-[#3c3530] border-none shadow-[0_4px_20px_rgba(74,65,58,0.03)] sm:shadow-[0_8px_30px_rgba(74,65,58,0.04)] hover:shadow-[0_12px_40px_rgba(74,65,58,0.08)] transition-all duration-500 hover:-translate-y-1.5">
+                  {/* Top Section: Subtitle (Left) & Icon (Right) */}
+                  <div className="flex items-start justify-between w-full mb-3 sm:mb-6 md:mb-8">
+                    <span className="font-sans text-[10px] sm:text-xs md:text-sm tracking-wider font-light text-[#3c3530]/75 line-clamp-1 pr-1">
+                      {card.subtitle}
+                    </span>
+
+                    <div className="text-[#3c3530] shrink-0 ml-1.5 transform transition-transform duration-500 group-hover:scale-110">
+                      {card.icon}
+                    </div>
+                  </div>
+
+                  {/* Middle Section: Main Uppercase Title */}
+                  <div className="my-auto">
+                    <h3 className="font-belleza text-sm sm:text-2xl md:text-3xl lg:text-3.5xl font-normal uppercase tracking-[0.06em] sm:tracking-[0.12em] leading-snug sm:leading-tight text-[#3c3530]">
+                      {card.title}
+                    </h3>
+                  </div>
+
+                  {/* Bottom Section: Divider Line & Description Text */}
+                  <div className="mt-3.5 sm:mt-8 pt-2.5 sm:pt-5 border-t border-[#3c3530]/15">
+                    <p className="text-[11px] sm:text-xs md:text-sm font-light leading-relaxed text-[#3c3530]/80">
+                      {card.description}
+                    </p>
+                  </div>
+                </div>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+
+        {/* Custom Luxury Pagination Dots */}
+        <div className="features-swiper-pagination flex items-center justify-center gap-1.5 sm:gap-2 mt-5 sm:mt-8 [&_.swiper-pagination-bullet]:w-1.5 sm:[&_.swiper-pagination-bullet]:w-2 [&_.swiper-pagination-bullet]:h-1.5 [&_.swiper-pagination-bullet]:rounded-full [&_.swiper-pagination-bullet]:bg-[#3c3530]/25 [&_.swiper-pagination-bullet]:transition-all [&_.swiper-pagination-bullet]:duration-500 [&_.swiper-pagination-bullet-active]:w-7 sm:[&_.swiper-pagination-bullet-active]:w-8 [&_.swiper-pagination-bullet-active]:bg-[#3c3530] [&_.swiper-pagination-bullet]:cursor-pointer" />
       </div>
     </section>
   );

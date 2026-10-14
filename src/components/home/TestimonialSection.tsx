@@ -1,8 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 export interface TestimonialItem {
   id: number;
@@ -41,9 +47,6 @@ const DEFAULT_TESTIMONIALS: TestimonialItem[] = [
 ];
 
 export default function TestimonialSection() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const activeTestimonial = DEFAULT_TESTIMONIALS[currentIndex];
-
   return (
     <section id="testimonials" className="w-full bg-[#f7f1eb] text-[#1e2617] pt-6 pb-6 sm:pt-8 sm:pb-8 px-6 sm:px-12 md:px-16 overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -64,7 +67,7 @@ export default function TestimonialSection() {
           </div>
         </div>
 
-        {/* Right Column: Customer Testimonial Content */}
+        {/* Right Column: Customer Testimonial Content with Swiper */}
         <div className="lg:col-span-6 flex flex-col items-start text-left w-full">
           
           {/* Cursive Subtitle */}
@@ -77,84 +80,105 @@ export default function TestimonialSection() {
             LOVELY CUSTOMERS.
           </h2>
 
-          {/* 5 Gold Stars Rating */}
-          <div className="flex items-center gap-1.5 mb-8">
-            {Array.from({ length: activeTestimonial.rating }).map((_, idx) => (
-              <Star
-                key={idx}
-                className="w-5 h-5 text-[#dfcca5] fill-[#dfcca5]"
-              />
-            ))}
-          </div>
+          {/* Swiper Slider Wrapper */}
+          <div className="w-full relative pb-2">
+            <Swiper
+              modules={[Autoplay, Pagination, Navigation]}
+              spaceBetween={30}
+              slidesPerView={1}
+              loop={true}
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              navigation={{
+                prevEl: ".testimonial-swiper-prev",
+                nextEl: ".testimonial-swiper-next",
+              }}
+              pagination={{
+                clickable: true,
+                el: ".testimonial-swiper-pagination",
+              }}
+              className="w-full"
+            >
+              {DEFAULT_TESTIMONIALS.map((testimonial) => (
+                <SwiperSlide key={testimonial.id} className="w-full pb-2">
+                  {/* 5 Gold Stars Rating */}
+                  <div className="flex items-center gap-1.5 mb-8">
+                    {Array.from({ length: testimonial.rating }).map((_, idx) => (
+                      <Star
+                        key={idx}
+                        className="w-5 h-5 text-[#dfcca5] fill-[#dfcca5]"
+                      />
+                    ))}
+                  </div>
 
-          {/* Testimonial Quote */}
-          <p className="text-[#1e2617]/85 text-base sm:text-lg md:text-xl font-light leading-relaxed max-w-xl min-h-[90px] transition-opacity duration-300">
-            &ldquo;{activeTestimonial.quote}&rdquo;
-          </p>
+                  {/* Testimonial Quote */}
+                  <p className="text-[#1e2617]/85 text-base sm:text-lg md:text-xl font-light leading-relaxed max-w-xl min-h-[90px]">
+                    &ldquo;{testimonial.quote}&rdquo;
+                  </p>
 
-          {/* Horizontal Divider Line */}
-          <div className="w-full border-b border-[#1e2617]/20 my-8" />
+                  {/* Horizontal Divider Line */}
+                  <div className="w-full border-b border-[#1e2617]/20 my-8" />
 
-          {/* Bottom Bar: Customer Profile & Carousel Dots */}
-          <div className="w-full flex items-center justify-between">
-            
-            {/* Customer Avatar & Info */}
-            <div className="flex items-center gap-4">
-              <div className="relative w-14 h-14 shrink-0">
-                <div className="relative w-full h-full rounded-full overflow-hidden border border-[#1e2617]/20 shadow-md">
-                  <Image
-                    src={activeTestimonial.avatar}
-                    alt={activeTestimonial.name}
-                    fill
-                    className="object-cover object-center"
-                    sizes="60px"
-                  />
-                </div>
+                  {/* Bottom Bar: Customer Profile */}
+                  <div className="w-full flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className="relative w-14 h-14 shrink-0">
+                        <div className="relative w-full h-full rounded-full overflow-hidden border border-[#1e2617]/20 shadow-md">
+                          <Image
+                            src={testimonial.avatar}
+                            alt={testimonial.name}
+                            fill
+                            className="object-cover object-center"
+                            sizes="60px"
+                          />
+                        </div>
 
-                {/* Floating Quote Badge on top right of avatar */}
-                <div className="absolute -top-1 -right-1 w-6 h-6 bg-[#dfcca5] text-[#1e2617] rounded-full flex items-center justify-center shadow-xs">
-                  <Quote className="w-3 h-3 fill-current rotate-180" />
-                </div>
-              </div>
+                        {/* Floating Quote Badge on top right of avatar */}
+                        <div className="absolute -top-1 -right-1 w-6 h-6 bg-[#dfcca5] text-[#1e2617] rounded-full flex items-center justify-center shadow-xs">
+                          <Quote className="w-3 h-3 fill-current rotate-180" />
+                        </div>
+                      </div>
 
-              <div className="flex flex-col">
-                <span className="font-belleza text-base sm:text-lg uppercase tracking-wider text-[#1e2617] font-medium">
-                  {activeTestimonial.name}
-                </span>
-                <span className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-[#1e2617]/60 font-light">
-                  {activeTestimonial.role}
-                </span>
+                      <div className="flex flex-col">
+                        <span className="font-belleza text-base sm:text-lg uppercase tracking-wider text-[#1e2617] font-medium">
+                          {testimonial.name}
+                        </span>
+                        <span className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-[#1e2617]/60 font-light">
+                          {testimonial.role}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+
+            {/* Bottom Controls Bar (Fixed on bottom right across all slides) */}
+            <div className="absolute bottom-4 right-0 z-10 flex items-center gap-3">
+              {/* Pagination Dots */}
+              <div className="testimonial-swiper-pagination flex items-center gap-2 [&_.swiper-pagination-bullet]:w-2.5 [&_.swiper-pagination-bullet]:h-2.5 [&_.swiper-pagination-bullet]:rounded-full [&_.swiper-pagination-bullet]:bg-[#1e2617]/30 [&_.swiper-pagination-bullet]:transition-all [&_.swiper-pagination-bullet]:duration-300 [&_.swiper-pagination-bullet-active]:w-5 [&_.swiper-pagination-bullet-active]:h-5 [&_.swiper-pagination-bullet-active]:rounded-full [&_.swiper-pagination-bullet-active]:bg-transparent [&_.swiper-pagination-bullet-active]:border [&_.swiper-pagination-bullet-active]:border-[#dfcca5] [&_.swiper-pagination-bullet-active]:relative [&_.swiper-pagination-bullet-active]:after:content-[''] [&_.swiper-pagination-bullet-active]:after:absolute [&_.swiper-pagination-bullet-active]:after:w-2 [&_.swiper-pagination-bullet-active]:after:h-2 [&_.swiper-pagination-bullet-active]:after:bg-[#dfcca5] [&_.swiper-pagination-bullet-active]:after:rounded-full [&_.swiper-pagination-bullet-active]:after:top-1/2 [&_.swiper-pagination-bullet-active]:after:left-1/2 [&_.swiper-pagination-bullet-active]:after:-translate-x-1/2 [&_.swiper-pagination-bullet-active]:after:-translate-y-1/2 [&_.swiper-pagination-bullet]:cursor-pointer" />
+
+              {/* Navigation Arrows */}
+              <div className="flex items-center gap-1.5 ml-2">
+                <button
+                  type="button"
+                  className="testimonial-swiper-prev w-7 h-7 rounded-full border border-[#1e2617]/20 bg-white/80 hover:bg-[#1e2617] hover:text-[#f7f1eb] text-[#1e2617] flex items-center justify-center transition-all cursor-pointer shadow-2xs active:scale-95 disabled:opacity-40"
+                  aria-label="Previous testimonial"
+                >
+                  <ChevronLeft className="w-3.5 h-3.5" />
+                </button>
+                <button
+                  type="button"
+                  className="testimonial-swiper-next w-7 h-7 rounded-full border border-[#1e2617]/20 bg-white/80 hover:bg-[#1e2617] hover:text-[#f7f1eb] text-[#1e2617] flex items-center justify-center transition-all cursor-pointer shadow-2xs active:scale-95 disabled:opacity-40"
+                  aria-label="Next testimonial"
+                >
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
               </div>
             </div>
-
-            {/* Carousel Dot Indicators */}
-            <div className="flex items-center gap-3 select-none">
-              {DEFAULT_TESTIMONIALS.map((item, index) => {
-                const isActive = index === currentIndex;
-
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => setCurrentIndex(index)}
-                    aria-label={`Go to testimonial ${index + 1}`}
-                    className={`transition-all duration-300 cursor-pointer flex items-center justify-center ${
-                      isActive
-                        ? "w-6 h-6 rounded-full border border-[#dfcca5]"
-                        : "w-3 h-3"
-                    }`}
-                  >
-                    <span
-                      className={`rounded-full transition-all duration-300 ${
-                        isActive
-                          ? "w-2 h-2 bg-[#dfcca5]"
-                          : "w-2 h-2 bg-[#1e2617]/30 hover:bg-[#1e2617]/60"
-                      }`}
-                    />
-                  </button>
-                );
-              })}
-            </div>
-
           </div>
 
         </div>

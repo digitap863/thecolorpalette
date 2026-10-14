@@ -10,6 +10,7 @@ import {
   Layers,
   Sparkles,
   Image as ImageIcon,
+  SlidersHorizontal,
   ExternalLink,
   LogOut,
   ShieldCheck,
@@ -24,6 +25,19 @@ interface AdminSidebarProps {
     email?: string;
     role?: string;
   };
+}
+
+interface NavItem {
+  name: string;
+  href: string;
+  icon: React.ComponentType<{ className?: string }>;
+  active?: boolean;
+  external?: boolean;
+}
+
+interface NavSection {
+  group: string;
+  items: NavItem[];
 }
 
 export default function AdminSidebar({ admin }: AdminSidebarProps) {
@@ -47,7 +61,7 @@ export default function AdminSidebar({ admin }: AdminSidebarProps) {
     }
   };
 
-  const navLinks = [
+  const navLinks: NavSection[] = [
     {
       group: "Management",
       items: [
@@ -56,6 +70,12 @@ export default function AdminSidebar({ admin }: AdminSidebarProps) {
           href: "/admin",
           icon: LayoutDashboard,
           active: pathname === "/admin",
+        },
+        {
+          name: "Hero Banners",
+          href: "/admin/banners",
+          icon: SlidersHorizontal,
+          active: pathname === "/admin/banners" || pathname.startsWith("/admin/banners"),
         },
         {
           name: "Bookings",
