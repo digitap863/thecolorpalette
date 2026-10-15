@@ -5,13 +5,23 @@ import Image from "next/image";
 export default function GalleryBannerSection() {
   return (
     <section className="relative w-full h-[100vh] min-h-[450px] max-h-[750px] overflow-hidden bg-[#1e2617]">
-      {/* Background Image */}
+      {/* Background Image - Desktop */}
       <Image
         src="/Banner/banner.png"
-        alt="gallery"
+        alt="Our Gallery - Our Work, Your Experience"
         fill
         priority
-        className="object-cover object-center transform scale-105 transition-transform duration-1000"
+        className="hidden md:block object-cover object-center transform scale-105 transition-transform duration-1000"
+        sizes="100vw"
+      />
+
+      {/* Background Image - Mobile */}
+      <Image
+        src="/Banner/banner_mob.png"
+        alt="Our Gallery - Our Work, Your Experience"
+        fill
+        priority
+        className="block md:hidden object-cover object-center transform scale-105 transition-transform duration-1000"
         sizes="100vw"
       />
 
