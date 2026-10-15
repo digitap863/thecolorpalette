@@ -88,8 +88,8 @@ const Navbar = () => {
           }`}
       >
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
-          {/* Far Left: Outlined Contact Us Button */}
-          <div className="flex items-center shrink-0">
+          {/* Far Left: Outlined Contact Us Button (Desktop Only) */}
+          <div className="hidden lg:flex items-center shrink-0">
             <Link
               href="/contact"
               className="px-4 py-2 border border-neutral-800 text-xs sm:text-sm uppercase tracking-[0.2em] font-medium text-neutral-900 hover:bg-neutral-900 hover:text-white transition-colors"
@@ -98,8 +98,8 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Center Cluster: Left Nav Links + Brand Logo + Right Nav Links */}
-          <div className="flex items-center gap-6 sm:gap-10 mx-auto">
+          {/* Center Cluster: Left Nav Links + Brand Logo + Right Nav Links (Left-aligned on mobile, centered on desktop) */}
+          <div className="flex items-center gap-6 sm:gap-10 lg:mx-auto">
             {/* Left Nav Links (next to logo) */}
             <nav className="hidden lg:flex items-center gap-6 sm:gap-8">
               {navLinksLeft.map((link) => (
@@ -113,17 +113,17 @@ const Navbar = () => {
               ))}
             </nav>
 
-            {/* Center Brand Logo Image */}
+            {/* Brand Logo Image (Left-aligned on mobile) */}
             <Link
               href="/"
-              className="flex items-center justify-center group py-1 shrink-0"
+              className="flex items-center justify-start lg:justify-center group py-1 shrink-0"
             >
               <Image
                 src="/Logo/logo.png"
                 alt="colorpellet logo"
                 width={250}
                 height={100}
-                className="h-25 sm:h-50 w-auto object-contain transition-transform group-hover:scale-105"
+                className="h-16 sm:h-20 lg:h-50 w-auto object-contain transition-transform group-hover:scale-105"
                 priority
               />
             </Link>
@@ -268,6 +268,17 @@ const Navbar = () => {
           >
             Gallery
           </Link>
+
+          {/* Contact Us Box Button (Mobile Drawer) */}
+          <div className="pt-2">
+            <Link
+              href="/contact"
+              onClick={closeSidebar}
+              className="inline-block px-5 py-2.5 border border-neutral-800 text-xs uppercase tracking-[0.2em] font-medium text-neutral-900 hover:bg-neutral-900 hover:text-white transition-colors"
+            >
+              Contact Us
+            </Link>
+          </div>
         </nav>
 
         {/* CONTACT Section */}
