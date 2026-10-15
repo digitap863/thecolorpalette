@@ -4,10 +4,10 @@ import Image from "next/image";
 
 export default function GalleryBannerSection() {
   return (
-    <section className="relative w-full h-[80vh] min-h-[450px] max-h-[750px] overflow-hidden bg-[#1e2617]">
+    <section className="relative w-full h-[100vh] min-h-[450px] max-h-[750px] overflow-hidden bg-[#1e2617]">
       {/* Background Image */}
       <Image
-        src="/about/about_banner.png"
+        src="/Banner/banner.png"
         alt="gallery"
         fill
         priority

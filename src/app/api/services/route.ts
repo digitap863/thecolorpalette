@@ -7,7 +7,6 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const categoryParam = searchParams.get("category");
-    const featuredParam = searchParams.get("featured");
     const searchParam = searchParams.get("search");
 
     const conn = await dbConnect();
@@ -19,10 +18,6 @@ export async function GET(request: NextRequest) {
 
       if (categoryParam && categoryParam !== "all") {
         query.categoryId = categoryParam;
-      }
-
-      if (featuredParam === "true") {
-        query.featured = true;
       }
 
       const services = await Service.find(query).sort({ order: 1 }).lean();
@@ -39,7 +34,6 @@ export async function GET(request: NextRequest) {
           images: Array.isArray(s.images) ? s.images : [],
           points: Array.isArray(s.points) ? s.points : [],
           pdfUrl: s.pdfUrl || null,
-          featured: Boolean(s.featured),
           isActive: s.isActive !== false,
           order: s.order ?? 0,
         }));

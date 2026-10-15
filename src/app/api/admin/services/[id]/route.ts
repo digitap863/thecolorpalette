@@ -50,7 +50,6 @@ export async function GET(request: NextRequest, context: RouteContext) {
       images: Array.isArray(service.images) ? service.images : [],
       points: Array.isArray(service.points) ? service.points : [],
       pdfUrl: service.pdfUrl || null,
-      featured: Boolean(service.featured),
       isActive: service.isActive !== false,
       order: service.order ?? 0,
       createdAt: service.createdAt,
@@ -148,10 +147,6 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
       updateData.pdfUrl = body.pdfUrl ? String(body.pdfUrl).trim() : null;
     }
 
-    if (body.featured !== undefined) {
-      updateData.featured = Boolean(body.featured);
-    }
-
     if (body.isActive !== undefined) {
       updateData.isActive = Boolean(body.isActive);
     }
@@ -183,7 +178,6 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
       images: updated.images,
       points: updated.points,
       pdfUrl: updated.pdfUrl,
-      featured: updated.featured,
       isActive: updated.isActive,
       order: updated.order,
       updatedAt: updated.updatedAt,

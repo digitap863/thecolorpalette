@@ -19,7 +19,6 @@ export interface ServiceData {
   images?: string[];
   points?: string[];
   pdfUrl?: string | null;
-  featured: boolean;
   isActive: boolean;
   order: number;
 }

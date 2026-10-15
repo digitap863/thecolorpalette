@@ -6,7 +6,6 @@ import ServicesHero from "./ServicesHero";
 import ServiceFilters from "./ServiceFilters";
 import CategoryNavigation from "./CategoryNavigation";
 import ServiceCategorySection from "./ServiceCategorySection";
-import ServicesCTA from "./ServicesCTA";
 import LoadingSkeleton from "./LoadingSkeleton";
 import EmptyState from "./EmptyState";
 import ErrorState from "./ErrorState";

@@ -8,7 +8,6 @@ import {
   Plus,
   Search,
   Filter,
-  Sparkles,
   Edit,
   Trash2,
   ExternalLink,
@@ -21,7 +20,6 @@ import {
   RefreshCw,
   Eye,
   EyeOff,
-  Star,
 } from "lucide-react";
 import { AdminServiceItem, AdminCategoryItem } from "@/components/admin/services/types";
 import ServiceFormModal from "@/components/admin/services/ServiceFormModal";
@@ -41,7 +39,7 @@ function AdminServicesContent() {
   // Filters & Views
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(initialCategoryParam || "all");
-  const [statusFilter, setStatusFilter] = useState<"all" | "active" | "inactive" | "featured">("all");
+  const [statusFilter, setStatusFilter] = useState<"all" | "active" | "inactive">("all");
   const [viewMode, setViewMode] = useState<"table" | "grid">("table");
 
   // Sync category if URL parameter changes
@@ -118,7 +116,6 @@ function AdminServicesContent() {
       // Status filter
       if (statusFilter === "active" && !srv.isActive) return false;
       if (statusFilter === "inactive" && srv.isActive) return false;
-      if (statusFilter === "featured" && !srv.featured) return false;
 
       // Search filter
       if (searchQuery.trim()) {
@@ -157,32 +154,6 @@ function AdminServicesContent() {
       );
     } catch {
       showToast("error", "Failed to update service status");
-    }
-  };
-
-  // Quick Toggle Featured Status
-  const handleToggleFeatured = async (service: AdminServiceItem) => {
-    const newFeatured = !service.featured;
-    try {
-      const res = await fetch(`/api/admin/services/${service.id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ featured: newFeatured }),
-      });
-
-      if (!res.ok) throw new Error("Update failed");
-
-      setServices((prev) =>
-        prev.map((s) => (s.id === service.id ? { ...s, featured: newFeatured } : s))
-      );
-      showToast(
-        "success",
-        `Service "${service.name}" ${
-          newFeatured ? "marked as Signature" : "removed from Signature"
-        }`
-      );
-    } catch {
-      showToast("error", "Failed to update signature status");
     }
   };
 
@@ -323,7 +294,7 @@ function AdminServicesContent() {
 
             {/* Status Pills */}
             <div className="flex items-center rounded-xl border border-[#c2a878]/30 bg-[#f7f1eb]/30 p-1">
-              {(["all", "active", "inactive", "featured"] as const).map((st) => (
+              {(["all", "active", "inactive"] as const).map((st) => (
                 <button
                   key={st}
                   onClick={() => setStatusFilter(st)}
@@ -452,7 +423,6 @@ function AdminServicesContent() {
                   <th className="py-3.5 px-4 font-semibold">Category</th>
                   <th className="py-3.5 px-4 font-semibold">Short Summary</th>
                   <th className="py-3.5 px-4 font-semibold text-center">Order</th>
-                  <th className="py-3.5 px-4 font-semibold text-center">Signature</th>
                   <th className="py-3.5 px-4 font-semibold text-center">Status</th>
                   <th className="py-3.5 px-4 font-semibold text-right">Actions</th>
                 </tr>
@@ -504,25 +474,6 @@ function AdminServicesContent() {
                       {/* Display Order */}
                       <td className="py-3.5 px-4 text-center font-mono text-xs text-stone-500">
                         {srv.order}
-                      </td>
-
-                      {/* Signature / Featured */}
-                      <td className="py-3.5 px-4 text-center">
-                        <button
-                          onClick={() => handleToggleFeatured(srv)}
-                          className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
-                            srv.featured
-                              ? "text-amber-600 bg-amber-50 hover:bg-amber-100"
-                              : "text-stone-300 hover:text-amber-500"
-                          }`}
-                          title={srv.featured ? "Remove signature" : "Make signature"}
-                        >
-                          <Star
-                            className={`w-4 h-4 ${
-                              srv.featured ? "fill-amber-500" : ""
-                            }`}
-                          />
-                        </button>
                       </td>
 
                       {/* Status Active / Draft */}
@@ -614,13 +565,6 @@ function AdminServicesContent() {
                       <span className="px-2.5 py-1 rounded-full text-[10px] font-belleza uppercase tracking-wider font-semibold bg-white/90 backdrop-blur-xs text-[#7a5f2a] border border-[#c2a878]/30 shadow-xs">
                         {catName}
                       </span>
-
-                      {srv.featured && (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-belleza uppercase tracking-wider font-semibold bg-amber-500 text-stone-950 shadow-xs">
-                          <Sparkles className="w-3 h-3" />
-                          <span>Signature</span>
-                        </span>
-                      )}
                     </div>
                   </div>
 
@@ -649,18 +593,6 @@ function AdminServicesContent() {
                   </button>
 
                   <div className="flex items-center gap-1">
-                    <button
-                      onClick={() => handleToggleFeatured(srv)}
-                      className="p-1.5 rounded-lg text-stone-400 hover:text-amber-500 transition-colors"
-                      title="Toggle Signature"
-                    >
-                      <Star
-                        className={`w-3.5 h-3.5 ${
-                          srv.featured ? "fill-amber-500 text-amber-500" : ""
-                        }`}
-                      />
-                    </button>
-
                     <button
                       onClick={() => {
                         setEditingService(srv);

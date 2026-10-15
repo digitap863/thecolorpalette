@@ -10,7 +10,6 @@ import {
   FileText,
   Calendar,
   CheckCircle2,
-  Sparkles,
 } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
@@ -134,12 +133,6 @@ export default function ServiceDetailModal({
                 {categoryName}
               </span>
             )}
-            {treatment.featured && (
-              <span className="inline-flex items-center gap-1 bg-stone-900 text-stone-100 text-[10px] uppercase tracking-[0.2em] px-2.5 py-0.5 rounded-full font-medium ml-1">
-                <Sparkles className="w-3 h-3 text-amber-300" />
-                <span>Signature</span>
-              </span>
-            )}
           </div>
 
           <button
@@ -157,7 +150,7 @@ export default function ServiceDetailModal({
           
           {/* ── MOBILE-ONLY SWIPER IMAGE GALLERY (hidden on md+) ── */}
           <div className="block md:hidden w-full mb-5">
-            <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-stone-200 shadow-sm border border-stone-300/60">
+            <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-stone-200 shadow-sm border border-stone-300/60">
               <Swiper
                 modules={[Pagination]}
                 pagination={{
@@ -200,7 +193,7 @@ export default function ServiceDetailModal({
             {/* ── DESKTOP-ONLY IMAGE GALLERY & THUMBNAILS (hidden on mobile, flex on md+) ── */}
             <div className="hidden md:flex md:col-span-6 flex-col gap-4">
               {/* Main Display Image */}
-              <div className="relative w-full aspect-[4/3] bg-stone-200/70 rounded-xl overflow-hidden border border-stone-300/60 group shadow-xs">
+              <div className="relative w-full aspect-[4/5] bg-stone-200/70 rounded-xl overflow-hidden border border-stone-300/60 group shadow-xs">
                 <Image
                   src={currentImageSrc}
                   alt={treatment.name}

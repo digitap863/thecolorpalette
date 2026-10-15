@@ -36,7 +36,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const categoryParam = searchParams.get("category");
     const searchParam = searchParams.get("search");
-    const statusParam = searchParams.get("status"); // 'all' | 'active' | 'inactive' | 'featured'
+    const statusParam = searchParams.get("status"); // 'all' | 'active' | 'inactive'
 
     const query: Record<string, any> = {};
 
@@ -48,8 +48,6 @@ export async function GET(request: NextRequest) {
       query.isActive = true;
     } else if (statusParam === "inactive") {
       query.isActive = false;
-    } else if (statusParam === "featured") {
-      query.featured = true;
     }
 
     if (searchParam) {
@@ -76,7 +74,6 @@ export async function GET(request: NextRequest) {
       images: Array.isArray(s.images) ? s.images : [],
       points: Array.isArray(s.points) ? s.points : [],
       pdfUrl: s.pdfUrl || null,
-      featured: Boolean(s.featured),
       isActive: s.isActive !== false,
       order: s.order ?? 0,
       createdAt: s.createdAt,
@@ -123,7 +120,6 @@ export async function POST(request: NextRequest) {
       images,
       points,
       pdfUrl,
-      featured,
       isActive,
       order,
     } = body;
@@ -185,7 +181,6 @@ export async function POST(request: NextRequest) {
       images: cleanImages,
       points: cleanPoints,
       pdfUrl: pdfUrl ? String(pdfUrl).trim() : null,
-      featured: Boolean(featured),
       isActive: isActive !== undefined ? Boolean(isActive) : true,
       order: typeof order === "number" ? order : parseInt(order || "0", 10) || 0,
     });
@@ -202,7 +197,6 @@ export async function POST(request: NextRequest) {
         images: newService.images,
         points: newService.points,
         pdfUrl: newService.pdfUrl,
-        featured: newService.featured,
         isActive: newService.isActive,
         order: newService.order,
         createdAt: newService.createdAt,

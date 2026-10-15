@@ -5,7 +5,6 @@ import Image from "next/image";
 import {
   X,
   Upload,
-  Sparkles,
   Plus,
   Trash2,
   FileText,
@@ -53,7 +52,6 @@ const DEFAULT_FORM: ServiceFormData = {
   images: [],
   points: [""],
   pdfUrl: "",
-  featured: false,
   isActive: true,
   order: 0,
 };
@@ -99,7 +97,6 @@ export default function ServiceFormModal({
             ? [...initialService.points]
             : [""],
         pdfUrl: initialService.pdfUrl || "",
-        featured: Boolean(initialService.featured),
         isActive: initialService.isActive !== false,
         order: initialService.order ?? 0,
       });
@@ -439,7 +436,7 @@ export default function ServiceFormModal({
                 </div>
 
                 {/* Order & Status Toggles */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                   <div>
                     <label className="block text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917] mb-1.5">
                       Display Order Priority
@@ -475,27 +472,6 @@ export default function ServiceFormModal({
                     </label>
                     <span className="text-[10px] text-stone-500 mt-1 font-poppins">
                       {formData.isActive ? "Visible to patients" : "Draft (hidden)"}
-                    </span>
-                  </div>
-
-                  {/* Featured Switch */}
-                  <div className="flex flex-col justify-center p-3 rounded-xl border border-[#c2a878]/30 bg-[#f7f1eb]/30">
-                    <label className="flex items-center justify-between cursor-pointer">
-                      <span className="text-xs font-belleza uppercase tracking-wider font-semibold text-[#1c1917] flex items-center gap-1.5">
-                        <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-                        Signature Treatment
-                      </span>
-                      <input
-                        type="checkbox"
-                        checked={formData.featured}
-                        onChange={(e) =>
-                          setFormData((prev) => ({ ...prev, featured: e.target.checked }))
-                        }
-                        className="w-4 h-4 accent-amber-600 rounded cursor-pointer"
-                      />
-                    </label>
-                    <span className="text-[10px] text-stone-500 mt-1 font-poppins">
-                      Displays signature star badge
                     </span>
                   </div>
                 </div>

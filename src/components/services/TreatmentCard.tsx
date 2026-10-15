@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { ServiceData } from "@/types/services";
 
 interface TreatmentCardProps {
@@ -11,14 +11,14 @@ interface TreatmentCardProps {
   onSelect?: (treatment: ServiceData) => void;
 }
 
-const FALLBACK_IMAGE = "/gallery/gallery_medifacial_1_1791351357677.png";
+// const FALLBACK_IMAGE = "/gallery/gallery_medifacial_1_1791351357677.png";
 
 export default function TreatmentCard({
   treatment,
   index = 0,
   onSelect,
 }: TreatmentCardProps) {
-  const [imgSrc, setImgSrc] = useState(treatment.image || FALLBACK_IMAGE);
+  const [imgSrc, setImgSrc] = useState(treatment.image);
 
   // Stagger animation delay based on card index
   const animDelay = (index % 6) * 75;
@@ -42,19 +42,10 @@ export default function TreatmentCard({
           alt={treatment.name}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          onError={() => setImgSrc(FALLBACK_IMAGE)}
           className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
         {/* Subtle overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-stone-900/30 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity" />
-
-        {/* Featured Badge */}
-        {treatment.featured && (
-          <div className="absolute top-3.5 right-3.5 bg-stone-900/90 backdrop-blur-md text-stone-100 text-[10px] uppercase tracking-[0.2em] px-3 py-1 rounded-full font-medium flex items-center gap-1.5 shadow-xs">
-            <Sparkles className="w-3 h-3 text-amber-300" />
-            <span>Signature</span>
-          </div>
-        )}
       </div>
 
       {/* Card Content Area */}

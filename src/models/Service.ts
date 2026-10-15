@@ -10,7 +10,6 @@ export interface IService extends Document {
   images?: string[];
   points?: string[];
   pdfUrl?: string | null;
-  featured: boolean;
   isActive: boolean;
   order: number;
   createdAt: Date;
@@ -61,10 +60,6 @@ const ServiceSchema: Schema<IService> = new Schema(
     pdfUrl: {
       type: String,
       default: null,
-    },
-    featured: {
-      type: Boolean,
-      default: false,
     },
     isActive: {
       type: Boolean,

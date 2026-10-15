@@ -1,6 +1,6 @@
 "use client";
 
-import { Layers, CheckCircle2, Sparkles, FolderTree } from "lucide-react";
+import { Layers, CheckCircle2, FolderTree } from "lucide-react";
 import { AdminServiceItem, AdminCategoryItem } from "./types";
 
 interface ServicesStatsBarProps {
@@ -14,7 +14,6 @@ export default function ServicesStatsBar({
 }: ServicesStatsBarProps) {
   const total = services.length;
   const active = services.filter((s) => s.isActive).length;
-  const featured = services.filter((s) => s.featured).length;
   const totalCats = categories.length;
 
   const stats = [
@@ -35,14 +34,6 @@ export default function ServicesStatsBar({
       accent: "text-emerald-700 bg-emerald-100/90",
     },
     {
-      label: "Signature Treatments",
-      value: featured,
-      sub: "Highlighted with star badge",
-      icon: Sparkles,
-      color: "from-amber-50/90 to-amber-100/40",
-      accent: "text-amber-700 bg-amber-100/90",
-    },
-    {
       label: "Clinical Categories",
       value: totalCats,
       sub: "Active category tracks",
@@ -53,7 +44,7 @@ export default function ServicesStatsBar({
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
       {stats.map((st) => {
         const Icon = st.icon;
         return (

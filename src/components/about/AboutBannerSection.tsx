@@ -5,14 +5,24 @@ import Image from "next/image";
 
 export default function AboutBannerSection() {
   return (
-    <section className="relative w-full h-[80vh] min-h-[450px] max-h-[750px] overflow-hidden bg-[#1e2617]">
-      {/* Background Image */}
+    <section className="relative w-full h-[100vh] min-h-[450px] max-h-[750px] overflow-hidden bg-[#1e2617]">
+      {/* Background Image - Desktop */}
       <Image
         src="/about/about_banner.png"
         alt="About Us - Our Story"
         fill
         priority
-        className="object-cover object-center transform scale-105 transition-transform duration-1000"
+        className="hidden md:block object-cover object-center transform scale-105 transition-transform duration-1000"
+        sizes="100vw"
+      />
+
+      {/* Background Image - Mobile */}
+      <Image
+        src="/about/about_banner_mob.png"
+        alt="About Us - Our Story"
+        fill
+        priority
+        className="block md:hidden object-cover object-center transform scale-105 transition-transform duration-1000"
         sizes="100vw"
       />
 

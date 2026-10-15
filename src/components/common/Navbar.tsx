@@ -12,56 +12,7 @@ export interface ServiceItem {
   name: string;
 }
 
-const DEFAULT_SERVICES: ServiceItem[] = [
-  {
-    id: "facial-treatments",
-    name: "Facials & Medifacials",
-  },
-  {
-    id: "laser-treatments",
-    name: "Laser & Light-Based Treatments",
-  },
-  {
-    id: "chemical-peels",
-    name: "Chemical Peels",
-  },
-  {
-    id: "advance-skin-procedures",
-    name: "Advance Skin Procedures",
-  },
-  {
-    id: "gfc",
-    name: "GFC",
-  },
-  {
-    id: "prp",
-    name: "PRP",
-  },
-  {
-    id: "skin-boosters",
-    name: "Skin Boosters",
-  },
-  {
-    id: "hair-treatments",
-    name: "Hair & Scalp Treatments",
-  },
-  {
-    id: "body-hand-foot-care",
-    name: "Body, Hand & Foot Care",
-  },
-  {
-    id: "iv-therapy",
-    name: "IV Therapy",
-  },
-  {
-    id: "nail-services",
-    name: "Nail Services",
-  },
-  {
-    id: "lash-services",
-    name: "Lash Services",
-  },
-];
+
 
 const IconX = () => (
   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -133,9 +84,8 @@ const Navbar = () => {
     <>
       {/* Full-width sticky white navbar header with hide-on-scroll-down effect */}
       <header
-        className={`w-full fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-neutral-200/80 shadow-xs transition-transform duration-300 ${
-          isVisible ? "translate-y-0" : "-translate-y-full"
-        }`}
+        className={`w-full fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-neutral-200/80 shadow-xs transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"
+          }`}
       >
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
           {/* Far Left: Outlined Contact Us Button */}
@@ -246,9 +196,8 @@ const Navbar = () => {
 
       {/* Right Sidebar Drawer with #f7f1eb background */}
       <div
-        className={`fixed top-0 right-0 z-50 h-full w-[85%] max-w-[380px] sm:max-w-[420px] bg-[#f7f1eb] text-neutral-900 shadow-2xl transform transition-transform duration-400 ease-in-out flex flex-col p-8 sm:p-12 overflow-y-auto ${
-          isSidebarOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 z-50 h-full w-[85%] max-w-[380px] sm:max-w-[420px] bg-[#f7f1eb] text-neutral-900 shadow-2xl transform transition-transform duration-400 ease-in-out flex flex-col p-8 sm:p-12 overflow-y-auto ${isSidebarOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         {/* Close Button at top right */}
         <div className="flex justify-end w-full mb-12">
@@ -290,9 +239,8 @@ const Navbar = () => {
                 aria-label="Toggle services list"
               >
                 <ChevronDown
-                  className={`w-5 h-5 transition-transform duration-200 ${
-                    isMobileServicesOpen ? "rotate-180" : ""
-                  }`}
+                  className={`w-5 h-5 transition-transform duration-200 ${isMobileServicesOpen ? "rotate-180" : ""
+                    }`}
                 />
               </button>
             </div>

@@ -9,7 +9,6 @@ export interface AdminServiceItem {
   images?: string[];
   points?: string[];
   pdfUrl?: string | null;
-  featured: boolean;
   isActive: boolean;
   order: number;
   createdAt?: string;
@@ -36,7 +35,6 @@ export interface ServiceFormData {
   images: string[];
   points: string[];
   pdfUrl: string;
-  featured: boolean;
   isActive: boolean;
   order: number;
 }
