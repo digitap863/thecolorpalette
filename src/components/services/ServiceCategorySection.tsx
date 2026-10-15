@@ -31,7 +31,7 @@ export default function ServiceCategorySection({
   return (
     <section
       id={category.slug}
-      className="w-full py-7 sm:py-9 border-b border-stone-200/70 scroll-mt-36"
+      className="w-full py-7 sm:py-9 border-b border-stone-200/70 scroll-mt-36 overflow-hidden"
     >
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
         
@@ -94,7 +94,7 @@ export default function ServiceCategorySection({
               spaceBetween: 24,
             },
           }}
-          className="w-full !overflow-visible pb-4 pt-1"
+          className="w-full pt-1.5 pb-5"
         >
           {treatments.map((treatment, cardIdx) => (
             <SwiperSlide key={treatment.id} className="!h-auto flex flex-col">

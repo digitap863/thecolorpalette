@@ -93,7 +93,7 @@ export default function ServicesPage() {
     : undefined;
 
   return (
-    <div className="w-full bg-[#F7F1EB] min-h-screen text-stone-900 flex flex-col font-sans">
+    <div className="w-full bg-[#F7F1EB] min-h-screen text-stone-900 flex flex-col font-sans overflow-x-hidden">
       {/* 1. HERO SECTION */}
       <ServicesHero onExploreClick={handleExploreClick} />
 

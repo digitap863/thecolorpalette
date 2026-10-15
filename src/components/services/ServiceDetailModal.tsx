@@ -147,7 +147,7 @@ export default function ServiceDetailModal({
 
         {/* Scrollable Body Container */}
         <div className="flex-1 overflow-y-auto px-5 py-4 pb-28 sm:p-8 lg:p-10 sm:pb-8">
-          
+
           {/* ── MOBILE-ONLY SWIPER IMAGE GALLERY (hidden on md+) ── */}
           <div className="block md:hidden w-full mb-5">
             <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-stone-200 shadow-sm border border-stone-300/60">
@@ -189,7 +189,7 @@ export default function ServiceDetailModal({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 items-start">
-            
+
             {/* ── DESKTOP-ONLY IMAGE GALLERY & THUMBNAILS (hidden on mobile, flex on md+) ── */}
             <div className="hidden md:flex md:col-span-6 flex-col gap-4">
               {/* Main Display Image */}
@@ -244,11 +244,10 @@ export default function ServiceDetailModal({
                         key={idx}
                         onClick={() => setActiveImageIndex(idx)}
                         aria-label={`View image ${idx + 1}`}
-                        className={`relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
-                          isSelected
+                        className={`relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${isSelected
                             ? "border-stone-900 ring-2 ring-stone-900/20 shadow-sm scale-102"
                             : "border-stone-300/80 opacity-70 hover:opacity-100 hover:border-stone-500"
-                        }`}
+                          }`}
                       >
                         <Image
                           src={thumbSrc}
