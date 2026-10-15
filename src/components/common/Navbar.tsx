@@ -123,7 +123,7 @@ const Navbar = () => {
                 alt="colorpellet logo"
                 width={250}
                 height={100}
-                className="h-16 sm:h-20 lg:h-50 w-auto object-contain transition-transform group-hover:scale-105"
+                className="h-36 sm:h-44 lg:h-50 max-w-[70vw] sm:max-w-none w-auto object-contain transition-transform group-hover:scale-105"
                 priority
               />
             </Link>
