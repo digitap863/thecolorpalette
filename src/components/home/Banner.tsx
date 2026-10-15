@@ -125,7 +125,7 @@ export default function Banner({
   return (
     <section className={`relative w-full overflow-hidden bg-black ${className}`}>
       {/* Banner Viewport */}
-      <div className="relative w-full h-[100vh] select-none bg-neutral-950">
+      <div className="relative w-full h-[calc(100dvh-5rem)] select-none bg-neutral-950">
         
         {/* ── DESKTOP VIEW: 3 Parallel Image Columns (hidden on mobile, flex on md+) ── */}
         <div className="hidden md:flex w-full h-full">
