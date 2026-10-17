@@ -4,6 +4,7 @@ import VideoSection from "@/components/home/VideoSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import FeaturesSection from "@/components/home/FeaturesSection";
 import TestimonialSection from "@/components/home/TestimonialSection";
+import VideoTestimonialsSection from "@/components/home/VideoTestimonialsSection";
 import BookingSection from "@/components/contact/BookingSection";
 import FaqSection from "@/components/contact/FaqSection";
 
@@ -28,6 +29,9 @@ export default function Home() {
 
         {/* Customer Testimonials Section */}
         <TestimonialSection />
+
+        {/* Video Testimonials Section (Swiper with horizontal videos & bottom titles) */}
+        <VideoTestimonialsSection />
 
         {/* Book A Seat / Contact Section */}
         <BookingSection />
