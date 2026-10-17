@@ -13,6 +13,7 @@ import ServiceDetailModal from "./ServiceDetailModal";
 import { useServicesContext } from "@/context/ServicesContext";
 import FaqSection from "../contact/FaqSection";
 import { ServiceData } from "@/types/services";
+import FadeInSection from "@/components/common/FadeInSection";
 
 export default function ServicesPage() {
   const router = useRouter();
@@ -93,9 +94,11 @@ export default function ServicesPage() {
     : undefined;
 
   return (
-    <div className="w-full bg-[#F7F1EB] min-h-screen text-stone-900 flex flex-col font-sans overflow-x-hidden">
+    <div className="w-full bg-[#F7F1EB] min-h-screen text-stone-900 flex flex-col font-sans">
       {/* 1. HERO SECTION */}
-      <ServicesHero onExploreClick={handleExploreClick} />
+      <FadeInSection>
+        <ServicesHero onExploreClick={handleExploreClick} />
+      </FadeInSection>
 
       {/* 3. TREATMENT SEARCH & FILTERS */}
       <div id="catalogue" className="scroll-mt-24">
@@ -144,13 +147,14 @@ export default function ServicesPage() {
               );
 
               return (
-                <ServiceCategorySection
-                  key={category.id || category.slug}
-                  category={category}
-                  treatments={categoryTreatments}
-                  index={index}
-                  onSelectTreatment={(treatment) => setSelectedTreatment(treatment)}
-                />
+                <FadeInSection key={category.id || category.slug}>
+                  <ServiceCategorySection
+                    category={category}
+                    treatments={categoryTreatments}
+                    index={index}
+                    onSelectTreatment={(treatment) => setSelectedTreatment(treatment)}
+                  />
+                </FadeInSection>
               );
             })}
           </div>
@@ -165,7 +169,9 @@ export default function ServicesPage() {
       />
 
       {/* 6. FINAL CTA SECTION */}
-      <FaqSection />
+      <FadeInSection>
+        <FaqSection />
+      </FadeInSection>
     </div>
   );
 }

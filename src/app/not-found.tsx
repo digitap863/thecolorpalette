@@ -1,4 +1,5 @@
 import Link from "next/link";
+import FadeInSection from "@/components/common/FadeInSection";
 
 export default function NotFound() {
   return (
@@ -6,7 +7,7 @@ export default function NotFound() {
       {/* Soft Decorative Ambient Arch Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] sm:w-[600px] aspect-square rounded-full bg-[#dfcca5]/25 blur-3xl pointer-events-none" />
 
-      <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
+      <FadeInSection className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
         {/* Cursive Subtitle */}
         <span className="font-script text-4xl sm:text-5xl md:text-6xl text-[#c2a878] tracking-wide mb-2 select-none">
           Oops... Page Not Found
@@ -48,7 +49,7 @@ export default function NotFound() {
             CONTACT US
           </Link>
         </div>
-      </div>
+      </FadeInSection>
     </div>
   );
 }

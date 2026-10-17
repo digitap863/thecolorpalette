@@ -7,37 +7,56 @@ import TestimonialSection from "@/components/home/TestimonialSection";
 import VideoTestimonialsSection from "@/components/home/VideoTestimonialsSection";
 import BookingSection from "@/components/contact/BookingSection";
 import FaqSection from "@/components/contact/FaqSection";
+import FadeInSection from "@/components/common/FadeInSection";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white text-black flex flex-col">
       <main className="flex-1 w-full">
         {/* Banner Section */}
-        <Banner />
+        <FadeInSection>
+          <Banner />
+        </FadeInSection>
 
         {/* About Us Section */}
-        <AboutSection />
+        <FadeInSection>
+          <AboutSection />
+        </FadeInSection>
 
         {/* Fullscreen Autoplay Video Section */}
-        <VideoSection />
+        <FadeInSection>
+          <VideoSection />
+        </FadeInSection>
 
         {/* Services Section */}
-        <ServicesSection />
+        <FadeInSection>
+          <ServicesSection />
+        </FadeInSection>
 
         {/* Features Grid Section */}
-        <FeaturesSection />
+        <FadeInSection>
+          <FeaturesSection />
+        </FadeInSection>
 
         {/* Customer Testimonials Section */}
-        <TestimonialSection />
+        <FadeInSection>
+          <TestimonialSection />
+        </FadeInSection>
 
-        {/* Video Testimonials Section (Swiper with horizontal videos & bottom titles) */}
-        <VideoTestimonialsSection />
+        {/* Video Testimonials Section */}
+        <FadeInSection>
+          <VideoTestimonialsSection />
+        </FadeInSection>
 
         {/* Book A Seat / Contact Section */}
-        <BookingSection />
+        <FadeInSection>
+          <BookingSection />
+        </FadeInSection>
 
         {/* FAQ Section */}
-        <FaqSection />
+        <FadeInSection>
+          <FaqSection />
+        </FadeInSection>
       </main>
     </div>
   );

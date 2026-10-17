@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Play, Pause, Volume2, VolumeX, ChevronLeft, ChevronRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperType } from "swiper";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
 import "swiper/css";
@@ -34,12 +35,12 @@ const STATIC_VERTICAL_VIDEOS: VerticalVideoItem[] = [
   },
   {
     id: "testimonial-7230",
-    title: "Pre-Wedding Glow",
+    title: "Stubborn Pigmentation",
     videoUrl: "/Video/testimonials/IMG_7230.MP4",
   },
   {
     id: "testimonial-7236",
-    title: "Skin Transformation",
+    title: "Hair & Scalp Spa",
     videoUrl: "/Video/testimonials/IMG_7236.MP4",
   },
   {
@@ -49,7 +50,7 @@ const STATIC_VERTICAL_VIDEOS: VerticalVideoItem[] = [
   },
   {
     id: "testimonial-7240",
-    title: "Signature Makeover",
+    title: "CARBON LASOR TREATMENT",
     videoUrl: "/Video/testimonials/IMG_7240.MP4",
   },
 ];
@@ -58,6 +59,17 @@ export default function VideoTestimonialsSection() {
   const [playingId, setPlayingId] = useState<string | null>(null);
   const [isMuted, setIsMuted] = useState<boolean>(true);
   const videoRefs = useRef<{ [key: string]: HTMLVideoElement | null }>({});
+  const swiperRef = useRef<SwiperType | null>(null);
+
+  // Automatically pause Swiper autoplay whenever a video is playing
+  useEffect(() => {
+    if (!swiperRef.current || !swiperRef.current.autoplay) return;
+    if (playingId) {
+      swiperRef.current.autoplay.stop();
+    } else {
+      swiperRef.current.autoplay.start();
+    }
+  }, [playingId]);
 
   const togglePlay = (id: string) => {
     if (playingId === id) {
@@ -125,6 +137,16 @@ export default function VideoTestimonialsSection() {
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+          }}
+          onSlideChange={() => {
+            if (playingId) {
+              const video = videoRefs.current[playingId];
+              if (video) video.pause();
+              setPlayingId(null);
+            }
+          }}
           breakpoints={{
             480: {
               slidesPerView: 1.8,
@@ -174,7 +196,17 @@ export default function VideoTestimonialsSection() {
                     loop
                     playsInline
                     preload="metadata"
-                    onEnded={() => setPlayingId(null)}
+                    onPlay={() => setPlayingId(item.id)}
+                    onPause={() => {
+                      if (playingId === item.id) {
+                        setPlayingId(null);
+                      }
+                    }}
+                    onEnded={() => {
+                      if (playingId === item.id) {
+                        setPlayingId(null);
+                      }
+                    }}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
 

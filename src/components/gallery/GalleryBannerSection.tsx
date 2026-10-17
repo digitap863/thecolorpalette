@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function GalleryBannerSection() {
   return (
-    <section className="relative w-full h-[calc(100dvh-5rem)] min-h-[450px] max-h-[750px] overflow-hidden bg-[#1e2617]">
+    <section className="relative w-full h-[calc(100dvh-5rem)] min-h-[450px]  overflow-hidden bg-[#1e2617]">
       {/* Background Image - Desktop */}
       <Image
         src="/Banner/banner.png"

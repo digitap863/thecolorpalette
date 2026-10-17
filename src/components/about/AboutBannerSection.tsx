@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function AboutBannerSection() {
   return (
-    <section className="relative w-full h-[100vh] min-h-[450px] max-h-[750px] overflow-hidden bg-[#1e2617]">
+    <section className="relative w-full h-[calc(100dvh-5rem)] min-h-[450px]  overflow-hidden bg-[#1e2617]">
       {/* Background Image - Desktop */}
       <Image
         src="/about/about_banner.png"
