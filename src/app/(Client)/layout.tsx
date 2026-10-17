@@ -10,7 +10,7 @@ export default function ClientLayout({
   return (
     <ServicesProvider>
       <Navbar />
-      <div className="flex-1 w-full flex flex-col">{children}</div>
+      <div className="flex-1 w-full flex flex-col bg-[#f7f1eb]">{children}</div>
       <Footer />
     </ServicesProvider>
   );

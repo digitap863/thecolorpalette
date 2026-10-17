@@ -5,8 +5,8 @@ import FadeInSection from "@/components/common/FadeInSection";
 
 export default function GalleryPage() {
   return (
-    <div className="min-h-screen bg-white text-black flex flex-col">
-      <main className="flex-1 w-full">
+    <div className="min-h-screen bg-[#f7f1eb] text-black flex flex-col">
+      <main className="flex-1 w-full bg-[#f7f1eb]">
         <FadeInSection>
           <GalleryBannerSection />
         </FadeInSection>
