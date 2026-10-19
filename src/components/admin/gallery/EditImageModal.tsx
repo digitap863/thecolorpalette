@@ -52,7 +52,7 @@ export default function EditImageModal({
             <div className="w-8 h-8 rounded-lg bg-[#c2a878]/20 flex items-center justify-center">
               <Pencil className="w-4 h-4 text-[#7a5f2a]" />
             </div>
-            <h3 className="font-belleza text-base uppercase tracking-[0.1em] text-[#1c1917]">
+            <h3 className="font-poppins text-base uppercase tracking-[0.1em] text-[#1c1917]">
               Edit Image
             </h3>
           </div>
@@ -83,7 +83,7 @@ export default function EditImageModal({
           <div className="grid grid-cols-2 gap-3">
             {/* Title */}
             <div className="col-span-2">
-              <label className="block text-[10px] uppercase tracking-wider font-belleza text-[#1c1917]/60 mb-1">
+              <label className="block text-[10px] uppercase tracking-wider font-poppins text-[#1c1917]/60 mb-1">
                 Title *
               </label>
               <input
@@ -97,7 +97,7 @@ export default function EditImageModal({
 
             {/* Alt Text */}
             <div className="col-span-2">
-              <label className="block text-[10px] uppercase tracking-wider font-belleza text-[#1c1917]/60 mb-1">
+              <label className="block text-[10px] uppercase tracking-wider font-poppins text-[#1c1917]/60 mb-1">
                 Alt Text *
               </label>
               <input
@@ -111,7 +111,7 @@ export default function EditImageModal({
 
             {/* Category */}
             <div>
-              <label className="block text-[10px] uppercase tracking-wider font-belleza text-[#1c1917]/60 mb-1">
+              <label className="block text-[10px] uppercase tracking-wider font-poppins text-[#1c1917]/60 mb-1">
                 Category *
               </label>
               <select
@@ -129,7 +129,7 @@ export default function EditImageModal({
 
             {/* Display Order */}
             <div>
-              <label className="block text-[10px] uppercase tracking-wider font-belleza text-[#1c1917]/60 mb-1">
+              <label className="block text-[10px] uppercase tracking-wider font-poppins text-[#1c1917]/60 mb-1">
                 Display Order
               </label>
               <input
@@ -172,14 +172,14 @@ export default function EditImageModal({
         <div className="px-6 pb-5 flex items-center gap-3 justify-end">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-xl border border-[#c2a878]/40 text-[#1c1917] text-xs font-belleza uppercase tracking-wider hover:bg-[#f7f1eb] transition-all"
+            className="px-4 py-2 rounded-xl border border-[#c2a878]/40 text-[#1c1917] text-xs font-poppins uppercase tracking-wider hover:bg-[#f7f1eb] transition-all"
           >
             Cancel
           </button>
           <button
             onClick={handleSave}
             disabled={saving}
-            className="flex items-center gap-2 px-5 py-2 rounded-xl bg-[#1c1917] hover:bg-black text-[#f7f1eb] text-xs font-belleza uppercase tracking-wider transition-all disabled:opacity-60 shadow-md"
+            className="flex items-center gap-2 px-5 py-2 rounded-xl bg-[#1c1917] hover:bg-black text-[#f7f1eb] text-xs font-poppins uppercase tracking-wider transition-all disabled:opacity-60 shadow-md"
           >
             {saving ? (
               <Loader2 className="w-3.5 h-3.5 animate-spin" />

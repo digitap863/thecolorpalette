@@ -31,7 +31,7 @@ export default function GalleryListItem({
 
       {/* Text */}
       <div className="flex-1 min-w-0">
-        <p className="font-belleza text-sm uppercase tracking-[0.08em] text-[#1c1917] truncate">
+        <p className="font-poppins text-sm uppercase tracking-[0.08em] text-[#1c1917] truncate">
           {item.title}
         </p>
         <p className="font-poppins text-[10px] text-[#1c1917]/50 truncate mt-0.5">

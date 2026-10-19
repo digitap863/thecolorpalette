@@ -293,7 +293,7 @@ export default function ServiceFormModal({
                 <Layers className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="font-belleza text-lg sm:text-xl uppercase tracking-wider text-[#1c1917]">
+                <h2 className="font-poppins text-lg sm:text-xl uppercase tracking-wider text-[#1c1917]">
                   {isEditing ? `Edit Service: ${initialService?.name}` : "Add New Clinical Service"}
                 </h2>
                 <p className="font-poppins text-xs text-[#1c1917]/60">
@@ -318,7 +318,7 @@ export default function ServiceFormModal({
             <button
               type="button"
               onClick={() => setActiveTab("essentials")}
-              className={`py-3.5 px-4 font-belleza text-xs uppercase tracking-wider font-semibold border-b-2 transition-all cursor-pointer ${
+              className={`py-3.5 px-4 font-poppins text-xs uppercase tracking-wider font-semibold border-b-2 transition-all cursor-pointer ${
                 activeTab === "essentials"
                   ? "border-[#1c1917] text-[#1c1917]"
                   : "border-transparent text-stone-400 hover:text-stone-700"
@@ -329,7 +329,7 @@ export default function ServiceFormModal({
             <button
               type="button"
               onClick={() => setActiveTab("content")}
-              className={`py-3.5 px-4 font-belleza text-xs uppercase tracking-wider font-semibold border-b-2 transition-all cursor-pointer ${
+              className={`py-3.5 px-4 font-poppins text-xs uppercase tracking-wider font-semibold border-b-2 transition-all cursor-pointer ${
                 activeTab === "content"
                   ? "border-[#1c1917] text-[#1c1917]"
                   : "border-transparent text-stone-400 hover:text-stone-700"
@@ -340,7 +340,7 @@ export default function ServiceFormModal({
             <button
               type="button"
               onClick={() => setActiveTab("media")}
-              className={`py-3.5 px-4 font-belleza text-xs uppercase tracking-wider font-semibold border-b-2 transition-all cursor-pointer ${
+              className={`py-3.5 px-4 font-poppins text-xs uppercase tracking-wider font-semibold border-b-2 transition-all cursor-pointer ${
                 activeTab === "media"
                   ? "border-[#1c1917] text-[#1c1917]"
                   : "border-transparent text-stone-400 hover:text-stone-700"
@@ -365,7 +365,7 @@ export default function ServiceFormModal({
               <div className="space-y-5 animate-in fade-in duration-200">
                 {/* Service Name */}
                 <div>
-                  <label className="block text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917] mb-1.5">
+                  <label className="block text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917] mb-1.5">
                     Service Name *
                   </label>
                   <input
@@ -381,7 +381,7 @@ export default function ServiceFormModal({
                 {/* Slug Field */}
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
-                    <label className="text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917]">
+                    <label className="text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917]">
                       URL Slug *
                     </label>
                     <span className="text-[11px] text-stone-400 font-mono">
@@ -404,13 +404,13 @@ export default function ServiceFormModal({
                 {/* Category Dropdown + Quick Add */}
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
-                    <label className="text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917]">
+                    <label className="text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917]">
                       Service Category *
                     </label>
                     <button
                       type="button"
                       onClick={() => setIsCategoryModalOpen(true)}
-                      className="text-xs uppercase tracking-wider font-belleza font-semibold text-[#8c6d36] hover:text-[#5d461e] flex items-center gap-1 cursor-pointer"
+                      className="text-xs uppercase tracking-wider font-poppins font-semibold text-[#8c6d36] hover:text-[#5d461e] flex items-center gap-1 cursor-pointer"
                     >
                       <Plus className="w-3.5 h-3.5" />
                       <span>+ New Category</span>
@@ -438,7 +438,7 @@ export default function ServiceFormModal({
                 {/* Order & Status Toggles */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                   <div>
-                    <label className="block text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917] mb-1.5">
+                    <label className="block text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917] mb-1.5">
                       Display Order Priority
                     </label>
                     <input
@@ -458,7 +458,7 @@ export default function ServiceFormModal({
                   {/* Active Switch */}
                   <div className="flex flex-col justify-center p-3 rounded-xl border border-[#c2a878]/30 bg-[#f7f1eb]/30">
                     <label className="flex items-center justify-between cursor-pointer">
-                      <span className="text-xs font-belleza uppercase tracking-wider font-semibold text-[#1c1917]">
+                      <span className="text-xs font-poppins uppercase tracking-wider font-semibold text-[#1c1917]">
                         Published / Active
                       </span>
                       <input
@@ -484,7 +484,7 @@ export default function ServiceFormModal({
                 {/* Short Description */}
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
-                    <label className="text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917]">
+                    <label className="text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917]">
                       Short Summary *
                     </label>
                     <span className="text-[11px] text-stone-400 font-poppins">
@@ -505,7 +505,7 @@ export default function ServiceFormModal({
 
                 {/* Full Description */}
                 <div>
-                  <label className="block text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917] mb-1.5">
+                  <label className="block text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917] mb-1.5">
                     Full Clinical Description
                   </label>
                   <textarea
@@ -523,7 +523,7 @@ export default function ServiceFormModal({
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <div>
-                      <label className="text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917]">
+                      <label className="text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917]">
                         Key Highlights &amp; Clinical Benefits
                       </label>
                       <p className="text-[11px] text-stone-500 font-poppins">
@@ -533,7 +533,7 @@ export default function ServiceFormModal({
                     <button
                       type="button"
                       onClick={handleAddPoint}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#f7f1eb] hover:bg-[#dfcca5]/40 border border-[#c2a878]/40 text-[#7a5f2a] text-xs font-belleza uppercase tracking-wider font-semibold transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#f7f1eb] hover:bg-[#dfcca5]/40 border border-[#c2a878]/40 text-[#7a5f2a] text-xs font-poppins uppercase tracking-wider font-semibold transition-colors cursor-pointer"
                     >
                       <Plus className="w-3.5 h-3.5" />
                       <span>Add Bullet</span>
@@ -575,7 +575,7 @@ export default function ServiceFormModal({
                 <div className="p-4 rounded-2xl border border-[#c2a878]/30 bg-[#f7f1eb]/20 space-y-3">
                   <div className="flex items-center justify-between">
                     <div>
-                      <label className="text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917]">
+                      <label className="text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917]">
                         Main Cover Image
                       </label>
                       <p className="text-[11px] text-stone-500 font-poppins">
@@ -615,7 +615,7 @@ export default function ServiceFormModal({
                           type="button"
                           disabled={mainImageUploading}
                           onClick={() => mainFileInputRef.current?.click()}
-                          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-stone-900 hover:bg-black text-white text-xs font-belleza uppercase tracking-wider font-medium transition-all cursor-pointer disabled:opacity-50"
+                          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-stone-900 hover:bg-black text-white text-xs font-poppins uppercase tracking-wider font-medium transition-all cursor-pointer disabled:opacity-50"
                         >
                           {mainImageUploading ? (
                             <>
@@ -655,7 +655,7 @@ export default function ServiceFormModal({
                 <div className="p-4 rounded-2xl border border-[#c2a878]/30 bg-[#f7f1eb]/20 space-y-3">
                   <div className="flex items-center justify-between">
                     <div>
-                      <label className="text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917]">
+                      <label className="text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917]">
                         Additional Gallery Photos ({formData.images.length})
                       </label>
                       <p className="text-[11px] text-stone-500 font-poppins">
@@ -666,7 +666,7 @@ export default function ServiceFormModal({
                       type="button"
                       disabled={galleryUploading}
                       onClick={() => galleryFileInputRef.current?.click()}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-stone-900 hover:bg-black text-white text-xs font-belleza uppercase tracking-wider font-medium transition-colors cursor-pointer disabled:opacity-50"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-stone-900 hover:bg-black text-white text-xs font-poppins uppercase tracking-wider font-medium transition-colors cursor-pointer disabled:opacity-50"
                     >
                       {galleryUploading ? (
                         <>
@@ -708,7 +708,7 @@ export default function ServiceFormModal({
                     <button
                       type="button"
                       onClick={handleAddGalleryUrl}
-                      className="px-3.5 py-2 rounded-xl bg-[#f7f1eb] hover:bg-[#dfcca5]/40 border border-[#c2a878]/40 text-[#7a5f2a] text-xs font-belleza uppercase tracking-wider font-semibold transition-colors cursor-pointer"
+                      className="px-3.5 py-2 rounded-xl bg-[#f7f1eb] hover:bg-[#dfcca5]/40 border border-[#c2a878]/40 text-[#7a5f2a] text-xs font-poppins uppercase tracking-wider font-semibold transition-colors cursor-pointer"
                     >
                       + Add URL
                     </button>
@@ -750,7 +750,7 @@ export default function ServiceFormModal({
                 <div className="p-4 rounded-2xl border border-[#c2a878]/30 bg-[#f7f1eb]/20 space-y-2">
                   <div className="flex items-center gap-2">
                     <FileText className="w-4 h-4 text-[#8c6d36]" />
-                    <label className="text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917]">
+                    <label className="text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917]">
                       Downloadable Clinical Guide / PDF URL (Optional)
                     </label>
                   </div>
@@ -776,7 +776,7 @@ export default function ServiceFormModal({
                 type="button"
                 onClick={onClose}
                 disabled={saving}
-                className="px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-belleza font-semibold text-stone-600 hover:bg-stone-100 transition-colors cursor-pointer"
+                className="px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-poppins font-semibold text-stone-600 hover:bg-stone-100 transition-colors cursor-pointer"
               >
                 Cancel
               </button>
@@ -789,7 +789,7 @@ export default function ServiceFormModal({
                       if (activeTab === "essentials") setActiveTab("content");
                       else if (activeTab === "content") setActiveTab("media");
                     }}
-                    className="px-4 py-2.5 rounded-xl border border-stone-300 text-stone-700 text-xs font-belleza uppercase tracking-wider font-semibold hover:bg-stone-50 transition-colors cursor-pointer"
+                    className="px-4 py-2.5 rounded-xl border border-stone-300 text-stone-700 text-xs font-poppins uppercase tracking-wider font-semibold hover:bg-stone-50 transition-colors cursor-pointer"
                   >
                     Next &rarr;
                   </button>
@@ -798,7 +798,7 @@ export default function ServiceFormModal({
                 <button
                   type="submit"
                   disabled={saving}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#1c1917] hover:bg-black text-[#f7f1eb] text-xs uppercase tracking-wider font-belleza font-semibold transition-all shadow-md shadow-stone-900/10 disabled:opacity-50 cursor-pointer"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#1c1917] hover:bg-black text-[#f7f1eb] text-xs uppercase tracking-wider font-poppins font-semibold transition-all shadow-md shadow-stone-900/10 disabled:opacity-50 cursor-pointer"
                 >
                   {saving ? (
                     <>

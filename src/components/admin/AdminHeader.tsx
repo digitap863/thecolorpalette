@@ -89,7 +89,7 @@ export default function AdminHeader({ admin }: AdminHeaderProps) {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-belleza text-base sm:text-lg tracking-[0.15em] uppercase text-[#1c1917] leading-tight font-medium">
+                <span className="font-poppins text-base sm:text-lg tracking-[0.15em] uppercase text-[#1c1917] leading-tight font-medium">
                   The Color Palette
                 </span>
                 <span className="font-poppins text-[10px] uppercase tracking-[0.2em] text-[#8c6d36] font-semibold flex items-center gap-1">
@@ -109,7 +109,7 @@ export default function AdminHeader({ admin }: AdminHeaderProps) {
                     href={link.href}
                     target={link.external ? "_blank" : undefined}
                     rel={link.external ? "noopener noreferrer" : undefined}
-                    className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs uppercase tracking-[0.15em] font-belleza transition-all ${
+                    className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs uppercase tracking-[0.15em] font-poppins transition-all ${
                       link.active
                         ? "bg-[#1c1917] text-[#f7f1eb] font-semibold shadow-xs"
                         : "text-[#1c1917]/70 hover:text-[#1c1917] hover:bg-black/5"
@@ -131,7 +131,7 @@ export default function AdminHeader({ admin }: AdminHeaderProps) {
                 <User className="w-4 h-4" />
               </div>
               <div className="text-left">
-                <p className="font-belleza text-xs text-[#1c1917] font-semibold tracking-wide leading-tight">
+                <p className="font-poppins text-xs text-[#1c1917] font-semibold tracking-wide leading-tight">
                   {admin?.name || "Administrator"}
                 </p>
                 <div className="flex items-center gap-1.5">
@@ -149,7 +149,7 @@ export default function AdminHeader({ admin }: AdminHeaderProps) {
             <button
               onClick={handleLogout}
               disabled={loggingOut}
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-red-200 bg-red-50 text-red-700 hover:bg-red-100 hover:border-red-300 transition-all text-xs font-belleza uppercase tracking-[0.15em] font-medium disabled:opacity-50 cursor-pointer shadow-2xs"
+              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-red-200 bg-red-50 text-red-700 hover:bg-red-100 hover:border-red-300 transition-all text-xs font-poppins uppercase tracking-[0.15em] font-medium disabled:opacity-50 cursor-pointer shadow-2xs"
               title="Sign Out"
             >
               <LogOut className="w-3.5 h-3.5" />
@@ -189,7 +189,7 @@ export default function AdminHeader({ admin }: AdminHeaderProps) {
                     key={link.name}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs uppercase tracking-wider font-belleza text-[#1c1917] hover:bg-black/5"
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs uppercase tracking-wider font-poppins text-[#1c1917] hover:bg-black/5"
                   >
                     <Icon className="w-4 h-4" />
                     {link.name}
@@ -201,7 +201,7 @@ export default function AdminHeader({ admin }: AdminHeaderProps) {
             <button
               onClick={handleLogout}
               disabled={loggingOut}
-              className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg border border-red-200 bg-red-50 text-red-700 text-xs font-belleza uppercase tracking-wider"
+              className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg border border-red-200 bg-red-50 text-red-700 text-xs font-poppins uppercase tracking-wider"
             >
               <LogOut className="w-4 h-4" />
               <span>{loggingOut ? "Exiting..." : "Log Out"}</span>

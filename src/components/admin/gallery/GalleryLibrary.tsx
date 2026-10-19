@@ -44,7 +44,7 @@ export default function GalleryLibrary({
             <LayoutGrid className="w-4 h-4 text-[#8c6d36]" />
           </div>
           <div>
-            <h2 className="font-belleza text-base uppercase tracking-[0.1em] text-[#1c1917]">
+            <h2 className="font-poppins text-base uppercase tracking-[0.1em] text-[#1c1917]">
               Gallery Library
             </h2>
             <p className="font-poppins text-[10px] text-[#1c1917]/50">
@@ -111,7 +111,7 @@ export default function GalleryLibrary({
           <div className="w-16 h-16 rounded-2xl bg-[#f7f1eb] border border-[#c2a878]/30 flex items-center justify-center mb-4">
             <ImagePlus className="w-7 h-7 text-[#c2a878]/60" />
           </div>
-          <p className="font-belleza text-base uppercase tracking-wider text-[#1c1917] mb-1">
+          <p className="font-poppins text-base uppercase tracking-wider text-[#1c1917] mb-1">
             No Images Yet
           </p>
           <p className="font-poppins text-xs text-[#1c1917]/50 max-w-sm">

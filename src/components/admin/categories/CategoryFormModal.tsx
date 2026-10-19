@@ -172,7 +172,7 @@ export default function CategoryFormModal({
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="font-belleza text-lg sm:text-xl uppercase tracking-wider text-[#1c1917]">
+              <h2 className="font-poppins text-lg sm:text-xl uppercase tracking-wider text-[#1c1917]">
                 {isEditing ? `Edit Category: ${initialCategory?.name}` : "Add Service Category"}
               </h2>
               <p className="font-poppins text-xs text-[#1c1917]/60">
@@ -202,7 +202,7 @@ export default function CategoryFormModal({
         <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-5 font-poppins">
           {/* Category Name */}
           <div>
-            <label className="block text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917] mb-1.5">
+            <label className="block text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917] mb-1.5">
               Category Title *
             </label>
             <input
@@ -218,7 +218,7 @@ export default function CategoryFormModal({
           {/* URL Slug */}
           <div>
             <div className="flex items-center justify-between mb-1.5">
-              <label className="text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917]">
+              <label className="text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917]">
                 URL Slug *
               </label>
               <span className="text-[11px] text-stone-400 font-mono">
@@ -237,7 +237,7 @@ export default function CategoryFormModal({
 
           {/* Short Description */}
           <div>
-            <label className="block text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917] mb-1.5">
+            <label className="block text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917] mb-1.5">
               Track Summary / Description *
             </label>
             <textarea
@@ -256,7 +256,7 @@ export default function CategoryFormModal({
           <div className="p-4 rounded-2xl border border-[#c2a878]/30 bg-[#f7f1eb]/20 space-y-3">
             <div className="flex items-center justify-between">
               <div>
-                <label className="text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917]">
+                <label className="text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917]">
                   Category Cover Artwork (Optional)
                 </label>
                 <p className="text-[11px] text-stone-500">
@@ -294,7 +294,7 @@ export default function CategoryFormModal({
                     type="button"
                     disabled={imageUploading}
                     onClick={() => fileInputRef.current?.click()}
-                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-stone-900 hover:bg-black text-white text-xs font-belleza uppercase tracking-wider font-medium transition-all cursor-pointer disabled:opacity-50"
+                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-stone-900 hover:bg-black text-white text-xs font-poppins uppercase tracking-wider font-medium transition-all cursor-pointer disabled:opacity-50"
                   >
                     {imageUploading ? (
                       <>
@@ -333,7 +333,7 @@ export default function CategoryFormModal({
           {/* Order & Status Toggles */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
             <div>
-              <label className="block text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917] mb-1.5">
+              <label className="block text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917] mb-1.5">
                 Display Order Priority
               </label>
               <input
@@ -354,7 +354,7 @@ export default function CategoryFormModal({
 
             <div className="flex flex-col justify-center p-3 rounded-xl border border-[#c2a878]/30 bg-[#f7f1eb]/30">
               <label className="flex items-center justify-between cursor-pointer">
-                <span className="text-xs font-belleza uppercase tracking-wider font-semibold text-[#1c1917]">
+                <span className="text-xs font-poppins uppercase tracking-wider font-semibold text-[#1c1917]">
                   Published / Active Track
                 </span>
                 <input
@@ -378,14 +378,14 @@ export default function CategoryFormModal({
               type="button"
               onClick={onClose}
               disabled={saving}
-              className="px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-belleza font-semibold text-stone-600 hover:bg-stone-100 transition-colors cursor-pointer"
+              className="px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-poppins font-semibold text-stone-600 hover:bg-stone-100 transition-colors cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={saving}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#1c1917] hover:bg-black text-[#f7f1eb] text-xs uppercase tracking-wider font-belleza font-semibold transition-all shadow-md disabled:opacity-50 cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#1c1917] hover:bg-black text-[#f7f1eb] text-xs uppercase tracking-wider font-poppins font-semibold transition-all shadow-md disabled:opacity-50 cursor-pointer"
             >
               {saving ? (
                 <>

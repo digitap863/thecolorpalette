@@ -32,7 +32,7 @@ export default function GalleryStatsBar({
           <p className="font-poppins text-[10px] uppercase tracking-wider text-[#1c1917]/60 mb-1">
             {stat.label}
           </p>
-          <p className={`font-belleza text-2xl ${stat.color}`}>{stat.value}</p>
+          <p className={`font-poppins text-2xl ${stat.color}`}>{stat.value}</p>
         </div>
       ))}
     </div>

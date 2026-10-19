@@ -217,7 +217,7 @@ export default function AdminBookingsPage() {
               <Calendar className="w-3.5 h-3.5" />
               <span>Clinical Scheduling &amp; Appointments</span>
             </div>
-            <h1 className="font-belleza text-2xl sm:text-4xl text-[#1c1917] tracking-[0.08em] uppercase">
+            <h1 className="font-poppins text-2xl sm:text-4xl text-[#1c1917] tracking-[0.08em] uppercase">
               Client Bookings
             </h1>
             <p className="mt-1 font-poppins text-xs sm:text-sm text-[#1c1917]/70 font-light max-w-xl">
@@ -229,7 +229,7 @@ export default function AdminBookingsPage() {
             <button
               onClick={fetchBookings}
               disabled={loading}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#f7f1eb] hover:bg-[#ecd7b6]/30 border border-[#c2a878]/40 text-[#1c1917] text-xs font-belleza uppercase tracking-[0.15em] font-medium transition-all shadow-2xs cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#f7f1eb] hover:bg-[#ecd7b6]/30 border border-[#c2a878]/40 text-[#1c1917] text-xs font-poppins uppercase tracking-[0.15em] font-medium transition-all shadow-2xs cursor-pointer"
             >
               <RefreshCw className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
               <span>Refresh</span>
@@ -237,7 +237,7 @@ export default function AdminBookingsPage() {
 
             <button
               onClick={() => setIsFormModalOpen(true)}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#1c1917] hover:bg-black text-[#f7f1eb] text-xs font-belleza uppercase tracking-[0.15em] font-medium transition-all shadow-md shadow-stone-900/15 cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#1c1917] hover:bg-black text-[#f7f1eb] text-xs font-poppins uppercase tracking-[0.15em] font-medium transition-all shadow-md shadow-stone-900/15 cursor-pointer"
             >
               <Plus className="w-4 h-4" />
               <span>New Appointment</span>
@@ -265,7 +265,7 @@ export default function AdminBookingsPage() {
               <button
                 key={tab.key}
                 onClick={() => setStatusFilter(tab.key as any)}
-                className={`shrink-0 inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-belleza uppercase tracking-wider font-semibold transition-all cursor-pointer ${
+                className={`shrink-0 inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-poppins uppercase tracking-wider font-semibold transition-all cursor-pointer ${
                   isSelected
                     ? "bg-[#1c1917] text-[#f7f1eb] shadow-2xs"
                     : "text-stone-600 hover:text-stone-900 hover:bg-[#f7f1eb]/60"
@@ -307,7 +307,7 @@ export default function AdminBookingsPage() {
             <select
               value={dateFilter}
               onChange={(e) => setDateFilter(e.target.value as any)}
-              className="px-3.5 py-2 rounded-xl border border-[#c2a878]/30 bg-[#f7f1eb]/30 text-stone-900 text-xs font-belleza uppercase tracking-wider focus:outline-none focus:border-[#7a5f2a]"
+              className="px-3.5 py-2 rounded-xl border border-[#c2a878]/30 bg-[#f7f1eb]/30 text-stone-900 text-xs font-poppins uppercase tracking-wider focus:outline-none focus:border-[#7a5f2a]"
             >
               <option value="all">All Dates</option>
               <option value="today">Today&apos;s Schedule</option>
@@ -355,7 +355,7 @@ export default function AdminBookingsPage() {
                 setStatusFilter("all");
                 setDateFilter("all");
               }}
-              className="text-[#8c6d36] hover:underline font-belleza uppercase tracking-wider font-semibold cursor-pointer"
+              className="text-[#8c6d36] hover:underline font-poppins uppercase tracking-wider font-semibold cursor-pointer"
             >
               Clear Filters
             </button>
@@ -367,7 +367,7 @@ export default function AdminBookingsPage() {
       {loading ? (
         <div className="rounded-2xl bg-white border border-[#c2a878]/30 p-16 flex flex-col items-center justify-center text-center">
           <RefreshCw className="w-8 h-8 text-[#8c6d36] animate-spin mb-3" />
-          <p className="font-belleza uppercase tracking-wider text-stone-600 text-sm">
+          <p className="font-poppins uppercase tracking-wider text-stone-600 text-sm">
             Loading appointments...
           </p>
         </div>
@@ -376,7 +376,7 @@ export default function AdminBookingsPage() {
           <div className="w-12 h-12 rounded-2xl bg-[#dfcca5]/30 text-[#8c6d36] flex items-center justify-center mx-auto mb-3">
             <Calendar className="w-6 h-6" />
           </div>
-          <h3 className="font-belleza text-lg uppercase tracking-wider text-[#1c1917]">
+          <h3 className="font-poppins text-lg uppercase tracking-wider text-[#1c1917]">
             No Bookings Found
           </h3>
           <p className="font-poppins text-xs text-stone-500 max-w-md mx-auto mt-1 mb-5">
@@ -386,7 +386,7 @@ export default function AdminBookingsPage() {
           </p>
           <button
             onClick={() => setIsFormModalOpen(true)}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#1c1917] text-[#f7f1eb] text-xs font-belleza uppercase tracking-wider cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#1c1917] text-[#f7f1eb] text-xs font-poppins uppercase tracking-wider cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>Record New Appointment</span>
@@ -398,7 +398,7 @@ export default function AdminBookingsPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-[#c2a878]/25 bg-[#f7f1eb]/50 text-[10px] uppercase font-belleza tracking-wider text-[#1c1917]/70">
+                <tr className="border-b border-[#c2a878]/25 bg-[#f7f1eb]/50 text-[10px] uppercase font-poppins tracking-wider text-[#1c1917]/70">
                   <th className="py-3.5 px-4 font-semibold">Client</th>
                   <th className="py-3.5 px-4 font-semibold">Service</th>
                   <th className="py-3.5 px-4 font-semibold">Preferred Date</th>
@@ -419,7 +419,7 @@ export default function AdminBookingsPage() {
                     >
                       {/* Client Name & Phone */}
                       <td className="py-3.5 px-4">
-                        <div className="font-medium text-[#1c1917] font-belleza text-sm tracking-wide">
+                        <div className="font-medium text-[#1c1917] font-poppins text-sm tracking-wide">
                           {b.name}
                         </div>
                         <div className="flex items-center gap-2 mt-0.5">
@@ -445,7 +445,7 @@ export default function AdminBookingsPage() {
 
                       {/* Requested Service */}
                       <td className="py-3.5 px-4 whitespace-nowrap">
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#f7f1eb] border border-[#c2a878]/30 text-[#1c1917] text-[11px] font-medium font-belleza uppercase tracking-wider">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#f7f1eb] border border-[#c2a878]/30 text-[#1c1917] text-[11px] font-medium font-poppins uppercase tracking-wider">
                           <Sparkles className="w-3 h-3 text-[#8c6d36]" />
                           <span>{b.service}</span>
                         </span>
@@ -488,7 +488,7 @@ export default function AdminBookingsPage() {
                           onChange={(e) =>
                             handleUpdateStatus(b.id, e.target.value as BookingStatus)
                           }
-                          className={`px-2.5 py-1 rounded-full text-[10px] font-belleza uppercase tracking-wider font-semibold border cursor-pointer focus:outline-none transition-colors ${
+                          className={`px-2.5 py-1 rounded-full text-[10px] font-poppins uppercase tracking-wider font-semibold border cursor-pointer focus:outline-none transition-colors ${
                             b.status === "confirmed"
                               ? "bg-emerald-50 text-emerald-800 border-emerald-300"
                               : b.status === "completed"
@@ -544,7 +544,7 @@ export default function AdminBookingsPage() {
                 {/* Card Top: Client & Status */}
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <div>
-                    <h3 className="font-belleza text-base text-[#1c1917] font-semibold tracking-wide">
+                    <h3 className="font-poppins text-base text-[#1c1917] font-semibold tracking-wide">
                       {b.name}
                     </h3>
                     <a
@@ -561,7 +561,7 @@ export default function AdminBookingsPage() {
                     onChange={(e) =>
                       handleUpdateStatus(b.id, e.target.value as BookingStatus)
                     }
-                    className={`px-2.5 py-1 rounded-full text-[10px] font-belleza uppercase tracking-wider font-semibold border cursor-pointer focus:outline-none ${
+                    className={`px-2.5 py-1 rounded-full text-[10px] font-poppins uppercase tracking-wider font-semibold border cursor-pointer focus:outline-none ${
                       b.status === "confirmed"
                         ? "bg-emerald-50 text-emerald-800 border-emerald-300"
                         : b.status === "completed"
@@ -580,7 +580,7 @@ export default function AdminBookingsPage() {
 
                 {/* Treatment & Date info */}
                 <div className="p-3 rounded-xl bg-[#f7f1eb]/40 border border-[#c2a878]/25 space-y-2 mb-3">
-                  <div className="flex items-center gap-1.5 text-xs text-[#1c1917] font-belleza uppercase tracking-wider font-semibold">
+                  <div className="flex items-center gap-1.5 text-xs text-[#1c1917] font-poppins uppercase tracking-wider font-semibold">
                     <Sparkles className="w-3.5 h-3.5 text-[#8c6d36]" />
                     <span>{b.service}</span>
                   </div>
@@ -602,7 +602,7 @@ export default function AdminBookingsPage() {
               <div className="pt-3 border-t border-stone-100 flex items-center justify-between">
                 <button
                   onClick={() => setSelectedBooking(b)}
-                  className="inline-flex items-center gap-1 text-xs font-belleza uppercase tracking-wider text-[#8c6d36] hover:underline font-semibold cursor-pointer"
+                  className="inline-flex items-center gap-1 text-xs font-poppins uppercase tracking-wider text-[#8c6d36] hover:underline font-semibold cursor-pointer"
                 >
                   <Eye className="w-3.5 h-3.5" />
                   <span>View Details</span>

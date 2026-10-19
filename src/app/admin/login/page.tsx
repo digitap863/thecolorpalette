@@ -89,7 +89,7 @@ function AdminLoginForm() {
         <div className="mb-6 flex items-center justify-between">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-belleza text-[#1c1917]/70 hover:text-[#1c1917] transition-colors group font-medium"
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-poppins text-[#1c1917]/70 hover:text-[#1c1917] transition-colors group font-medium"
           >
             <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1" />
             Back to Studio
@@ -119,7 +119,7 @@ function AdminLoginForm() {
               />
             </div>
 
-            <h1 className="font-belleza text-2xl sm:text-3xl tracking-[0.12em] text-[#1c1917] uppercase font-normal mb-1.5">
+            <h1 className="font-poppins text-2xl sm:text-3xl tracking-[0.12em] text-[#1c1917] uppercase font-normal mb-1.5">
               Admin Portal
             </h1>
             <p className="font-poppins text-xs text-[#1c1917]/70 font-light tracking-wide">
@@ -149,7 +149,7 @@ function AdminLoginForm() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-xs uppercase tracking-[0.15em] font-belleza text-[#1c1917] font-semibold mb-2"
+                className="block text-xs uppercase tracking-[0.15em] font-poppins text-[#1c1917] font-semibold mb-2"
               >
                 Admin Email
               </label>
@@ -174,7 +174,7 @@ function AdminLoginForm() {
               <div className="flex items-center justify-between mb-2">
                 <label
                   htmlFor="password"
-                  className="block text-xs uppercase tracking-[0.15em] font-belleza text-[#1c1917] font-semibold"
+                  className="block text-xs uppercase tracking-[0.15em] font-poppins text-[#1c1917] font-semibold"
                 >
                   Password
                 </label>
@@ -211,7 +211,7 @@ function AdminLoginForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3.5 px-6 rounded-xl bg-[#1c1917] text-[#f7f1eb] font-belleza uppercase tracking-[0.2em] text-xs font-semibold hover:bg-black active:scale-[0.99] transition-all duration-200 shadow-md shadow-stone-900/15 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+              className="w-full py-3.5 px-6 rounded-xl bg-[#1c1917] text-[#f7f1eb] font-poppins uppercase tracking-[0.2em] text-xs font-semibold hover:bg-black active:scale-[0.99] transition-all duration-200 shadow-md shadow-stone-900/15 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
               {loading ? (
                 <>
@@ -241,7 +241,7 @@ export default function AdminLoginPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-[#f7f1eb] flex items-center justify-center font-belleza text-stone-600">
+        <div className="min-h-screen bg-[#f7f1eb] flex items-center justify-center font-poppins text-stone-600">
           Loading Admin Portal...
         </div>
       }

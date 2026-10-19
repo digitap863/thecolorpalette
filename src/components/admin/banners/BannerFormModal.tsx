@@ -196,7 +196,7 @@ export default function BannerFormModal({
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="font-belleza text-lg sm:text-xl font-medium tracking-wider uppercase text-stone-900">
+              <h2 className="font-poppins text-lg sm:text-xl font-medium tracking-wider uppercase text-stone-900">
                 {slide ? "Edit Banner Slide" : "Create New Banner Slide"}
               </h2>
               <p className="text-xs text-stone-600 font-light">
@@ -224,7 +224,7 @@ export default function BannerFormModal({
           {/* Titles & Order Row */}
           <div className="grid grid-cols-1 sm:grid-cols-12 gap-4">
             <div className="sm:col-span-6">
-              <label className="block text-xs uppercase tracking-wider font-belleza font-semibold text-stone-700 mb-1.5">
+              <label className="block text-xs uppercase tracking-wider font-poppins font-semibold text-stone-700 mb-1.5">
                 Cursive Headline Title
               </label>
               <input
@@ -232,7 +232,7 @@ export default function BannerFormModal({
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="e.g. aesthetic, precision, luxury"
-                className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 bg-stone-50/50 text-sm focus:outline-none focus:ring-2 focus:ring-stone-800 focus:bg-white transition-all font-belleza"
+                className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 bg-stone-50/50 text-sm focus:outline-none focus:ring-2 focus:ring-stone-800 focus:bg-white transition-all font-poppins"
               />
               <span className="text-[11px] text-stone-600 mt-1 block">
                 Rendered with the large flowing script typography across the center.
@@ -240,7 +240,7 @@ export default function BannerFormModal({
             </div>
 
             <div className="sm:col-span-6">
-              <label className="block text-xs uppercase tracking-wider font-belleza font-semibold text-stone-700 mb-1.5">
+              <label className="block text-xs uppercase tracking-wider font-poppins font-semibold text-stone-700 mb-1.5">
                 Subtitle Tagline
               </label>
               <input
@@ -256,7 +256,7 @@ export default function BannerFormModal({
             </div>
 
             <div className="sm:col-span-6">
-              <label className="block text-xs uppercase tracking-wider font-belleza font-semibold text-stone-700 mb-1.5">
+              <label className="block text-xs uppercase tracking-wider font-poppins font-semibold text-stone-700 mb-1.5">
                 Display Order
               </label>
               <input
@@ -276,7 +276,7 @@ export default function BannerFormModal({
                   className="w-4 h-4 rounded text-stone-900 focus:ring-stone-800 cursor-pointer"
                 />
                 <div>
-                  <span className="font-belleza text-xs uppercase tracking-wider font-semibold text-stone-800">
+                  <span className="font-poppins text-xs uppercase tracking-wider font-semibold text-stone-800">
                     Active Slide
                   </span>
                   <p className="text-[11px] text-stone-600">
@@ -294,7 +294,7 @@ export default function BannerFormModal({
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <Monitor className="w-4 h-4 text-stone-700" />
-                <h3 className="font-belleza text-sm uppercase tracking-wider font-semibold text-stone-900">
+                <h3 className="font-poppins text-sm uppercase tracking-wider font-semibold text-stone-900">
                   Desktop View (3 Vertical Columns)
                 </h3>
               </div>
@@ -314,7 +314,7 @@ export default function BannerFormModal({
                     className="border border-stone-200 rounded-xl p-3 bg-stone-50/40 flex flex-col justify-between space-y-2.5"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-belleza uppercase tracking-wider text-stone-600 font-medium">
+                      <span className="text-[11px] font-poppins uppercase tracking-wider text-stone-600 font-medium">
                         Column {slotIdx + 1}
                       </span>
                       {imgUrl && (
@@ -364,7 +364,7 @@ export default function BannerFormModal({
                     <div className="space-y-1.5">
                       <label className="block w-full">
                         <span className="sr-only">Upload file</span>
-                        <div className="w-full py-1.5 px-3 rounded-lg border border-stone-300 bg-white hover:bg-stone-100 cursor-pointer flex items-center justify-center gap-1.5 text-xs font-belleza uppercase tracking-wider text-stone-700 transition-colors">
+                        <div className="w-full py-1.5 px-3 rounded-lg border border-stone-300 bg-white hover:bg-stone-100 cursor-pointer flex items-center justify-center gap-1.5 text-xs font-poppins uppercase tracking-wider text-stone-700 transition-colors">
                           <Upload className="w-3 h-3" />
                           <span>{imgUrl ? "Change Photo" : "Upload Photo"}</span>
                         </div>
@@ -403,7 +403,7 @@ export default function BannerFormModal({
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
               <div className="flex items-center gap-2">
                 <Smartphone className="w-4 h-4 text-[#8c6d36]" />
-                <h3 className="font-belleza text-sm uppercase tracking-wider font-semibold text-stone-900">
+                <h3 className="font-poppins text-sm uppercase tracking-wider font-semibold text-stone-900">
                   Mobile View (2 Vertical Columns)
                 </h3>
                 <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-[#dfcca5]/60 text-stone-900">
@@ -418,27 +418,27 @@ export default function BannerFormModal({
 
             {/* Quick Presets */}
             <div className="flex flex-wrap items-center gap-2 mb-4">
-              <span className="text-[11px] font-belleza uppercase tracking-wider text-stone-500">
+              <span className="text-[11px] font-poppins uppercase tracking-wider text-stone-500">
                 Quick Presets:
               </span>
               <button
                 type="button"
                 onClick={() => applyMobilePreset(0, 1)}
-                className="text-[11px] font-belleza uppercase tracking-wider px-2.5 py-1 rounded-lg border border-stone-300 bg-white hover:bg-stone-900 hover:text-white transition-colors cursor-pointer"
+                className="text-[11px] font-poppins uppercase tracking-wider px-2.5 py-1 rounded-lg border border-stone-300 bg-white hover:bg-stone-900 hover:text-white transition-colors cursor-pointer"
               >
                 Use Desktop #1 & #2
               </button>
               <button
                 type="button"
                 onClick={() => applyMobilePreset(0, 2)}
-                className="text-[11px] font-belleza uppercase tracking-wider px-2.5 py-1 rounded-lg border border-stone-300 bg-white hover:bg-stone-900 hover:text-white transition-colors cursor-pointer"
+                className="text-[11px] font-poppins uppercase tracking-wider px-2.5 py-1 rounded-lg border border-stone-300 bg-white hover:bg-stone-900 hover:text-white transition-colors cursor-pointer"
               >
                 Use Desktop #1 & #3
               </button>
               <button
                 type="button"
                 onClick={() => applyMobilePreset(1, 2)}
-                className="text-[11px] font-belleza uppercase tracking-wider px-2.5 py-1 rounded-lg border border-stone-300 bg-white hover:bg-stone-900 hover:text-white transition-colors cursor-pointer"
+                className="text-[11px] font-poppins uppercase tracking-wider px-2.5 py-1 rounded-lg border border-stone-300 bg-white hover:bg-stone-900 hover:text-white transition-colors cursor-pointer"
               >
                 Use Desktop #2 & #3
               </button>
@@ -456,7 +456,7 @@ export default function BannerFormModal({
                     className="border border-stone-200/90 rounded-xl p-3 bg-white flex flex-col justify-between space-y-2.5 shadow-2xs"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-belleza uppercase tracking-wider text-[#8c6d36] font-semibold">
+                      <span className="text-[11px] font-poppins uppercase tracking-wider text-[#8c6d36] font-semibold">
                         Mobile Panel {slotIdx + 1}
                       </span>
                       {imgUrl && (
@@ -505,7 +505,7 @@ export default function BannerFormModal({
                     <div className="space-y-1.5">
                       <label className="block w-full">
                         <span className="sr-only">Upload mobile file</span>
-                        <div className="w-full py-1.5 px-3 rounded-lg border border-stone-300 bg-white hover:bg-stone-50 cursor-pointer flex items-center justify-center gap-1.5 text-xs font-belleza uppercase tracking-wider text-stone-700 transition-colors">
+                        <div className="w-full py-1.5 px-3 rounded-lg border border-stone-300 bg-white hover:bg-stone-50 cursor-pointer flex items-center justify-center gap-1.5 text-xs font-poppins uppercase tracking-wider text-stone-700 transition-colors">
                           <Upload className="w-3 h-3" />
                           <span>{imgUrl ? "Change Mobile Photo" : "Upload Custom Mobile"}</span>
                         </div>
@@ -542,7 +542,7 @@ export default function BannerFormModal({
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <Eye className="w-4 h-4 text-[#dfcca5]" />
-                <span className="text-xs uppercase font-belleza tracking-wider text-[#dfcca5]">
+                <span className="text-xs uppercase font-poppins tracking-wider text-[#dfcca5]">
                   Live Visual Preview
                 </span>
               </div>
@@ -550,7 +550,7 @@ export default function BannerFormModal({
                 <button
                   type="button"
                   onClick={() => setPreviewTab("desktop")}
-                  className={`px-2.5 py-1 rounded text-[10px] font-belleza uppercase tracking-wider cursor-pointer ${
+                  className={`px-2.5 py-1 rounded text-[10px] font-poppins uppercase tracking-wider cursor-pointer ${
                     previewTab === "desktop"
                       ? "bg-stone-950 text-white font-semibold"
                       : "text-stone-400 hover:text-white"
@@ -561,7 +561,7 @@ export default function BannerFormModal({
                 <button
                   type="button"
                   onClick={() => setPreviewTab("mobile")}
-                  className={`px-2.5 py-1 rounded text-[10px] font-belleza uppercase tracking-wider cursor-pointer ${
+                  className={`px-2.5 py-1 rounded text-[10px] font-poppins uppercase tracking-wider cursor-pointer ${
                     previewTab === "mobile"
                       ? "bg-stone-950 text-[#dfcca5] font-semibold"
                       : "text-stone-400 hover:text-white"
@@ -624,7 +624,7 @@ export default function BannerFormModal({
           <button
             type="button"
             onClick={onClose}
-            className="px-5 py-2.5 rounded-xl border border-stone-300 text-stone-700 font-belleza text-xs uppercase tracking-wider hover:bg-stone-200/60 transition-colors cursor-pointer"
+            className="px-5 py-2.5 rounded-xl border border-stone-300 text-stone-700 font-poppins text-xs uppercase tracking-wider hover:bg-stone-200/60 transition-colors cursor-pointer"
           >
             Cancel
           </button>
@@ -633,7 +633,7 @@ export default function BannerFormModal({
             type="button"
             onClick={handleSubmit}
             disabled={saving}
-            className="px-6 py-2.5 rounded-xl bg-stone-900 text-white font-belleza text-xs uppercase tracking-widest font-semibold hover:bg-stone-800 disabled:opacity-50 transition-colors flex items-center gap-2 cursor-pointer shadow-md"
+            className="px-6 py-2.5 rounded-xl bg-stone-900 text-white font-poppins text-xs uppercase tracking-widest font-semibold hover:bg-stone-800 disabled:opacity-50 transition-colors flex items-center gap-2 cursor-pointer shadow-md"
           >
             {saving ? (
               <>

@@ -59,7 +59,7 @@ export default function BookingsStatsBar({ bookings }: BookingsStatsBarProps) {
             className={`rounded-2xl p-4 sm:p-5 bg-gradient-to-br ${st.color} bg-white border border-[#c2a878]/30 shadow-2xs`}
           >
             <div className="flex items-center justify-between mb-2">
-              <span className="font-belleza text-xs uppercase tracking-wider text-[#1c1917]/75 font-semibold">
+              <span className="font-poppins text-xs uppercase tracking-wider text-[#1c1917]/75 font-semibold">
                 {st.label}
               </span>
               <div
@@ -71,7 +71,7 @@ export default function BookingsStatsBar({ bookings }: BookingsStatsBarProps) {
                 <Icon className="w-4 h-4" />
               </div>
             </div>
-            <div className="font-belleza text-2xl sm:text-3xl font-light text-[#1c1917]">
+            <div className="font-poppins text-2xl sm:text-3xl font-light text-[#1c1917]">
               {st.value}
             </div>
             <p className="font-poppins text-[10px] text-[#1c1917]/60 mt-0.5">

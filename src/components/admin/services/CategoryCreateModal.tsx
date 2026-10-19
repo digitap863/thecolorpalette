@@ -73,7 +73,7 @@ export default function CategoryCreateModal({
               <Sparkles className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-belleza text-base uppercase tracking-wider text-[#1c1917]">
+              <h3 className="font-poppins text-base uppercase tracking-wider text-[#1c1917]">
                 New Category
               </h3>
               <p className="font-poppins text-xs text-[#1c1917]/60">
@@ -97,7 +97,7 @@ export default function CategoryCreateModal({
 
         <form onSubmit={handleSubmit} className="mt-4 space-y-4 font-poppins">
           <div>
-            <label className="block text-xs uppercase tracking-wider text-[#1c1917]/70 font-semibold mb-1 font-belleza">
+            <label className="block text-xs uppercase tracking-wider text-[#1c1917]/70 font-semibold mb-1 font-poppins">
               Category Name *
             </label>
             <input
@@ -111,7 +111,7 @@ export default function CategoryCreateModal({
           </div>
 
           <div>
-            <label className="block text-xs uppercase tracking-wider text-[#1c1917]/70 font-semibold mb-1 font-belleza">
+            <label className="block text-xs uppercase tracking-wider text-[#1c1917]/70 font-semibold mb-1 font-poppins">
               Short Description
             </label>
             <textarea
@@ -128,14 +128,14 @@ export default function CategoryCreateModal({
               type="button"
               onClick={onClose}
               disabled={loading}
-              className="px-4 py-2 rounded-xl text-xs uppercase tracking-wider font-belleza text-stone-600 hover:bg-stone-100 transition-colors"
+              className="px-4 py-2 rounded-xl text-xs uppercase tracking-wider font-poppins text-stone-600 hover:bg-stone-100 transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#1c1917] hover:bg-black text-[#f7f1eb] text-xs uppercase tracking-wider font-belleza transition-all shadow-sm disabled:opacity-50 cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#1c1917] hover:bg-black text-[#f7f1eb] text-xs uppercase tracking-wider font-poppins transition-all shadow-sm disabled:opacity-50 cursor-pointer"
             >
               {loading ? (
                 <>

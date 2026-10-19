@@ -46,7 +46,7 @@ export default function GalleryUploadZone({
             <Upload className="w-4 h-4 text-sky-700" />
           </div>
           <div>
-            <h2 className="font-belleza text-base uppercase tracking-[0.1em] text-[#1c1917]">
+            <h2 className="font-poppins text-base uppercase tracking-[0.1em] text-[#1c1917]">
               Upload Images
             </h2>
             <p className="font-poppins text-[10px] text-[#1c1917]/50">
@@ -58,7 +58,7 @@ export default function GalleryUploadZone({
         {pendingCount > 0 && (
           <button
             onClick={onUploadAll}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1c1917] hover:bg-black text-[#f7f1eb] text-xs font-belleza uppercase tracking-wider transition-all shadow-md"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1c1917] hover:bg-black text-[#f7f1eb] text-xs font-poppins uppercase tracking-wider transition-all shadow-md"
           >
             <CloudUpload className="w-3.5 h-3.5" />
             Upload All ({pendingCount})
@@ -104,7 +104,7 @@ export default function GalleryUploadZone({
             }`}
           />
         </div>
-        <p className="font-belleza text-base uppercase tracking-[0.1em] text-[#1c1917] mb-1">
+        <p className="font-poppins text-base uppercase tracking-[0.1em] text-[#1c1917] mb-1">
           {isDragging ? "Release to add images" : "Drop images here"}
         </p>
         <p className="font-poppins text-xs text-[#1c1917]/50">
@@ -120,7 +120,7 @@ export default function GalleryUploadZone({
       {uploadQueue.length > 0 && (
         <div className="px-6 pb-6 space-y-3">
           <div className="flex items-center justify-between mb-2">
-            <h3 className="font-belleza text-xs uppercase tracking-[0.12em] text-[#1c1917]/70">
+            <h3 className="font-poppins text-xs uppercase tracking-[0.12em] text-[#1c1917]/70">
               Upload Queue ({uploadQueue.length})
             </h3>
             <button

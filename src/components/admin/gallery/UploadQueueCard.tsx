@@ -57,7 +57,7 @@ export default function UploadQueueCard({
 
           {/* File info */}
           <div className="min-w-0">
-            <p className="font-belleza text-xs uppercase tracking-wider text-[#1c1917] font-semibold truncate max-w-[220px]">
+            <p className="font-poppins text-xs uppercase tracking-wider text-[#1c1917] font-semibold truncate max-w-[220px]">
               {item.file.name}
             </p>
             <p className="font-poppins text-[10px] text-[#1c1917]/50 mt-0.5">
@@ -215,7 +215,7 @@ export default function UploadQueueCard({
             <div className="mt-4 pt-4 border-t border-[#c2a878]/15 flex justify-end">
               <button
                 onClick={() => onUpload(item)}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#1c1917] hover:bg-black text-[#f7f1eb] text-xs font-belleza uppercase tracking-wider transition-all shadow-md"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#1c1917] hover:bg-black text-[#f7f1eb] text-xs font-poppins uppercase tracking-wider transition-all shadow-md"
               >
                 <CloudUpload className="w-4 h-4" />
                 Upload to Cloudinary

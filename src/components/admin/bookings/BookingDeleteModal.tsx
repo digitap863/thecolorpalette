@@ -34,7 +34,7 @@ export default function BookingDeleteModal({
             <AlertTriangle className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="font-belleza text-lg uppercase tracking-wider text-[#1c1917]">
+            <h3 className="font-poppins text-lg uppercase tracking-wider text-[#1c1917]">
               Delete Booking Record
             </h3>
             <p className="font-poppins text-xs text-[#1c1917]/60">
@@ -54,7 +54,7 @@ export default function BookingDeleteModal({
             type="button"
             onClick={onClose}
             disabled={loading}
-            className="px-4 py-2 rounded-xl text-xs uppercase tracking-wider font-belleza text-stone-600 hover:bg-stone-100 transition-colors cursor-pointer"
+            className="px-4 py-2 rounded-xl text-xs uppercase tracking-wider font-poppins text-stone-600 hover:bg-stone-100 transition-colors cursor-pointer"
           >
             Cancel
           </button>
@@ -62,7 +62,7 @@ export default function BookingDeleteModal({
             type="button"
             onClick={onConfirm}
             disabled={loading}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs uppercase tracking-wider font-belleza transition-all shadow-sm disabled:opacity-50 cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs uppercase tracking-wider font-poppins transition-all shadow-sm disabled:opacity-50 cursor-pointer"
           >
             {loading ? (
               <>

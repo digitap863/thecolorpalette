@@ -190,11 +190,8 @@ export default function AdminCategoriesPage() {
 
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c2a878]/20 border border-[#c2a878]/40 text-[#7a5f2a] text-xs font-poppins font-semibold mb-3">
-              <FolderTree className="w-3.5 h-3.5" />
-              <span>Taxonomy &amp; Clinical Tracks</span>
-            </div>
-            <h1 className="font-belleza text-2xl sm:text-4xl text-[#1c1917] tracking-[0.08em] uppercase">
+            
+            <h1 className="font-poppins text-2xl sm:text-4xl text-[#1c1917] tracking-[0.08em] uppercase">
               Service Categories
             </h1>
             <p className="mt-1 font-poppins text-xs sm:text-sm text-[#1c1917]/70 font-light max-w-xl">
@@ -207,7 +204,7 @@ export default function AdminCategoriesPage() {
               href="/services"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#f7f1eb] hover:bg-[#ecd7b6]/30 border border-[#c2a878]/40 text-[#1c1917] text-xs font-belleza uppercase tracking-[0.15em] font-medium transition-all shadow-2xs cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#f7f1eb] hover:bg-[#ecd7b6]/30 border border-[#c2a878]/40 text-[#1c1917] text-xs font-poppins uppercase tracking-[0.15em] font-medium transition-all shadow-2xs cursor-pointer"
             >
               <ExternalLink className="w-3.5 h-3.5" />
               <span>Preview Catalogue</span>
@@ -218,7 +215,7 @@ export default function AdminCategoriesPage() {
                 setEditingCategory(null);
                 setIsFormModalOpen(true);
               }}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#1c1917] hover:bg-black text-[#f7f1eb] text-xs font-belleza uppercase tracking-[0.15em] font-medium transition-all shadow-md shadow-stone-900/15 cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#1c1917] hover:bg-black text-[#f7f1eb] text-xs font-poppins uppercase tracking-[0.15em] font-medium transition-all shadow-md shadow-stone-900/15 cursor-pointer"
             >
               <Plus className="w-4 h-4" />
               <span>Add New Category</span>
@@ -251,7 +248,7 @@ export default function AdminCategoriesPage() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="px-3.5 py-2 rounded-xl border border-[#c2a878]/30 bg-[#f7f1eb]/30 text-stone-900 text-xs font-belleza uppercase tracking-wider focus:outline-none focus:border-[#7a5f2a]"
+              className="px-3.5 py-2 rounded-xl border border-[#c2a878]/30 bg-[#f7f1eb]/30 text-stone-900 text-xs font-poppins uppercase tracking-wider focus:outline-none focus:border-[#7a5f2a]"
             >
               <option value="order">Sort: Priority Order</option>
               <option value="name">Sort: Name (A-Z)</option>
@@ -264,7 +261,7 @@ export default function AdminCategoriesPage() {
                 <button
                   key={st}
                   onClick={() => setStatusFilter(st)}
-                  className={`px-3 py-1 rounded-lg text-[11px] uppercase tracking-wider font-belleza font-semibold transition-all cursor-pointer ${
+                  className={`px-3 py-1 rounded-lg text-[11px] uppercase tracking-wider font-poppins font-semibold transition-all cursor-pointer ${
                     statusFilter === st
                       ? "bg-[#1c1917] text-[#f7f1eb] shadow-2xs"
                       : "text-stone-600 hover:text-stone-900"
@@ -324,7 +321,7 @@ export default function AdminCategoriesPage() {
                 setSearchQuery("");
                 setStatusFilter("all");
               }}
-              className="text-[#8c6d36] hover:underline font-belleza uppercase tracking-wider font-semibold cursor-pointer"
+              className="text-[#8c6d36] hover:underline font-poppins uppercase tracking-wider font-semibold cursor-pointer"
             >
               Clear Filters
             </button>
@@ -336,7 +333,7 @@ export default function AdminCategoriesPage() {
       {loading ? (
         <div className="rounded-2xl bg-white border border-[#c2a878]/30 p-16 flex flex-col items-center justify-center text-center">
           <RefreshCw className="w-8 h-8 text-[#8c6d36] animate-spin mb-3" />
-          <p className="font-belleza uppercase tracking-wider text-stone-600 text-sm">
+          <p className="font-poppins uppercase tracking-wider text-stone-600 text-sm">
             Loading categories...
           </p>
         </div>
@@ -345,7 +342,7 @@ export default function AdminCategoriesPage() {
           <div className="w-12 h-12 rounded-2xl bg-[#dfcca5]/30 text-[#8c6d36] flex items-center justify-center mx-auto mb-3">
             <FolderTree className="w-6 h-6" />
           </div>
-          <h3 className="font-belleza text-lg uppercase tracking-wider text-[#1c1917]">
+          <h3 className="font-poppins text-lg uppercase tracking-wider text-[#1c1917]">
             No Categories Found
           </h3>
           <p className="font-poppins text-xs text-stone-500 max-w-md mx-auto mt-1 mb-5">
@@ -359,7 +356,7 @@ export default function AdminCategoriesPage() {
                 setEditingCategory(null);
                 setIsFormModalOpen(true);
               }}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#1c1917] text-[#f7f1eb] text-xs font-belleza uppercase tracking-wider cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#1c1917] text-[#f7f1eb] text-xs font-poppins uppercase tracking-wider cursor-pointer"
             >
               <Plus className="w-4 h-4" />
               <span>Create Category</span>
@@ -370,7 +367,7 @@ export default function AdminCategoriesPage() {
                 setSearchQuery("");
                 setStatusFilter("all");
               }}
-              className="px-4 py-2 rounded-xl border border-stone-300 text-stone-700 text-xs font-belleza uppercase tracking-wider cursor-pointer hover:bg-stone-50"
+              className="px-4 py-2 rounded-xl border border-stone-300 text-stone-700 text-xs font-poppins uppercase tracking-wider cursor-pointer hover:bg-stone-50"
             >
               Reset Filters
             </button>
@@ -406,7 +403,7 @@ export default function AdminCategoriesPage() {
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
                     <Link
                       href={`/admin/services?category=${cat.slug}`}
-                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-belleza uppercase tracking-wider bg-black/60 backdrop-blur-xs hover:bg-[#1c1917] transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-poppins uppercase tracking-wider bg-black/60 backdrop-blur-xs hover:bg-[#1c1917] transition-colors"
                       title="View treatments in this category"
                     >
                       <Layers className="w-3 h-3 text-[#c2a878]" />
@@ -416,7 +413,7 @@ export default function AdminCategoriesPage() {
 
                     <button
                       onClick={() => handleToggleActive(cat)}
-                      className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-belleza uppercase tracking-wider font-semibold cursor-pointer ${
+                      className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-poppins uppercase tracking-wider font-semibold cursor-pointer ${
                         cat.isActive
                           ? "bg-emerald-500/90 text-white"
                           : "bg-stone-700/90 text-stone-300"
@@ -429,7 +426,7 @@ export default function AdminCategoriesPage() {
 
                 {/* Content */}
                 <div className="p-5">
-                  <h3 className="font-belleza text-base text-[#1c1917] font-semibold tracking-wide uppercase mb-1">
+                  <h3 className="font-poppins text-base text-[#1c1917] font-semibold tracking-wide uppercase mb-1">
                     {cat.name}
                   </h3>
                   <p className="font-mono text-[10px] text-stone-400 mb-3">
@@ -447,7 +444,7 @@ export default function AdminCategoriesPage() {
                   href={`/services?category=${cat.slug}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-[11px] font-belleza uppercase tracking-wider text-stone-500 hover:text-stone-900 transition-colors"
+                  className="inline-flex items-center gap-1 text-[11px] font-poppins uppercase tracking-wider text-stone-500 hover:text-stone-900 transition-colors"
                 >
                   <ExternalLink className="w-3 h-3" />
                   <span>Preview Tab</span>
@@ -483,7 +480,7 @@ export default function AdminCategoriesPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-[#c2a878]/25 bg-[#f7f1eb]/50 text-[10px] uppercase font-belleza tracking-wider text-[#1c1917]/70">
+                <tr className="border-b border-[#c2a878]/25 bg-[#f7f1eb]/50 text-[10px] uppercase font-poppins tracking-wider text-[#1c1917]/70">
                   <th className="py-3.5 px-4 font-semibold">Track &amp; Artwork</th>
                   <th className="py-3.5 px-4 font-semibold">Summary</th>
                   <th className="py-3.5 px-4 font-semibold text-center">Order</th>
@@ -510,7 +507,7 @@ export default function AdminCategoriesPage() {
                           />
                         </div>
                         <div className="min-w-0">
-                          <p className="font-belleza text-sm text-[#1c1917] font-semibold tracking-wide uppercase truncate max-w-[220px]">
+                          <p className="font-poppins text-sm text-[#1c1917] font-semibold tracking-wide uppercase truncate max-w-[220px]">
                             {cat.name}
                           </p>
                           <p className="font-mono text-[10px] text-stone-400 truncate max-w-[200px]">
@@ -536,7 +533,7 @@ export default function AdminCategoriesPage() {
                     <td className="py-3.5 px-4 text-center whitespace-nowrap">
                       <Link
                         href={`/admin/services?category=${cat.slug}`}
-                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-belleza uppercase tracking-wider font-semibold bg-[#c2a878]/20 text-[#7a5f2a] hover:bg-[#c2a878]/30 transition-colors"
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-poppins uppercase tracking-wider font-semibold bg-[#c2a878]/20 text-[#7a5f2a] hover:bg-[#c2a878]/30 transition-colors"
                         title="View treatments in this category"
                       >
                         <Layers className="w-3 h-3" />
@@ -548,7 +545,7 @@ export default function AdminCategoriesPage() {
                     <td className="py-3.5 px-4 text-center">
                       <button
                         onClick={() => handleToggleActive(cat)}
-                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-belleza uppercase tracking-wider font-semibold cursor-pointer transition-colors ${
+                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-poppins uppercase tracking-wider font-semibold cursor-pointer transition-colors ${
                           cat.isActive
                             ? "bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100"
                             : "bg-stone-100 text-stone-500 border border-stone-200 hover:bg-stone-200"

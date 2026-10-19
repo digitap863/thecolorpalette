@@ -68,7 +68,7 @@ export default function GalleryGridItem({
 
       {/* Caption */}
       <div className="p-2.5">
-        <p className="font-belleza text-[11px] uppercase tracking-[0.08em] text-[#1c1917] truncate">
+        <p className="font-poppins text-[11px] uppercase tracking-[0.08em] text-[#1c1917] truncate">
           {item.title}
         </p>
         <div className="flex items-center justify-between mt-1">

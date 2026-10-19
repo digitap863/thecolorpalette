@@ -95,7 +95,7 @@ export default function AdminBannersPage() {
       {/* Toast Alert */}
       {toast && (
         <div
-          className={`fixed top-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-xl shadow-lg border text-xs font-belleza uppercase tracking-wider transition-all animate-bounce-in ${
+          className={`fixed top-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-xl shadow-lg border text-xs font-poppins uppercase tracking-wider transition-all animate-bounce-in ${
             toast.type === "success"
               ? "bg-[#1c1917] text-[#f7f1eb] border-[#c2a878]/40"
               : "bg-red-950 text-red-200 border-red-700/60"
@@ -114,12 +114,12 @@ export default function AdminBannersPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-stone-200">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs uppercase tracking-[0.2em] text-[#8c6d36] font-belleza font-semibold flex items-center gap-1.5">
+            <span className="text-xs uppercase tracking-[0.2em] text-[#8c6d36] font-poppins font-semibold flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-[#8c6d36]" />
               Homepage Experience
             </span>
           </div>
-          <h1 className="font-belleza text-2xl sm:text-3xl text-stone-900 uppercase tracking-wider font-light">
+          <h1 className="font-poppins text-2xl sm:text-3xl text-stone-900 uppercase tracking-wider font-light">
             Hero Banner Slides
           </h1>
           <p className="text-xs text-stone-500 font-light mt-0.5">
@@ -141,7 +141,7 @@ export default function AdminBannersPage() {
               setEditingSlide(null);
               setModalOpen(true);
             }}
-            className="px-5 py-2.5 rounded-xl bg-stone-900 text-white font-belleza text-xs uppercase tracking-[0.15em] font-medium hover:bg-stone-800 transition-all shadow-md flex items-center gap-2 cursor-pointer hover:scale-102 active:scale-98"
+            className="px-5 py-2.5 rounded-xl bg-stone-900 text-white font-poppins text-xs uppercase tracking-[0.15em] font-medium hover:bg-stone-800 transition-all shadow-md flex items-center gap-2 cursor-pointer hover:scale-102 active:scale-98"
           >
             <Plus className="w-4 h-4 text-[#dfcca5]" />
             <span>Add Banner Slide</span>
@@ -172,7 +172,7 @@ export default function AdminBannersPage() {
             <Sparkles className="w-7 h-7" />
           </div>
           <div>
-            <h3 className="font-belleza text-lg uppercase tracking-wider text-stone-900 font-medium">
+            <h3 className="font-poppins text-lg uppercase tracking-wider text-stone-900 font-medium">
               No Banner Slides Configured
             </h3>
             <p className="text-xs text-stone-500 font-light mt-1">
@@ -184,7 +184,7 @@ export default function AdminBannersPage() {
               setEditingSlide(null);
               setModalOpen(true);
             }}
-            className="px-5 py-2.5 rounded-xl bg-stone-900 text-white font-belleza text-xs uppercase tracking-wider font-semibold shadow-md hover:bg-stone-800 transition-colors inline-flex items-center gap-2 cursor-pointer"
+            className="px-5 py-2.5 rounded-xl bg-stone-900 text-white font-poppins text-xs uppercase tracking-wider font-semibold shadow-md hover:bg-stone-800 transition-colors inline-flex items-center gap-2 cursor-pointer"
           >
             <Plus className="w-4 h-4 text-[#dfcca5]" />
             <span>Create Banner Slide</span>
@@ -216,15 +216,15 @@ export default function AdminBannersPage() {
                 <div className="p-5 pb-3">
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <div className="flex items-center gap-2">
-                      <span className="w-6 h-6 rounded-full bg-stone-100 border border-stone-200 text-stone-700 text-xs font-belleza font-bold flex items-center justify-center">
+                      <span className="w-6 h-6 rounded-full bg-stone-100 border border-stone-200 text-stone-700 text-xs font-poppins font-bold flex items-center justify-center">
                         #{slide.order ?? idx + 1}
                       </span>
                       <div>
-                        <h3 className="font-script text-3xl sm:text-4xl text-stone-900 leading-tight">
+                        <h3 className="font-poppins text-base sm:text-lg font-semibold text-stone-900 leading-tight">
                           {slide.title || "Untitled Slide"}
                         </h3>
                         {slide.subtitle && (
-                          <p className="font-belleza text-[10px] uppercase tracking-[0.2em] text-stone-500 mt-0.5">
+                          <p className="font-poppins text-[10px] uppercase tracking-[0.2em] text-stone-500 mt-0.5">
                             {slide.subtitle}
                           </p>
                         )}
@@ -234,7 +234,7 @@ export default function AdminBannersPage() {
                     {/* Status Pill */}
                     <button
                       onClick={() => handleToggleActive(slide)}
-                      className={`px-3 py-1 rounded-full text-[10px] font-belleza uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer ${
+                      className={`px-3 py-1 rounded-full text-[10px] font-poppins uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer ${
                         slide.isActive
                           ? "bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100"
                           : "bg-stone-100 text-stone-600 border border-stone-200 hover:bg-stone-200"
@@ -259,7 +259,7 @@ export default function AdminBannersPage() {
                 <div className="px-5 py-2 space-y-3">
                   {/* Desktop Preview Strip (3 images) */}
                   <div>
-                    <div className="flex items-center justify-between text-[11px] font-belleza uppercase tracking-wider text-stone-600 mb-1.5">
+                    <div className="flex items-center justify-between text-[11px] font-poppins uppercase tracking-wider text-stone-600 mb-1.5">
                       <span className="flex items-center gap-1.5">
                         <Monitor className="w-3.5 h-3.5 text-stone-700" />
                         <span>Desktop Layout (3 Images)</span>
@@ -295,7 +295,7 @@ export default function AdminBannersPage() {
 
                   {/* Mobile Preview Strip (2 images) */}
                   <div className="bg-[#f7f1eb]/60 p-3 rounded-xl border border-[#c2a878]/30">
-                    <div className="flex items-center justify-between text-[11px] font-belleza uppercase tracking-wider text-stone-800 mb-1.5">
+                    <div className="flex items-center justify-between text-[11px] font-poppins uppercase tracking-wider text-stone-800 mb-1.5">
                       <span className="flex items-center gap-1.5 font-semibold text-[#8c6d36]">
                         <Smartphone className="w-3.5 h-3.5" />
                         <span>Mobile Layout (2 Images)</span>
@@ -342,7 +342,7 @@ export default function AdminBannersPage() {
                         setEditingSlide(slide);
                         setModalOpen(true);
                       }}
-                      className="px-3.5 py-1.5 rounded-lg border border-stone-200 bg-white hover:bg-stone-900 hover:text-white text-stone-700 font-belleza text-xs uppercase tracking-wider transition-colors flex items-center gap-1.5 cursor-pointer shadow-2xs"
+                      className="px-3.5 py-1.5 rounded-lg border border-stone-200 bg-white hover:bg-stone-900 hover:text-white text-stone-700 font-poppins text-xs uppercase tracking-wider transition-colors flex items-center gap-1.5 cursor-pointer shadow-2xs"
                     >
                       <Edit2 className="w-3 h-3" />
                       <span>Edit Slide</span>
@@ -371,7 +371,7 @@ export default function AdminBannersPage() {
               <Trash2 className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="font-belleza text-lg uppercase tracking-wider font-semibold text-stone-900">
+              <h3 className="font-poppins text-lg uppercase tracking-wider font-semibold text-stone-900">
                 Delete Banner Slide?
               </h3>
               <p className="text-xs text-stone-500 font-light mt-1">
@@ -381,14 +381,14 @@ export default function AdminBannersPage() {
             <div className="flex items-center justify-center gap-3 pt-2">
               <button
                 onClick={() => setDeleteConfirmId(null)}
-                className="px-4 py-2 rounded-xl border border-stone-300 text-stone-700 text-xs font-belleza uppercase tracking-wider hover:bg-stone-100 transition-colors cursor-pointer"
+                className="px-4 py-2 rounded-xl border border-stone-300 text-stone-700 text-xs font-poppins uppercase tracking-wider hover:bg-stone-100 transition-colors cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 onClick={() => handleDelete(deleteConfirmId)}
                 disabled={deleting}
-                className="px-5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-belleza uppercase tracking-wider font-semibold transition-colors disabled:opacity-50 cursor-pointer shadow-sm"
+                className="px-5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-poppins uppercase tracking-wider font-semibold transition-colors disabled:opacity-50 cursor-pointer shadow-sm"
               >
                 {deleting ? "Deleting..." : "Confirm Delete"}
               </button>

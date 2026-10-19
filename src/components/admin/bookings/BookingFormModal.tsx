@@ -106,7 +106,7 @@ export default function BookingFormModal({
               <Calendar className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="font-belleza text-lg uppercase tracking-wider text-[#1c1917]">
+              <h2 className="font-poppins text-lg uppercase tracking-wider text-[#1c1917]">
                 Record New Appointment
               </h2>
               <p className="font-poppins text-xs text-[#1c1917]/60">
@@ -133,7 +133,7 @@ export default function BookingFormModal({
         {/* Form Body */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4 font-poppins">
           <div>
-            <label className="block text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917] mb-1">
+            <label className="block text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917] mb-1">
               Client Name *
             </label>
             <input
@@ -149,7 +149,7 @@ export default function BookingFormModal({
           </div>
 
           <div>
-            <label className="block text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917] mb-1">
+            <label className="block text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917] mb-1">
               Contact Phone *
             </label>
             <input
@@ -166,7 +166,7 @@ export default function BookingFormModal({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917] mb-1">
+              <label className="block text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917] mb-1">
                 Requested Service *
               </label>
               {serviceNames.length > 0 ? (
@@ -198,7 +198,7 @@ export default function BookingFormModal({
             </div>
 
             <div>
-              <label className="block text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917] mb-1">
+              <label className="block text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917] mb-1">
                 Appointment Date *
               </label>
               <input
@@ -214,7 +214,7 @@ export default function BookingFormModal({
           </div>
 
           <div>
-            <label className="block text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917] mb-1">
+            <label className="block text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917] mb-1">
               Initial Status
             </label>
             <select
@@ -225,7 +225,7 @@ export default function BookingFormModal({
                   status: e.target.value as BookingStatus,
                 }))
               }
-              className="w-full px-3.5 py-2 rounded-xl border border-[#c2a878]/30 bg-[#f7f1eb]/30 text-stone-900 text-xs font-belleza uppercase tracking-wider focus:outline-none focus:border-[#7a5f2a]"
+              className="w-full px-3.5 py-2 rounded-xl border border-[#c2a878]/30 bg-[#f7f1eb]/30 text-stone-900 text-xs font-poppins uppercase tracking-wider focus:outline-none focus:border-[#7a5f2a]"
             >
               <option value="confirmed">Confirmed (Scheduled)</option>
               <option value="pending">Pending (Awaiting Confirmation)</option>
@@ -235,7 +235,7 @@ export default function BookingFormModal({
           </div>
 
           <div>
-            <label className="block text-xs uppercase tracking-wider font-belleza font-semibold text-[#1c1917] mb-1">
+            <label className="block text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917] mb-1">
               Notes / Inquiries
             </label>
             <textarea
@@ -254,14 +254,14 @@ export default function BookingFormModal({
               type="button"
               onClick={onClose}
               disabled={loading}
-              className="px-4 py-2 rounded-xl text-xs uppercase tracking-wider font-belleza text-stone-600 hover:bg-stone-100 transition-colors cursor-pointer"
+              className="px-4 py-2 rounded-xl text-xs uppercase tracking-wider font-poppins text-stone-600 hover:bg-stone-100 transition-colors cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#1c1917] hover:bg-black text-[#f7f1eb] text-xs uppercase tracking-wider font-belleza font-semibold transition-all shadow-md disabled:opacity-50 cursor-pointer"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#1c1917] hover:bg-black text-[#f7f1eb] text-xs uppercase tracking-wider font-poppins font-semibold transition-all shadow-md disabled:opacity-50 cursor-pointer"
             >
               {loading ? (
                 <>

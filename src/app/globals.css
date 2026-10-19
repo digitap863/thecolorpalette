@@ -25,6 +25,11 @@
   font-family: 'Poppins', sans-serif;
 }
 
+.admin-theme,
+.admin-theme * {
+  font-family: 'Poppins', sans-serif !important;
+}
+
 @keyframes oldSlideDownFade {
   0% {
     opacity: 1;

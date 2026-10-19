@@ -79,7 +79,7 @@ export default function BookingDetailModal({
               <Calendar className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="font-belleza text-lg uppercase tracking-wider text-[#1c1917]">
+              <h2 className="font-poppins text-lg uppercase tracking-wider text-[#1c1917]">
                 Appointment Details
               </h2>
               <p className="font-poppins text-xs text-[#1c1917]/60">
@@ -101,10 +101,10 @@ export default function BookingDetailModal({
           {/* Client Header Card */}
           <div className="p-4 rounded-2xl bg-[#f7f1eb]/40 border border-[#c2a878]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-              <span className="text-[10px] uppercase font-belleza tracking-wider text-[#1c1917]/50 font-semibold block">
+              <span className="text-[10px] uppercase font-poppins tracking-wider text-[#1c1917]/50 font-semibold block">
                 Client Name
               </span>
-              <h3 className="font-belleza text-xl text-[#1c1917] font-semibold tracking-wide">
+              <h3 className="font-poppins text-xl text-[#1c1917] font-semibold tracking-wide">
                 {booking.name}
               </h3>
             </div>
@@ -112,7 +112,7 @@ export default function BookingDetailModal({
             {/* Quick Status Tag */}
             <div>
               <span
-                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs uppercase font-belleza font-semibold tracking-wider ${
+                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs uppercase font-poppins font-semibold tracking-wider ${
                   booking.status === "confirmed"
                     ? "bg-emerald-100 text-emerald-800 border border-emerald-300"
                     : booking.status === "completed"
@@ -134,7 +134,7 @@ export default function BookingDetailModal({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Phone & Direct Contact */}
             <div className="p-3.5 rounded-xl border border-stone-200 bg-stone-50/50 space-y-2">
-              <span className="text-[10px] uppercase font-belleza tracking-wider text-stone-500 font-semibold">
+              <span className="text-[10px] uppercase font-poppins tracking-wider text-stone-500 font-semibold">
                 Contact Phone
               </span>
               <p className="font-mono text-sm font-semibold text-stone-900">
@@ -143,7 +143,7 @@ export default function BookingDetailModal({
               <div className="flex items-center gap-2 pt-1">
                 <a
                   href={`tel:${booking.phone}`}
-                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-stone-900 text-white text-[11px] font-belleza uppercase tracking-wider hover:bg-black transition-colors"
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-stone-900 text-white text-[11px] font-poppins uppercase tracking-wider hover:bg-black transition-colors"
                 >
                   <Phone className="w-3 h-3" />
                   <span>Call</span>
@@ -152,7 +152,7 @@ export default function BookingDetailModal({
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-[11px] font-belleza uppercase tracking-wider hover:bg-emerald-700 transition-colors"
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-[11px] font-poppins uppercase tracking-wider hover:bg-emerald-700 transition-colors"
                 >
                   <Send className="w-3 h-3" />
                   <span>WhatsApp</span>
@@ -162,10 +162,10 @@ export default function BookingDetailModal({
 
             {/* Requested Service */}
             <div className="p-3.5 rounded-xl border border-stone-200 bg-stone-50/50 space-y-1">
-              <span className="text-[10px] uppercase font-belleza tracking-wider text-stone-500 font-semibold">
+              <span className="text-[10px] uppercase font-poppins tracking-wider text-stone-500 font-semibold">
                 Treatment Requested
               </span>
-              <p className="font-belleza text-sm font-semibold text-[#1c1917] flex items-center gap-1.5 pt-0.5">
+              <p className="font-poppins text-sm font-semibold text-[#1c1917] flex items-center gap-1.5 pt-0.5">
                 <Sparkles className="w-3.5 h-3.5 text-[#8c6d36]" />
                 <span>{booking.service}</span>
               </p>
@@ -177,7 +177,7 @@ export default function BookingDetailModal({
 
           {/* Client Message */}
           <div className="p-4 rounded-xl border border-stone-200 bg-stone-50/50 space-y-1.5">
-            <div className="flex items-center gap-2 text-stone-500 text-[10px] uppercase font-belleza tracking-wider font-semibold">
+            <div className="flex items-center gap-2 text-stone-500 text-[10px] uppercase font-poppins tracking-wider font-semibold">
               <MessageSquare className="w-3.5 h-3.5" />
               <span>Client Notes / Special Inquiries</span>
             </div>
@@ -188,7 +188,7 @@ export default function BookingDetailModal({
 
           {/* Status Changer Actions */}
           <div className="space-y-2 pt-1 border-t border-stone-100">
-            <span className="text-[10px] uppercase font-belleza tracking-wider text-stone-500 font-semibold block">
+            <span className="text-[10px] uppercase font-poppins tracking-wider text-stone-500 font-semibold block">
               Update Appointment Status
             </span>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -196,7 +196,7 @@ export default function BookingDetailModal({
                 type="button"
                 disabled={updating || booking.status === "pending"}
                 onClick={() => handleStatusClick("pending")}
-                className={`py-2 px-3 rounded-xl text-xs font-belleza uppercase tracking-wider font-semibold transition-all cursor-pointer ${
+                className={`py-2 px-3 rounded-xl text-xs font-poppins uppercase tracking-wider font-semibold transition-all cursor-pointer ${
                   booking.status === "pending"
                     ? "bg-amber-100 text-amber-800 border border-amber-300"
                     : "border border-stone-200 text-stone-600 hover:bg-stone-50"
@@ -208,7 +208,7 @@ export default function BookingDetailModal({
                 type="button"
                 disabled={updating || booking.status === "confirmed"}
                 onClick={() => handleStatusClick("confirmed")}
-                className={`py-2 px-3 rounded-xl text-xs font-belleza uppercase tracking-wider font-semibold transition-all cursor-pointer ${
+                className={`py-2 px-3 rounded-xl text-xs font-poppins uppercase tracking-wider font-semibold transition-all cursor-pointer ${
                   booking.status === "confirmed"
                     ? "bg-emerald-600 text-white"
                     : "border border-stone-200 text-stone-600 hover:bg-emerald-50 hover:text-emerald-700"
@@ -220,7 +220,7 @@ export default function BookingDetailModal({
                 type="button"
                 disabled={updating || booking.status === "completed"}
                 onClick={() => handleStatusClick("completed")}
-                className={`py-2 px-3 rounded-xl text-xs font-belleza uppercase tracking-wider font-semibold transition-all cursor-pointer ${
+                className={`py-2 px-3 rounded-xl text-xs font-poppins uppercase tracking-wider font-semibold transition-all cursor-pointer ${
                   booking.status === "completed"
                     ? "bg-sky-600 text-white"
                     : "border border-stone-200 text-stone-600 hover:bg-sky-50 hover:text-sky-700"
@@ -232,7 +232,7 @@ export default function BookingDetailModal({
                 type="button"
                 disabled={updating || booking.status === "cancelled"}
                 onClick={() => handleStatusClick("cancelled")}
-                className={`py-2 px-3 rounded-xl text-xs font-belleza uppercase tracking-wider font-semibold transition-all cursor-pointer ${
+                className={`py-2 px-3 rounded-xl text-xs font-poppins uppercase tracking-wider font-semibold transition-all cursor-pointer ${
                   booking.status === "cancelled"
                     ? "bg-red-600 text-white"
                     : "border border-stone-200 text-stone-600 hover:bg-red-50 hover:text-red-700"
@@ -252,7 +252,7 @@ export default function BookingDetailModal({
               onClose();
               onDeleteRequest(booking);
             }}
-            className="inline-flex items-center gap-1.5 text-xs text-red-600 hover:text-red-800 font-belleza uppercase tracking-wider font-semibold cursor-pointer"
+            className="inline-flex items-center gap-1.5 text-xs text-red-600 hover:text-red-800 font-poppins uppercase tracking-wider font-semibold cursor-pointer"
           >
             <Trash2 className="w-3.5 h-3.5" />
             <span>Delete Record</span>
@@ -261,7 +261,7 @@ export default function BookingDetailModal({
           <button
             type="button"
             onClick={onClose}
-            className="px-5 py-2 rounded-xl bg-stone-900 hover:bg-black text-white text-xs font-belleza uppercase tracking-wider font-semibold transition-colors cursor-pointer"
+            className="px-5 py-2 rounded-xl bg-stone-900 hover:bg-black text-white text-xs font-poppins uppercase tracking-wider font-semibold transition-colors cursor-pointer"
           >
             Close
           </button>

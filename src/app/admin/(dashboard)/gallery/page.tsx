@@ -248,7 +248,7 @@ export default function AdminGalleryPage() {
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
          
-          <h1 className="font-belleza text-3xl sm:text-4xl uppercase tracking-[0.08em] text-[#1c1917]">
+          <h1 className="font-poppins text-3xl sm:text-4xl uppercase tracking-[0.08em] text-[#1c1917]">
             Gallery Management
           </h1>
           <p className="mt-1 font-poppins text-xs text-[#1c1917]/60 font-light">
@@ -257,7 +257,7 @@ export default function AdminGalleryPage() {
         </div>
         <button
           onClick={fetchGallery}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[#c2a878]/40 text-[#1c1917] text-xs font-belleza uppercase tracking-[0.12em] hover:bg-[#f7f1eb] transition-all self-start sm:self-auto"
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[#c2a878]/40 text-[#1c1917] text-xs font-poppins uppercase tracking-[0.12em] hover:bg-[#f7f1eb] transition-all self-start sm:self-auto"
         >
           <RefreshCw className="w-3.5 h-3.5" />
           Refresh
