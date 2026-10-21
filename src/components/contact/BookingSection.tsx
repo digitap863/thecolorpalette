@@ -14,6 +14,7 @@ import {
   Loader2,
   AlertCircle,
 } from "lucide-react";
+import TypewriterText from "@/components/common/TypewriterText";
 
 export interface ServiceItem {
   id: string;
@@ -301,14 +302,17 @@ export default function BookingSection() {
             reserve
           </span>
 
-          {/* Main Headline */}
-          <h2
+          {/* Main Headline with Writing Animation */}
+          <TypewriterText
+            text="BOOK A SEAT"
+            as="h2"
+            delay={10}
+             speed={80}
             className={`font-belleza text-3xl sm:text-4xl md:text-5xl font-light uppercase tracking-wider text-[#1e2617] leading-tight ${
               siteSettings.freeConsultationActive ? "mb-3" : "mb-10"
             }`}
-          >
-            BOOK A SEAT
-          </h2>
+            cursorColor="#dfcca5"
+          />
 
           {/* Complimentary Consultation Notice (Visible only when turned ON from admin) */}
           {siteSettings.freeConsultationActive && (

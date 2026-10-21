@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Star, Quote } from "lucide-react";
+import TypewriterText from "@/components/common/TypewriterText";
 
 export interface TestimonialItem {
   id: number;
@@ -72,10 +73,13 @@ export default function TestimonialSection() {
             customers
           </span>
 
-          {/* Main Headline */}
-          <h2 className="font-belleza text-3xl sm:text-4xl md:text-5xl font-light uppercase tracking-wider text-[#1e2617] leading-tight mb-6">
-            LOVELY CUSTOMERS.
-          </h2>
+          {/* Main Headline with Writing Animation */}
+          <TypewriterText
+            text="LOVELY CUSTOMERS."
+            as="h2"
+            className="font-belleza text-3xl sm:text-4xl md:text-5xl font-light uppercase tracking-wider text-[#1e2617] leading-tight mb-6"
+            cursorColor="#dfcca5"
+          />
 
           {/* 5 Gold Stars Rating */}
           <div className="flex items-center gap-1.5 mb-8">

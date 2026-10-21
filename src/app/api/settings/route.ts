@@ -29,36 +29,19 @@ export async function GET() {
 
     let setting = await SiteSetting.findOne({ key: "general" }).lean();
 
-    if (!setting) {
-      try {
-        const created = await SiteSetting.create(DEFAULT_SITE_SETTINGS);
-        setting = created.toObject();
-      } catch {
-        return NextResponse.json(
-          DEFAULT_SITE_SETTINGS,
-          {
-            status: 200,
-            headers: {
-              "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
-              Pragma: "no-cache",
-              Expires: "0",
-            },
-          }
-        );
-      }
-    }
+  
 
     return NextResponse.json(
       {
-        freeConsultationActive: setting.freeConsultationActive === true,
+        freeConsultationActive: setting?.freeConsultationActive === true,
         freeConsultationBadge:
-          setting.freeConsultationBadge || DEFAULT_SITE_SETTINGS.freeConsultationBadge,
+          setting?.freeConsultationBadge || DEFAULT_SITE_SETTINGS.freeConsultationBadge,
         freeConsultationTitle:
-          setting.freeConsultationTitle ||
+          setting?.freeConsultationTitle ||
           (setting as any).freeConsultationText ||
           DEFAULT_SITE_SETTINGS.freeConsultationTitle,
         freeConsultationDescription:
-          setting.freeConsultationDescription !== undefined
+          setting?.freeConsultationDescription !== undefined
             ? setting.freeConsultationDescription
             : DEFAULT_SITE_SETTINGS.freeConsultationDescription,
       },

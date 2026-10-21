@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import TypewriterText from "@/components/common/TypewriterText";
 
 export interface StudioValuePoint {
   number: string;
@@ -57,10 +58,13 @@ export default function AboutStudioSection() {
             ABOUT THE COLOR PALLETE
           </span>
 
-          {/* Main Heading */}
-          <h2 className="font-belleza text-3xl sm:text-4xl lg:text-5xl font-light uppercase tracking-wider text-[#1e2617] leading-[1.18] mb-6">
-            Where Luxury Meets Science
-          </h2>
+          {/* Main Heading with Writing Animation */}
+          <TypewriterText
+            text="Where Luxury Meets Science"
+            as="h2"
+            className="font-belleza text-3xl sm:text-4xl lg:text-5xl font-light uppercase tracking-wider text-[#1e2617] leading-[1.18] mb-6"
+            cursorColor="#c2a878"
+          />
 
           {/* Supporting Text */}
           <div className="space-y-4 font-poppins text-sm sm:text-base font-light leading-relaxed text-[#1e2617]/85 mb-10 max-w-2xl">

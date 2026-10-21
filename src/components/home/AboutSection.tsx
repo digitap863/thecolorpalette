@@ -1,8 +1,10 @@
 "use client";
 
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Smartphone } from "lucide-react";
+import TypewriterText from "@/components/common/TypewriterText";
 
 export default function AboutSection() {
   return (
@@ -64,10 +66,13 @@ export default function AboutSection() {
             about us
           </span>
 
-          {/* Main Headline */}
-          <h2 className="font-belleza text-3xl sm:text-4xl md:text-5xl font-light uppercase tracking-wider text-black leading-tight mb-6">
-            WELCOME TO<br />THE COLOR PALETTE
-          </h2>
+          {/* Main Headline with Writing Animation */}
+          <TypewriterText
+            lines={["WELCOME TO", "THE COLOR PALETTE"]}
+            as="h2"
+            className="font-belleza text-3xl sm:text-4xl md:text-5xl font-light uppercase tracking-wider text-black leading-tight mb-6"
+            cursorColor="#cfbf9d"
+          />
 
           {/* Paragraph Description */}
           <p className="text-black/80 text-sm sm:text-base font-light leading-relaxed max-w-lg mb-10">

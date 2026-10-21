@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import TypewriterText from "@/components/common/TypewriterText";
 
 export interface ExpertiseItem {
   number: string;
@@ -67,10 +68,13 @@ export default function ExpertsSection() {
             THE VISION BEHIND THE COLOR PALLETE
           </span>
 
-          {/* Large Serif Heading (No decorative script) */}
-          <h2 className="font-belleza text-3xl sm:text-4xl lg:text-5xl font-light uppercase tracking-wider text-[#1e2617] leading-tight mb-2">
-            Meet {FOUNDER_PROFILE.name}
-          </h2>
+          {/* Large Serif Heading (No decorative script) with Writing Animation */}
+          <TypewriterText
+            text={`Meet ${FOUNDER_PROFILE.name}`}
+            as="h2"
+            className="font-belleza text-3xl sm:text-4xl lg:text-5xl font-light uppercase tracking-wider text-[#1e2617] leading-tight mb-2"
+            cursorColor="#c2a878"
+          />
 
           {/* Role in uppercase gold */}
           <span className="font-poppins text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-[#c2a878] mb-6 block">

@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import TypewriterText from "@/components/common/TypewriterText";
 
 export default function ValuesSection() {
   const values = [
@@ -48,12 +49,21 @@ export default function ValuesSection() {
             <span className="font-poppins text-xs sm:text-sm font-medium uppercase tracking-[0.25em] text-[#c2a878] mb-3 block">
               OUR VALUES
             </span>
-            <h2 className="font-belleza text-4xl sm:text-5xl lg:text-6xl font-light text-[#1e2617] leading-[1.15]">
-              What Makes
-            </h2>
-            <h2 className="font-script text-3xl sm:text-4xl lg:text-5xl text-[#1e2617] font-normal leading-[1.15] -mt-1 sm:-mt-2">
-              The Color Palette Different
-            </h2>
+            <TypewriterText
+              as="h2"
+              className="w-full"
+              cursorColor="#c2a878"
+              lines={[
+                {
+                  text: "What Makes",
+                  className: "font-belleza text-4xl sm:text-5xl lg:text-6xl font-light text-[#1e2617] leading-[1.15]",
+                },
+                {
+                  text: "The Color Palette Different",
+                  className: "font-script text-3xl sm:text-4xl lg:text-5xl text-[#1e2617] font-normal leading-[1.15] -mt-1 sm:-mt-2",
+                },
+              ]}
+            />
           </div>
 
           {/* Right Column: Paragraph Text */}

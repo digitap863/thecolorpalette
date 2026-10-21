@@ -9,6 +9,7 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import TypewriterText from "@/components/common/TypewriterText";
 
 export interface VerticalVideoItem {
   id: string;
@@ -104,9 +105,12 @@ export default function VideoTestimonialsSection() {
             <span className="font-script text-3xl sm:text-5xl text-[#cfbf9d] tracking-wide select-none">
               Client Stories
             </span>
-            <h2 className="font-belleza text-2xl sm:text-4xl md:text-5xl font-light uppercase tracking-wider text-[#1e2617] leading-tight">
-              VIDEO TESTIMONIALS
-            </h2>
+            <TypewriterText
+              text="VIDEO TESTIMONIALS"
+              as="h2"
+              className="font-belleza text-2xl sm:text-4xl md:text-5xl font-light uppercase tracking-wider text-[#1e2617] leading-tight"
+              cursorColor="#cfbf9d"
+            />
           </div>
 
           {/* Navigation Controls */}

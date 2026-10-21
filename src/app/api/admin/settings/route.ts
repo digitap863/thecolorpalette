@@ -23,26 +23,22 @@ export async function GET() {
 
     let setting = await SiteSetting.findOne({ key: "general" }).lean();
 
-    if (!setting) {
-      const created = await SiteSetting.create(DEFAULT_SITE_SETTINGS);
-      setting = created.toObject();
-    }
-
+ 
     return NextResponse.json(
       {
         id: (setting as any)._id?.toString(),
-        freeConsultationActive: setting.freeConsultationActive === true,
+        freeConsultationActive: setting?.freeConsultationActive === true,
         freeConsultationBadge:
-          setting.freeConsultationBadge || DEFAULT_SITE_SETTINGS.freeConsultationBadge,
+          setting?.freeConsultationBadge || DEFAULT_SITE_SETTINGS.freeConsultationBadge,
         freeConsultationTitle:
-          setting.freeConsultationTitle ||
+          setting?.freeConsultationTitle ||
           (setting as any).freeConsultationText ||
           DEFAULT_SITE_SETTINGS.freeConsultationTitle,
         freeConsultationDescription:
-          setting.freeConsultationDescription !== undefined
+          setting?.freeConsultationDescription !== undefined
             ? setting.freeConsultationDescription
             : DEFAULT_SITE_SETTINGS.freeConsultationDescription,
-        updatedAt: setting.updatedAt,
+        updatedAt: setting?.updatedAt,
       },
       {
         status: 200,
