@@ -8,13 +8,14 @@ import {
   LayoutDashboard,
   Calendar,
   Layers,
-  Sparkles,
+  FolderTree,
   Image as ImageIcon,
   SlidersHorizontal,
   ExternalLink,
   LogOut,
   Menu,
   X,
+  Settings,
 } from "lucide-react";
 
 interface AdminSidebarProps {
@@ -92,7 +93,7 @@ export default function AdminSidebar({ admin, pendingCount }: AdminSidebarProps)
         {
           name: "Categories",
           href: "/admin/categories",
-          icon: Sparkles,
+          icon: FolderTree,
           active: pathname === "/admin/categories" || pathname.startsWith("/admin/categories/"),
         },
         {
@@ -106,6 +107,12 @@ export default function AdminSidebar({ admin, pendingCount }: AdminSidebarProps)
           href: "/admin/gallery",
           icon: ImageIcon,
           active: pathname === "/admin/gallery" || pathname.startsWith("/admin/gallery/"),
+        },
+        {
+          name: "Clinic Settings",
+          href: "/admin/settings",
+          icon: Settings,
+          active: pathname === "/admin/settings" || pathname.startsWith("/admin/settings/"),
         },
       ],
     },

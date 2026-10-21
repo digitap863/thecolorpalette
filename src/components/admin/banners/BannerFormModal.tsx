@@ -5,7 +5,7 @@ import Image from "next/image";
 import {
   X,
   Upload,
-  Sparkles,
+  SlidersHorizontal,
   Smartphone,
   Monitor,
   Trash2,
@@ -193,7 +193,7 @@ export default function BannerFormModal({
         <div className="px-6 py-5 border-b border-stone-200 bg-[#f7f1eb] flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-white border border-[#c2a878]/30 flex items-center justify-center text-[#8c6d36] shadow-xs">
-              <Sparkles className="w-5 h-5" />
+              <SlidersHorizontal className="w-5 h-5" />
             </div>
             <div>
               <h2 className="font-poppins text-lg sm:text-xl font-medium tracking-wider uppercase text-stone-900">

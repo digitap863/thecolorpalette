@@ -1,13 +1,11 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import {
   Plus,
   Search,
   FolderTree,
-  Sparkles,
   Edit,
   Trash2,
   ExternalLink,
@@ -24,8 +22,6 @@ import { CategoryItem } from "@/components/admin/categories/types";
 import CategoryFormModal from "@/components/admin/categories/CategoryFormModal";
 import CategoryDeleteModal from "@/components/admin/categories/CategoryDeleteModal";
 import CategoriesStatsBar from "@/components/admin/categories/CategoriesStatsBar";
-
-const FALLBACK_IMAGE = "/gallery/gallery_medifacial_1_1791351357677.png";
 
 export default function AdminCategoriesPage() {
   const [categories, setCategories] = useState<CategoryItem[]>([]);
@@ -382,41 +378,33 @@ export default function AdminCategoriesPage() {
               className="rounded-2xl bg-white border border-[#c2a878]/30 overflow-hidden shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow group"
             >
               <div>
-                {/* Cover Image Container */}
-                <div className="relative aspect-[16/9] bg-stone-100 overflow-hidden">
-                  <Image
-                    src={cat.image || FALLBACK_IMAGE}
-                    alt={cat.name}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-
-                  {/* Priority Order Badge */}
-                  <div className="absolute top-3 left-3 flex items-center gap-2">
-                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-white/90 text-stone-800 shadow-xs">
+                {/* Card Header */}
+                <div className="p-4 border-b border-[#c2a878]/20 bg-[#f7f1eb]/50 flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-xl bg-white border border-[#c2a878]/35 text-[#8c6d36] flex items-center justify-center shadow-2xs">
+                      <FolderTree className="w-4 h-4" />
+                    </div>
+                    <span className="px-2 py-0.5 rounded-md text-[10px] font-mono font-bold bg-white text-stone-700 border border-stone-200 shadow-2xs">
                       #{cat.order}
                     </span>
                   </div>
 
-                  {/* Treatments Count Chip */}
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
+                  <div className="flex items-center gap-2">
                     <Link
                       href={`/admin/services?category=${cat.slug}`}
-                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-poppins uppercase tracking-wider bg-black/60 backdrop-blur-xs hover:bg-[#1c1917] transition-colors"
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-poppins uppercase tracking-wider bg-white border border-[#c2a878]/40 hover:bg-[#1c1917] hover:text-white transition-colors text-stone-800"
                       title="View treatments in this category"
                     >
                       <Layers className="w-3 h-3 text-[#c2a878]" />
-                      <span>{cat.serviceCount} Treatments</span>
-                      <ArrowRight className="w-3 h-3" />
+                      <span>{cat.serviceCount}</span>
                     </Link>
 
                     <button
                       onClick={() => handleToggleActive(cat)}
                       className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-poppins uppercase tracking-wider font-semibold cursor-pointer ${
                         cat.isActive
-                          ? "bg-emerald-500/90 text-white"
-                          : "bg-stone-700/90 text-stone-300"
+                          ? "bg-emerald-100 text-emerald-800 border border-emerald-200"
+                          : "bg-stone-100 text-stone-600 border border-stone-200"
                       }`}
                     >
                       {cat.isActive ? "Live" : "Draft"}
@@ -433,7 +421,7 @@ export default function AdminCategoriesPage() {
                     /{cat.slug}
                   </p>
                   <p className="font-poppins text-xs text-stone-600 line-clamp-3 leading-relaxed">
-                    {cat.shortDescription}
+                    {cat.shortDescription || "No summary description provided."}
                   </p>
                 </div>
               </div>
@@ -481,7 +469,7 @@ export default function AdminCategoriesPage() {
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="border-b border-[#c2a878]/25 bg-[#f7f1eb]/50 text-[10px] uppercase font-poppins tracking-wider text-[#1c1917]/70">
-                  <th className="py-3.5 px-4 font-semibold">Track &amp; Artwork</th>
+                  <th className="py-3.5 px-4 font-semibold">Category Track</th>
                   <th className="py-3.5 px-4 font-semibold">Summary</th>
                   <th className="py-3.5 px-4 font-semibold text-center">Order</th>
                   <th className="py-3.5 px-4 font-semibold text-center">Treatments</th>
@@ -495,16 +483,11 @@ export default function AdminCategoriesPage() {
                     key={cat.id}
                     className="hover:bg-[#f7f1eb]/30 transition-colors group"
                   >
-                    {/* Artwork & Name */}
+                    {/* Track & Name */}
                     <td className="py-3.5 px-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-12 h-10 rounded-lg bg-stone-100 border border-stone-200 overflow-hidden relative shrink-0">
-                          <Image
-                            src={cat.image || FALLBACK_IMAGE}
-                            alt={cat.name}
-                            fill
-                            className="object-cover"
-                          />
+                        <div className="w-9 h-9 rounded-xl bg-[#dfcca5]/20 border border-[#c2a878]/30 flex items-center justify-center text-[#8c6d36] shrink-0">
+                          <FolderTree className="w-4 h-4" />
                         </div>
                         <div className="min-w-0">
                           <p className="font-poppins text-sm text-[#1c1917] font-semibold tracking-wide uppercase truncate max-w-[220px]">

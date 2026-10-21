@@ -4,7 +4,6 @@ export interface IServiceCategory extends Document {
   name: string;
   slug: string;
   shortDescription: string;
-  image?: string;
   order: number;
   isActive: boolean;
   createdAt: Date;
@@ -27,12 +26,8 @@ const ServiceCategorySchema: Schema<IServiceCategory> = new Schema(
     },
     shortDescription: {
       type: String,
-      required: [true, "Short description is required"],
-      trim: true,
-    },
-    image: {
-      type: String,
       default: "",
+      trim: true,
     },
     order: {
       type: Number,

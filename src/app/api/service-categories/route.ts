@@ -17,7 +17,6 @@ export async function GET() {
           name: cat.name,
           slug: cat.slug,
           shortDescription: cat.shortDescription,
-          image: cat.image || "",
           order: cat.order ?? 0,
           isActive: cat.isActive !== false,
         }));

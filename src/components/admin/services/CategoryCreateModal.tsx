@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { X, Sparkles, Loader2 } from "lucide-react";
+import { X, FolderTree, Loader2 } from "lucide-react";
 import { AdminCategoryItem } from "./types";
 
 interface CategoryCreateModalProps {
@@ -70,7 +70,7 @@ export default function CategoryCreateModal({
         <div className="flex items-center justify-between pb-4 border-b border-[#c2a878]/20">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-[#dfcca5]/30 text-[#7a5f2a] flex items-center justify-center">
-              <Sparkles className="w-4 h-4" />
+              <FolderTree className="w-4 h-4" />
             </div>
             <div>
               <h3 className="font-poppins text-base uppercase tracking-wider text-[#1c1917]">

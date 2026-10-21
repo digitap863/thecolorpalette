@@ -10,7 +10,7 @@ import {
   LogOut,
   ShieldCheck,
   User,
-  Sparkles,
+  Image as ImageIcon,
   Layers,
   Menu,
   X,
@@ -61,7 +61,7 @@ export default function AdminHeader({ admin }: AdminHeaderProps) {
     {
       name: "Gallery",
       href: "/gallery",
-      icon: Sparkles,
+      icon: ImageIcon,
       external: true,
     },
     {

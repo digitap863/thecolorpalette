@@ -3,7 +3,7 @@ export interface ServiceCategoryData {
   name: string;
   slug: string;
   shortDescription: string;
-  image: string;
+  image?: string;
   order: number;
   isActive: boolean;
 }

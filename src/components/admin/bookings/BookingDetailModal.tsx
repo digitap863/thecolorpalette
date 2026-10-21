@@ -6,13 +6,11 @@ import {
   Calendar,
   Phone,
   MessageSquare,
-  Sparkles,
+
   Clock,
   CheckCircle2,
   XCircle,
-  ExternalLink,
   Trash2,
-  Loader2,
   Send,
 } from "lucide-react";
 import { BookingItem, BookingStatus } from "./types";
@@ -166,7 +164,7 @@ export default function BookingDetailModal({
                 Treatment Requested
               </span>
               <p className="font-poppins text-sm font-semibold text-[#1c1917] flex items-center gap-1.5 pt-0.5">
-                <Sparkles className="w-3.5 h-3.5 text-[#8c6d36]" />
+              
                 <span>{booking.service}</span>
               </p>
               <p className="text-[11px] text-stone-500 pt-1">

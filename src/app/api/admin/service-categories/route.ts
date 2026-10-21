@@ -57,7 +57,6 @@ export async function GET() {
         name: c.name,
         slug: c.slug,
         shortDescription: c.shortDescription || "",
-        image: c.image || "",
         order: c.order ?? 0,
         isActive: c.isActive !== false,
         serviceCount: count,
@@ -87,7 +86,7 @@ export async function POST(request: NextRequest) {
     await dbConnect();
 
     const body = await request.json().catch(() => ({}));
-    const { name, slug, shortDescription, image, order, isActive } = body;
+    const { name, slug, shortDescription, order, isActive } = body;
 
     if (!name || !name.trim()) {
       return NextResponse.json(
@@ -119,7 +118,6 @@ export async function POST(request: NextRequest) {
       name: cleanName,
       slug: cleanSlug,
       shortDescription: shortDescription.trim(),
-      image: (image || "").trim(),
       order: typeof order === "number" ? order : parseInt(order || "0", 10) || 0,
       isActive: isActive !== undefined ? Boolean(isActive) : true,
     });
@@ -130,7 +128,6 @@ export async function POST(request: NextRequest) {
         name: newCat.name,
         slug: newCat.slug,
         shortDescription: newCat.shortDescription,
-        image: newCat.image,
         order: newCat.order,
         isActive: newCat.isActive,
         serviceCount: 0,

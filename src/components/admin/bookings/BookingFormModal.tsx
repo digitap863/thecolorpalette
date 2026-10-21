@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { X, Calendar, Plus, AlertCircle, Loader2 } from "lucide-react";
+import { X, Calendar, AlertCircle, Loader2 } from "lucide-react";
 import { BookingItem, BookingFormData, BookingStatus } from "./types";
 
 interface BookingFormModalProps {
@@ -182,6 +182,9 @@ export default function BookingFormModal({
                       {srv}
                     </option>
                   ))}
+                  {!serviceNames.includes("Other / Not Sure") && (
+                    <option value="Other / Not Sure">Other / Not Sure</option>
+                  )}
                 </select>
               ) : (
                 <input

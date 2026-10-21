@@ -48,7 +48,6 @@ export async function GET(request: NextRequest, context: RouteContext) {
       name: category.name,
       slug: category.slug,
       shortDescription: category.shortDescription || "",
-      image: category.image || "",
       order: category.order ?? 0,
       isActive: category.isActive !== false,
       serviceCount,
@@ -123,10 +122,6 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
       updateData.shortDescription = String(body.shortDescription).trim();
     }
 
-    if (body.image !== undefined) {
-      updateData.image = String(body.image || "").trim();
-    }
-
     if (body.order !== undefined) {
       updateData.order =
         typeof body.order === "number"
@@ -158,7 +153,6 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
       name: updated?.name,
       slug: updated?.slug,
       shortDescription: updated?.shortDescription,
-      image: updated?.image,
       order: updated?.order,
       isActive: updated?.isActive,
       serviceCount,

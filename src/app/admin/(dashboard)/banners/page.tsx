@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import {
-  Sparkles,
+  SlidersHorizontal,
   Plus,
   Edit2,
   Trash2,
@@ -115,7 +115,7 @@ export default function AdminBannersPage() {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="text-xs uppercase tracking-[0.2em] text-[#8c6d36] font-poppins font-semibold flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-[#8c6d36]" />
+              <SlidersHorizontal className="w-3.5 h-3.5 text-[#8c6d36]" />
               Homepage Experience
             </span>
           </div>
@@ -169,7 +169,7 @@ export default function AdminBannersPage() {
       {!loading && slides.length === 0 && (
         <div className="bg-white rounded-2xl border border-stone-200 p-12 text-center max-w-lg mx-auto space-y-4">
           <div className="w-14 h-14 rounded-2xl bg-[#f7f1eb] border border-[#c2a878]/30 mx-auto flex items-center justify-center text-[#8c6d36]">
-            <Sparkles className="w-7 h-7" />
+            <SlidersHorizontal className="w-7 h-7" />
           </div>
           <div>
             <h3 className="font-poppins text-lg uppercase tracking-wider text-stone-900 font-medium">

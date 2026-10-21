@@ -16,6 +16,7 @@ const SERVICE_NAMES: Record<string, string> = {
   "iv-therapy": "IV Therapy",
   "nail-services": "Nail Services",
   "lash-services": "Lash Services",
+  other: "Other / Not Sure",
 };
 
 export async function POST(req: Request) {

@@ -9,7 +9,7 @@ import Link from "next/link";
 import {
   Calendar,
   Layers,
-  Sparkles,
+  FolderTree,
   Image as ImageIcon,
   SlidersHorizontal,
   ExternalLink,
@@ -17,6 +17,7 @@ import {
   Phone,
   ArrowRight,
   ArrowUpRight,
+  Settings,
 } from "lucide-react";
 
 export default async function AdminDashboardPage() {
@@ -121,7 +122,13 @@ export default async function AdminDashboardPage() {
       title: "Service Categories",
       description: "Organize service tracks and categories",
       href: "/admin/categories",
-      icon: Sparkles,
+      icon: FolderTree,
+    },
+    {
+      title: "Clinic Settings",
+      description: "Toggle Free Doctor Consultation & manage promotional text",
+      href: "/admin/settings",
+      icon: Settings,
     },
   ];
 

@@ -3,7 +3,7 @@ export interface CategoryItem {
   name: string;
   slug: string;
   shortDescription: string;
-  image: string;
+  image?: string;
   order: number;
   isActive: boolean;
   serviceCount: number;
@@ -15,7 +15,7 @@ export interface CategoryFormData {
   name: string;
   slug: string;
   shortDescription: string;
-  image: string;
+  image?: string;
   order: number;
   isActive: boolean;
 }
