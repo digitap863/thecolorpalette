@@ -121,9 +121,9 @@ const Navbar = () => {
               <Image
                 src="/Logo/logo.png"
                 alt="colorpellet logo"
-                width={250}
-                height={100}
-                className="h-36 sm:h-44 lg:h-50 max-w-[70vw] sm:max-w-none w-auto object-contain transition-transform group-hover:scale-105"
+                width={300}
+                height={120}
+                className="h-44 xs:h-48 sm:h-52 lg:h-56 max-w-[76vw] sm:max-w-none w-auto object-contain transition-transform group-hover:scale-105"
                 priority
               />
             </Link>
