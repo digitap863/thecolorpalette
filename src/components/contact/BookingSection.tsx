@@ -517,7 +517,7 @@ export default function BookingSection() {
         <div className="lg:col-span-5 flex justify-center w-full">
           <div className="relative w-full max-w-[460px] aspect-[3/4] rounded-t-full overflow-hidden border border-[#1e2617]/10 shadow-2xl group">
             <Image
-              src="/images/contactUs.png"
+              src="/images/contactUs.webp"
               alt="Book a seat - The Color Palette"
               fill
               className="object-cover object-center transform transition-transform duration-1000 group-hover:scale-105"

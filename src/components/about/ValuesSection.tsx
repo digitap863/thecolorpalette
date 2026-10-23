@@ -24,7 +24,7 @@ export default function ValuesSection() {
         "Every treatment begins with understanding your concerns, goals, and needs so your experience is tailored rather than one-size-fits-all.",
       link: "/contact",
       variant: "dark",
-      image: "/images/our_values.png",
+      image: "/images/our_values.webp",
     },
     {
       number: "03",

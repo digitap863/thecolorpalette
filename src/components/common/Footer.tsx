@@ -39,7 +39,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         
         {/* Main 3 Column Grid - Equal vertical alignment */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-0 divide-y lg:divide-y-0 lg:divide-x divide-black/10 pb-6 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-0 divide-y lg:divide-y-0 lg:divide-x divide-black/10 pb-6 items-stretch">
           
           {/* Column 1: Website Map */}
           <div className="lg:col-span-4 lg:pr-10 pb-4 lg:pb-0 pt-2 lg:pt-0 flex flex-col justify-start">
@@ -60,7 +60,7 @@ export default function Footer() {
           </div>
 
           {/* Column 2: Center Brand Logo */}
-          <div className="lg:col-span-4 lg:px-6 py-4 lg:py-0 flex flex-col items-center justify-center text-center self-center">
+          <div className="lg:col-span-4 lg:px-6 py-4 lg:py-0 flex flex-col items-center justify-center text-center">
             <Link href="/" className="inline-block group">
               <Image
                 src="/Logo/logo.png"

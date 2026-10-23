@@ -38,7 +38,7 @@ export default function AboutStudioSection() {
         <div className="lg:col-span-5 flex justify-center w-full order-1">
           <div className="relative w-full max-w-[480px] aspect-[4/5] rounded-[24px] overflow-hidden border border-[#1e2617]/10 shadow-[0_12px_40px_rgba(30,38,23,0.06)] group">
             <Image
-              src="/images/about_clinical_studio.png"
+              src="/images/about_clinical_studio.webp"
               alt="The Color Pallete - Advanced Aesthetic Clinical Studio"
               fill
               className="object-cover object-center transform transition-transform duration-1000 group-hover:scale-105"

@@ -15,7 +15,7 @@ export default function AboutSection() {
         <div className="lg:col-span-6 flex justify-center w-full">
           <div className="relative w-full max-w-[500px] aspect-[4/5] rounded-full overflow-hidden border border-black/10 shadow-2xl group">
             <Image
-              src="/images/about.png"
+              src="/images/about.webp"
               alt="Colorpellet Salon Interior"
               fill
               className="object-cover object-center transform transition-transform duration-1000 group-hover:scale-105"

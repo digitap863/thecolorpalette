@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Our Treatments & Services | The Color Palette Aesthetic Studio",
     description:
       "Explore our range of advanced aesthetic, skin, hair, and scalp wellness treatments at The Color Palette.",
-    images: ["/images/about_clinical_studio.png"],
+    images: ["/images/about_clinical_studio.webp"],
   },
 };
 

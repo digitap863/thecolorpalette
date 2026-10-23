@@ -53,7 +53,7 @@ export default function TestimonialSection() {
         <div className="lg:col-span-6 flex justify-center w-full">
           <div className="relative w-full max-w-[480px] aspect-[4/5] rounded-t-full overflow-hidden border border-[#1e2617]/10 shadow-xl group">
             <Image
-              src="/images/testimonials.png"
+              src="/images/testimonials.webp"
               alt="The Color Palette Salon Interior & Stylists"
               fill
               className="object-cover object-center transform transition-transform duration-1000 group-hover:scale-105"
