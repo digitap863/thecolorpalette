@@ -22,6 +22,13 @@ const BookingSchema: Schema<IBooking> = new Schema(
       type: String,
       required: [true, "Phone number is required"],
       trim: true,
+      validate: {
+        validator: function (v: string) {
+          const digits = (v || "").replace(/\D/g, "");
+          return digits.length === 10;
+        },
+        message: "Phone number must be exactly 10 digits",
+      },
     },
     date: {
       type: String,

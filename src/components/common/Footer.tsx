@@ -84,6 +84,9 @@ export default function Footer() {
               <p>Vennala, Kochi, Kerala – 682032</p>
               <p className="pt-0.5">P: +91 8547977486</p>
               <p>E: Info@thecolorpalette.in</p>
+              <p className="text-[#1e2617]/60 text-[11px] sm:text-xs pt-1">
+                Hours: 10:00 AM – 7:00 PM (All Days)
+              </p>
             </div>
 
             <h3 className="font-belleza text-base sm:text-lg font-medium uppercase tracking-[0.18em] text-[#1e2617] mb-2">

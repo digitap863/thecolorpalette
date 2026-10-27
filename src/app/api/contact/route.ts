@@ -31,6 +31,14 @@ export async function POST(req: Request) {
       );
     }
 
+    const cleanPhone = String(phone).replace(/\D/g, "");
+    if (cleanPhone.length !== 10) {
+      return NextResponse.json(
+        { success: false, error: "Phone number must be exactly 10 digits." },
+        { status: 400 }
+      );
+    }
+
     const readableService = SERVICE_NAMES[service] || service;
 
     // 1. Save Booking Document in MongoDB (if MONGODB_URI is provided)

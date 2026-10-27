@@ -89,12 +89,12 @@ export default function ContactDetailsSection() {
 
               <div className="space-y-3 text-sm font-light text-neutral-700">
                 <div className="flex justify-between items-center border-b border-neutral-100 pb-2">
-                  <span>Monday – Saturday:</span>
-                  <span className="font-medium text-[#1e2617]">9:30 AM – 7:30 PM</span>
+                  <span>Monday – Sunday:</span>
+                  <span className="font-medium text-[#1e2617]">10:00 AM – 7:00 PM</span>
                 </div>
                 <div className="flex justify-between items-center border-b border-neutral-100 pb-2">
-                  <span>Sunday:</span>
-                  <span className="font-medium text-[#1e2617]">10:00 AM – 6:00 PM</span>
+                  <span>Operating Schedule:</span>
+                  <span className="font-medium text-[#1e2617]">Open All Days (7 Days)</span>
                 </div>
                 <div className="flex justify-between items-center pt-1 text-xs text-[#dfcca5] font-medium">
                   <span>✦ Appointments Preferred</span>

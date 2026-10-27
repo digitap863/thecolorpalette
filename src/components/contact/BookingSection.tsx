@@ -95,6 +95,7 @@ export default function BookingSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [phoneError, setPhoneError] = useState("");
 
   // Consume dynamic services and categories from ServicesContext
   const { categories, services: contextServices } = useServicesContext();
@@ -239,12 +240,31 @@ export default function BookingSection() {
     };
   }, []);
 
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let val = e.target.value.replace(/\D/g, "");
+    if (val.length === 12 && val.startsWith("91")) val = val.slice(2);
+    if (val.length === 11 && val.startsWith("0")) val = val.slice(1);
+    val = val.slice(0, 10);
+    setFormData((prev) => ({ ...prev, phone: val }));
+    if (val.length === 10) {
+      setPhoneError("");
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.agreed) return;
 
+    const cleanPhone = formData.phone.replace(/\D/g, "");
+    if (cleanPhone.length !== 10) {
+      setPhoneError("Phone number must be exactly 10 digits");
+      setErrorMessage("Please enter a valid 10-digit phone number.");
+      return;
+    }
+
     setIsSubmitting(true);
     setErrorMessage("");
+    setPhoneError("");
 
     try {
       const res = await fetch("/api/contact", {
@@ -254,7 +274,7 @@ export default function BookingSection() {
         },
         body: JSON.stringify({
           name: formData.name,
-          phone: formData.phone,
+          phone: cleanPhone,
           date: formData.date,
           service: formData.service,
           message: formData.message,
@@ -273,6 +293,7 @@ export default function BookingSection() {
           message: "",
           agreed: false,
         });
+        setPhoneError("");
         setTimeout(() => {
           setSubmitted(false);
         }, 7000);
@@ -293,10 +314,10 @@ export default function BookingSection() {
       className="w-full bg-[#f7f1eb] text-[#1e2617] py-6 sm:py-12  px-6 sm:px-12 md:px-16 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        
+
         {/* Left Column: Form & Titles */}
         <div className="lg:col-span-7 flex flex-col items-start text-left w-full">
-          
+
           {/* Cursive Subtitle */}
           <span className="font-script text-4xl sm:text-5xl md:text-6xl text-[#dfcca5] tracking-wide mb-1 select-none">
             reserve
@@ -307,10 +328,9 @@ export default function BookingSection() {
             text="BOOK A SEAT"
             as="h2"
             delay={10}
-             speed={80}
-            className={`font-belleza text-3xl sm:text-4xl md:text-5xl font-light uppercase tracking-wider text-[#1e2617] leading-tight ${
-              siteSettings.freeConsultationActive ? "mb-3" : "mb-10"
-            }`}
+            speed={80}
+            className={`font-belleza text-3xl sm:text-4xl md:text-5xl font-light uppercase tracking-wider text-[#1e2617] leading-tight ${siteSettings.freeConsultationActive ? "mb-3" : "mb-10"
+              }`}
             cursorColor="#dfcca5"
           />
 
@@ -339,7 +359,7 @@ export default function BookingSection() {
           {/* Booking / Contact Form */}
           <form onSubmit={handleSubmit} className="w-full font-poppins">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8 mb-10 sm:mb-12">
-              
+
               {/* Field 1: Your Name */}
               <div className="relative flex items-center border-b border-[#1e2617]/30 focus-within:border-[#1e2617] transition-colors pb-2.5 min-w-0">
                 <User className="w-5 h-5 text-[#1e2617]/60 shrink-0 mr-3" strokeWidth={1.5} />
@@ -353,17 +373,52 @@ export default function BookingSection() {
                 />
               </div>
 
-              {/* Field 2: Your phone */}
-              <div className="relative flex items-center border-b border-[#1e2617]/30 focus-within:border-[#1e2617] transition-colors pb-2.5 min-w-0">
-                <Phone className="w-5 h-5 text-[#1e2617]/60 shrink-0 mr-3" strokeWidth={1.5} />
-                <input
-                  type="tel"
-                  required
-                  placeholder="Your Number"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full bg-transparent text-base sm:text-sm md:text-base text-[#1e2617] placeholder-[#1e2617]/60 focus:outline-none font-light min-w-0"
-                />
+              {/* Field 2: Your phone (10-Digit Validation) */}
+              <div className="flex flex-col min-w-0">
+                <div
+                  className={`relative flex items-center border-b transition-colors pb-2.5 min-w-0 ${phoneError
+                      ? "border-rose-500"
+                      : "border-[#1e2617]/30 focus-within:border-[#1e2617]"
+                    }`}
+                >
+                  <Phone
+                    className={`w-5 h-5 shrink-0 mr-3 transition-colors ${phoneError ? "text-rose-500" : "text-[#1e2617]/60"
+                      }`}
+                    strokeWidth={1.5}
+                  />
+                  <input
+                    type="tel"
+                    required
+                    inputMode="numeric"
+                    maxLength={10}
+                    placeholder="Your Phone (10 digits)"
+                    value={formData.phone}
+                    onChange={handlePhoneChange}
+                    onBlur={() => {
+                      if (formData.phone && formData.phone.length !== 10) {
+                        setPhoneError("Phone number must be exactly 10 digits");
+                      } else {
+                        setPhoneError("");
+                      }
+                    }}
+                    className="w-full bg-transparent text-base sm:text-sm md:text-base text-[#1e2617] placeholder-[#1e2617]/60 focus:outline-none font-light min-w-0"
+                  />
+                  {formData.phone.length > 0 && (
+                    <span
+                      className={`text-xs font-mono ml-2 shrink-0 select-none ${formData.phone.length === 10
+                          ? "text-emerald-700 font-medium"
+                          : "text-[#1e2617]/40"
+                        }`}
+                    >
+                      {formData.phone.length}/10
+                    </span>
+                  )}
+                </div>
+                {phoneError && (
+                  <p className="text-xs text-rose-600 mt-1 font-light animate-fade-in">
+                    {phoneError}
+                  </p>
+                )}
               </div>
 
               {/* Field 3: Select Date */}
@@ -429,10 +484,10 @@ export default function BookingSection() {
                             s.name.toLowerCase().includes("not sure") ||
                             s.name.toLowerCase().includes("other")
                         ) && (
-                          <option value="Other / Not Sure" className="bg-[#f7f1eb]">
-                            Other / Not Sure
-                          </option>
-                        )}
+                            <option value="Other / Not Sure" className="bg-[#f7f1eb]">
+                              Other / Not Sure
+                            </option>
+                          )}
                       </>
                     )}
                   </select>
@@ -456,7 +511,7 @@ export default function BookingSection() {
 
             {/* Action Row: SUBMIT button & Checkbox */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-              
+
               {/* Submit Button */}
               <button
                 type="submit"

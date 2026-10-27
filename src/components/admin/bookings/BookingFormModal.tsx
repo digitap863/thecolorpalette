@@ -51,8 +51,14 @@ export default function BookingFormModal({
       return;
     }
 
-    if (!formData.phone.trim()) {
+    const cleanPhone = formData.phone.replace(/\D/g, "");
+    if (!cleanPhone) {
       setError("Please enter client phone number");
+      return;
+    }
+
+    if (cleanPhone.length !== 10) {
+      setError("Phone number must be exactly 10 digits");
       return;
     }
 
@@ -150,18 +156,36 @@ export default function BookingFormModal({
 
           <div>
             <label className="block text-xs uppercase tracking-wider font-poppins font-semibold text-[#1c1917] mb-1">
-              Contact Phone *
+              Contact Phone (10 digits) *
             </label>
-            <input
-              type="tel"
-              required
-              placeholder="+91 98765 43210"
-              value={formData.phone}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, phone: e.target.value }))
-              }
-              className="w-full px-3.5 py-2.5 rounded-xl border border-[#c2a878]/30 bg-[#f7f1eb]/30 text-stone-900 text-sm font-mono focus:outline-none focus:border-[#7a5f2a]"
-            />
+            <div className="relative">
+              <input
+                type="tel"
+                required
+                maxLength={10}
+                placeholder="10-digit phone number"
+                value={formData.phone}
+                onChange={(e) => {
+                  let val = e.target.value.replace(/\D/g, "");
+                  if (val.length === 12 && val.startsWith("91")) val = val.slice(2);
+                  if (val.length === 11 && val.startsWith("0")) val = val.slice(1);
+                  val = val.slice(0, 10);
+                  setFormData((prev) => ({ ...prev, phone: val }));
+                }}
+                className="w-full px-3.5 py-2.5 rounded-xl border border-[#c2a878]/30 bg-[#f7f1eb]/30 text-stone-900 text-sm font-mono focus:outline-none focus:border-[#7a5f2a] pr-14"
+              />
+              {formData.phone.length > 0 && (
+                <span
+                  className={`absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono select-none ${
+                    formData.phone.length === 10
+                      ? "text-emerald-700 font-semibold"
+                      : "text-stone-400"
+                  }`}
+                >
+                  {formData.phone.length}/10
+                </span>
+              )}
+            </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

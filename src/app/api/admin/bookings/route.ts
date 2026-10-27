@@ -93,9 +93,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!phone || !phone.trim()) {
+    const cleanPhone = String(phone || "").replace(/\D/g, "");
+    if (!cleanPhone) {
       return NextResponse.json(
         { error: "Phone number is required" },
+        { status: 400 }
+      );
+    }
+
+    if (cleanPhone.length !== 10) {
+      return NextResponse.json(
+        { error: "Phone number must be exactly 10 digits" },
         { status: 400 }
       );
     }
@@ -116,7 +124,7 @@ export async function POST(request: NextRequest) {
 
     const newBooking = await Booking.create({
       name: name.trim(),
-      phone: phone.trim(),
+      phone: cleanPhone,
       date: date.trim(),
       service: service.trim(),
       message: (message || "").trim(),
