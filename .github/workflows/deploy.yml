@@ -1,0 +1,94 @@
+name: Hostinger CI/CD Deployment
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build & Verify
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Next.js Application
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+
+  deploy-vps:
+    name: Deploy to Hostinger VPS
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST || secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.USERNAME || secrets.HOSTINGER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY || secrets.HOSTINGER_SSH_KEY }}
+          port: ${{ secrets.HOSTINGER_PORT || 22 }}
+          command_timeout: 15m
+          timeout: 15m
+          script: |
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+            TARGET_DIR="${{ secrets.HOSTINGER_TARGET_DIR }}"
+            if [ -z "$TARGET_DIR" ]; then
+              TARGET_DIR="/var/www/colorpellet"
+            fi
+
+            echo "Target Directory: $TARGET_DIR"
+
+            # Auto-clone repository if directory or .git does not exist on VPS
+            if [ ! -d "$TARGET_DIR" ] || [ ! -d "$TARGET_DIR/.git" ]; then
+              echo "Repository not found on VPS. Automatically cloning repository..."
+              mkdir -p "$TARGET_DIR"
+              git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git "$TARGET_DIR"
+            fi
+
+            cd "$TARGET_DIR"
+
+            echo "Updating remote origin authentication..."
+            git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
+            echo "Fetching latest code from main..."
+            git fetch origin main
+            git reset --hard origin/main
+
+            echo "Installing dependencies..."
+            npm ci
+
+            echo "Building application..."
+            npm run build
+
+            echo "Managing PM2 Process..."
+            if command -v pm2 > /dev/null 2>&1; then
+              pm2 startOrReload ecosystem.config.js || pm2 start ecosystem.config.js
+              pm2 save
+            else
+              echo "PM2 is not installed globally. Installing PM2..."
+              npm install -g pm2
+              pm2 startOrReload ecosystem.config.js || pm2 start ecosystem.config.js
+              pm2 save
+            fi
+
+            echo "Deployment completed successfully!"
