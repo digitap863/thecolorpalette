@@ -12,10 +12,10 @@ import {
   Image as ImageIcon,
   SlidersHorizontal,
   ExternalLink,
-  Logout,
   Menu,
   X,
   Settings,
+  LogOut,
 } from "lucide-react";
 
 interface AdminSidebarProps {
@@ -47,15 +47,15 @@ export default function AdminSidebar({ admin, pendingCount }: AdminSidebarProps)
   const [loggingOut, setLoggingOut] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const handlelogo_newut = async () => {
+  const handleLogout = async () => {
     if (loggingOut) return;
     setLoggingOut(true);
     try {
-      await fetch("/api/admin/auth/logo_newut", { method: "POST" });
+      await fetch("/api/admin/auth/logout", { method: "POST" });
       router.push("/admin/login");
       router.refresh();
     } catch (err) {
-      console.error("logo_newut failed:", err);
+      console.error("Logout failed:", err);
       router.push("/admin/login");
     } finally {
       setLoggingOut(false);
@@ -206,7 +206,7 @@ export default function AdminSidebar({ admin, pendingCount }: AdminSidebarProps)
         ))}
       </div>
 
-      {/* Profile & logo_newut Footer */}
+      {/* Profile & Logout Footer */}
       <div className="p-3.5 border-t border-[#c2a878]/30 bg-[#f7f1eb]/40">
         <div className="flex items-center justify-between gap-2.5 p-2.5 rounded-xl bg-white border border-[#c2a878]/25 shadow-2xs">
           <div className="flex items-center gap-2.5 min-w-0">
@@ -223,12 +223,12 @@ export default function AdminSidebar({ admin, pendingCount }: AdminSidebarProps)
             </div>
           </div>
           <button
-            onClick={handlelogo_newut}
+            onClick={handleLogout}
             disabled={loggingOut}
             title="Sign Out"
             className="p-1.5 rounded-lg text-[#1c1917]/50 hover:text-red-700 hover:bg-red-50 transition-colors disabled:opacity-50 cursor-pointer"
           >
-            <logo_newut className="w-4 h-4" />
+            <LogOut className="w-4 h-4" />
           </button>
         </div>
       </div>

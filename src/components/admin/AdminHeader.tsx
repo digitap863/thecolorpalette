@@ -7,7 +7,7 @@ import { useRouter, usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   ExternalLink,
-  Logout,
+  LogOut,
   ShieldCheck,
   User,
   Image as ImageIcon,
@@ -30,15 +30,15 @@ export default function AdminHeader({ admin }: AdminHeaderProps) {
   const [loggingOut, setLoggingOut] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const handlelogo_newut = async () => {
+  const handleLogout = async () => {
     if (loggingOut) return;
     setLoggingOut(true);
     try {
-      await fetch("/api/admin/auth/logo_newut", { method: "POST" });
+      await fetch("/api/admin/auth/logout", { method: "POST" });
       router.push("/admin/login");
       router.refresh();
     } catch (err) {
-      console.error("logo_newut failed:", err);
+      console.error("Logout failed:", err);
       router.push("/admin/login");
     } finally {
       setLoggingOut(false);
@@ -122,7 +122,7 @@ export default function AdminHeader({ admin }: AdminHeaderProps) {
             </nav>
           </div>
 
-          {/* Right: Admin Profile & logo_newut */}
+          {/* Right: Admin Profile & Logout */}
           <div className="hidden sm:flex items-center gap-4">
             {/* Admin Badge */}
             <div className="flex items-center gap-3 px-3.5 py-1.5 rounded-xl bg-white border border-[#c2a878]/30 shadow-xs">
@@ -144,14 +144,14 @@ export default function AdminHeader({ admin }: AdminHeaderProps) {
               </div>
             </div>
 
-            {/* logo_newut Button */}
+            {/* Logout Button */}
             <button
-              onClick={handlelogo_newut}
+              onClick={handleLogout}
               disabled={loggingOut}
               className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-red-200 bg-red-50 text-red-700 hover:bg-red-100 hover:border-red-300 transition-all text-xs font-poppins uppercase tracking-[0.15em] font-medium disabled:opacity-50 cursor-pointer shadow-2xs"
               title="Sign Out"
             >
-              <logo_newut className="w-3.5 h-3.5" />
+              <LogOut className="w-3.5 h-3.5" />
               <span>{loggingOut ? "Exiting..." : "Log Out"}</span>
             </button>
           </div>
@@ -198,11 +198,11 @@ export default function AdminHeader({ admin }: AdminHeaderProps) {
             </div>
 
             <button
-              onClick={handlelogo_newut}
+              onClick={handleLogout}
               disabled={loggingOut}
               className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg border border-red-200 bg-red-50 text-red-700 text-xs font-poppins uppercase tracking-wider"
             >
-              <logo_newut className="w-4 h-4" />
+              <LogOut className="w-4 h-4" />
               <span>{loggingOut ? "Exiting..." : "Log Out"}</span>
             </button>
           </div>

@@ -12,7 +12,7 @@ export async function POST() {
       message: "Successfully logged out",
     });
   } catch (error: unknown) {
-    const message = error instanceof Error ? error.message : "Failed to logo_newut";
+    const message = error instanceof Error ? error.message : "Failed to log out";
     return NextResponse.json({ success: false, error: message }, { status: 500 });
   }
 }
