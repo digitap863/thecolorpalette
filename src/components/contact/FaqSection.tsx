@@ -15,7 +15,7 @@ const FAQ_DATA: FaqItem[] = [
     id: "faq-1",
     question: "What treatments does The Color Pallete offer?",
     answer:
-      "We offer a range of advanced aesthetic, skin, hair and scalp treatments, including medifacials, chemical peels, mesotherapy, laser treatments, RF treatments, LED light therapy, Korean Hair Spa and specialised scalp care.",
+      "We offer a comprehensive range of advanced aesthetic, skin, hair and scalp treatments, including medifacials, chemical peels, GFC, PRP, exosome therapy, mesotherapy, laser and RF treatments, LED light therapy, Korean Hair Spa, specialised scalp care, and professional makeup services.",
   },
   {
     id: "faq-2",

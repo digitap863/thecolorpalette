@@ -84,7 +84,7 @@ const Navbar = () => {
     <>
       {/* Full-width sticky white navbar header with hide-on-scroll-down effect */}
       <header
-        className={`w-full fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-neutral-200/80 shadow-xs transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"
+        className={`w-full fixed top-0 left-0 right-0 z-50  bg-[#f7f1eb] backdrop-blur-md border-b border-neutral-200/80 shadow-xs transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"
           }`}
       >
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
