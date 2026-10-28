@@ -7,7 +7,7 @@ import { useRouter, usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   ExternalLink,
-  logo_newut,
+  Logout,
   ShieldCheck,
   User,
   Image as ImageIcon,

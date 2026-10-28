@@ -12,7 +12,7 @@ import {
   Image as ImageIcon,
   SlidersHorizontal,
   ExternalLink,
-  logo_newut,
+  Logout,
   Menu,
   X,
   Settings,
