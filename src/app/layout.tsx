@@ -16,9 +16,9 @@ export const metadata: Metadata = {
   title: "The Color Palette | Luxury Aesthetic Studio & Clinical Treatment Space",
   description: "Explore our range of advanced aesthetic, skin, hair, and scalp wellness treatments.",
   icons: {
-    icon: "/logo_new.png",
-    shortcut: "/logo_new.png",
-    apple: "/logo_new.png",
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
   },
 };
 
