@@ -63,7 +63,7 @@ export default function Footer() {
           <div className="lg:col-span-4 lg:px-6 py-4 lg:py-0 flex flex-col items-center justify-center text-center">
             <Link href="/" className="inline-block group">
               <Image
-                src="/logo_new/logo_new.png"
+                src="/Logo/logo_new.png"
                 alt="The Color Palette logo_new"
                 width={360}
                 height={150}

@@ -119,7 +119,7 @@ const Navbar = () => {
               className="flex items-center justify-start lg:justify-center group py-1 shrink-0"
             >
               <Image
-                src="/logo_new/logo_new.png"
+                src="/Logo/logo_new.png"
                 alt="colorpellet logo_new"
                 width={300}
                 height={120}
