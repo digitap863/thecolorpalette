@@ -136,7 +136,7 @@ export default function AdminSidebar({ admin, pendingCount }: AdminSidebarProps)
         <Link href="/admin" className="flex items-center gap-3 group">
           <div className="w-10 h-10 rounded-xl bg-[#f7f1eb] border border-[#c2a878]/30 flex items-center justify-center p-2 shrink-0 transition-transform group-hover:scale-105">
             <Image
-              src="/logo_new.png"
+              src="/Logo/logo_new.png"
               alt="The Color Palette"
               width={26}
               height={26}
