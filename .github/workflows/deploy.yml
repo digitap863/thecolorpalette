@@ -1,3 +1,4 @@
+
 name: Hostinger CI/CD Deployment
 
 on:
@@ -11,7 +12,7 @@ permissions:
 
 jobs:
   build:
-    name: Build & Verify
+    name: Build and Verify
     runs-on: ubuntu-latest
 
     steps:
@@ -21,8 +22,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
-          cache: "npm"
+          node-version: "22"
+          cache: npm
 
       - name: Install Dependencies
         run: npm ci
@@ -30,7 +31,7 @@ jobs:
       - name: Build Next.js Application
         run: npm run build
         env:
-          NEXT_TELEMETRY_DISABLED: 1
+          NEXT_TELEMETRY_DISABLED: "1"
 
   deploy-vps:
     name: Deploy to Hostinger VPS
@@ -40,55 +41,110 @@ jobs:
     steps:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+
         with:
           host: ${{ secrets.HOST || secrets.HOSTINGER_HOST }}
           username: ${{ secrets.USERNAME || secrets.HOSTINGER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY || secrets.HOSTINGER_SSH_KEY }}
-          port: ${{ secrets.HOSTINGER_PORT || 22 }}
-          command_timeout: 15m
+          port: ${{ secrets.HOSTINGER_PORT || '22' }}
           timeout: 15m
-          script: |
-            export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+          command_timeout: 15m
+          envs: GITHUB_TOKEN,GITHUB_REPOSITORY
 
-            TARGET_DIR="${{ secrets.HOSTINGER_TARGET_DIR }}"
-            if [ -z "$TARGET_DIR" ]; then
-              TARGET_DIR="/var/www/colorpellet"
+          script: |
+            set -eu
+
+            export NVM_DIR="$HOME/.nvm"
+
+            if [ -s "$NVM_DIR/nvm.sh" ]; then
+              . "$NVM_DIR/nvm.sh"
             fi
 
-            echo "Target Directory: $TARGET_DIR"
+            # Always deploy to the actual Next.js repository.
+            TARGET_DIR="${{ secrets.HOSTINGER_TARGET_DIR }}"
 
-            # Auto-clone repository if directory or .git does not exist on VPS
-            if [ ! -d "$TARGET_DIR" ] || [ ! -d "$TARGET_DIR/.git" ]; then
-              echo "Repository not found on VPS. Automatically cloning repository..."
-              mkdir -p "$TARGET_DIR"
-              git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git "$TARGET_DIR"
+            if [ -z "$TARGET_DIR" ]; then
+              TARGET_DIR="/var/www/colorpellet/thecolorpalette"
+            fi
+
+            echo "Deployment directory: $TARGET_DIR"
+
+            # Validate the deployment directory.
+            if [ ! -d "$TARGET_DIR/.git" ]; then
+              echo "ERROR: Git repository not found in $TARGET_DIR"
+              exit 1
+            fi
+
+            if [ ! -f "$TARGET_DIR/package.json" ]; then
+              echo "ERROR: package.json not found."
+              exit 1
+            fi
+
+            if [ ! -f "$TARGET_DIR/ecosystem.config.js" ]; then
+              echo "ERROR: ecosystem.config.js not found."
+              exit 1
             fi
 
             cd "$TARGET_DIR"
 
-            echo "Updating remote origin authentication..."
-            git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+            # Verify Node.js and npm.
+            node --version
+            npm --version
 
-            echo "Fetching latest code from main..."
-            git fetch origin main
+            # Use HTTPS without saving the token in the remote URL.
+            git remote set-url origin \
+              "https://github.com/${GITHUB_REPOSITORY}.git"
+
+            AUTH_HEADER="$(printf 'x-access-token:%s' \
+              "$GITHUB_TOKEN" | base64 -w 0)"
+
+            echo "Fetching latest main branch..."
+
+            git -c http.extraheader="AUTHORIZATION: basic $AUTH_HEADER" \
+              fetch origin main
+
+            unset AUTH_HEADER
+
+            # Deploy the latest committed code.
             git reset --hard origin/main
 
-            echo "Installing dependencies..."
-            npm ci
-
-            echo "Building application..."
-            npm run build
-
-            echo "Managing PM2 Process..."
-            if command -v pm2 > /dev/null 2>&1; then
-              pm2 startOrReload ecosystem.config.js || pm2 start ecosystem.config.js
-              pm2 save
-            else
-              echo "PM2 is not installed globally. Installing PM2..."
-              npm install -g pm2
-              pm2 startOrReload ecosystem.config.js || pm2 start ecosystem.config.js
-              pm2 save
+            # Confirm that the project files are present.
+            if [ ! -f package-lock.json ]; then
+              echo "ERROR: package-lock.json not found."
+              exit 1
             fi
 
-            echo "Deployment completed successfully!"
+            echo "Installing production project dependencies..."
+            npm ci
+
+            echo "Building Next.js application..."
+            NEXT_TELEMETRY_DISABLED=1 npm run build
+
+            # Confirm a production build exists.
+            if [ ! -d .next ]; then
+              echo "ERROR: Next.js production build was not created."
+              exit 1
+            fi
+
+            # Make sure PM2 is available in this SSH environment.
+            if ! command -v pm2 >/dev/null 2>&1; then
+              echo "ERROR: PM2 is not available in PATH."
+              exit 1
+            fi
+
+            echo "Reloading the configured PM2 application..."
+
+            # Reload only the application(s) defined in this file.
+            pm2 startOrReload ecosystem.config.js --update-env
+
+            # Save the current PM2 process list.
+            pm2 save
+
+            echo "Checking PM2 status..."
+            pm2 status
+
+            echo "Deployment completed."
