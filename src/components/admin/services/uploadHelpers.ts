@@ -1,7 +1,12 @@
+import { convertToWebP } from "@/lib/imageUtils";
+
 export async function uploadServiceImageToCloudinary(
   file: File,
   onProgress: (progress: number) => void
 ): Promise<string> {
+  // Automatically convert to WebP before uploading
+  const processedFile = await convertToWebP(file);
+
   // 1. Get signed signature from backend
   const sigRes = await fetch("/api/admin/gallery/sign-upload", {
     method: "POST",
@@ -25,7 +30,7 @@ export async function uploadServiceImageToCloudinary(
 
   // 2. Direct upload to Cloudinary via XHR
   const formData = new FormData();
-  formData.append("file", file);
+  formData.append("file", processedFile);
   formData.append("api_key", apiKey);
   formData.append("timestamp", String(timestamp));
   formData.append("signature", signature);

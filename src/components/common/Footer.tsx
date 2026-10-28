@@ -69,6 +69,7 @@ export default function Footer() {
                 height={150}
                 className="w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[360px] h-auto object-contain transition-transform duration-300 group-hover:scale-105"
                 priority
+                unoptimized
               />
             </Link>
           </div>

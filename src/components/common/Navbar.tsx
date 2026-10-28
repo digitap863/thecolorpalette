@@ -125,6 +125,7 @@ const Navbar = () => {
                 height={120}
                 className="h-44 xs:h-48 sm:h-52 lg:h-56 max-w-[76vw] sm:max-w-none w-auto object-contain transition-transform group-hover:scale-105"
                 priority
+                unoptimized
               />
             </Link>
 
