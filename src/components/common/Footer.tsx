@@ -37,10 +37,10 @@ export default function Footer() {
   return (
     <footer className="w-full bg-[#f7f1eb] text-[#1e2617] pt-8 pb-3 px-6 sm:px-12 md:px-16 border-t border-black/10">
       <div className="max-w-7xl mx-auto">
-        
+
         {/* Main 3 Column Grid - Equal vertical alignment */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-0 divide-y lg:divide-y-0 lg:divide-x divide-black/10 pb-6 items-stretch">
-          
+
           {/* Column 1: Website Map */}
           <div className="lg:col-span-4 lg:pr-10 pb-4 lg:pb-0 pt-2 lg:pt-0 flex flex-col justify-start">
             <h3 className="font-belleza text-base sm:text-lg font-medium uppercase tracking-[0.18em] text-[#1e2617] mb-3">
@@ -59,12 +59,12 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Center Brand Logo */}
+          {/* Column 2: Center Brand logo_new */}
           <div className="lg:col-span-4 lg:px-6 py-4 lg:py-0 flex flex-col items-center justify-center text-center">
             <Link href="/" className="inline-block group">
               <Image
-                src="/Logo/logo.png"
-                alt="The Color Palette Logo"
+                src="/logo_new/logo_new.png"
+                alt="The Color Palette logo_new"
                 width={360}
                 height={150}
                 className="w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[360px] h-auto object-contain transition-transform duration-300 group-hover:scale-105"
@@ -142,7 +142,7 @@ export default function Footer() {
             <Link href="#" className="hover:text-[#1e2617] transition-colors">
               Terms & Conditions
             </Link>
-            
+
             <button
               onClick={scrollToTop}
               aria-label="Scroll back to top"

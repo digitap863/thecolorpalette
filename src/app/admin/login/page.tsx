@@ -106,11 +106,11 @@ function AdminLoginForm() {
           {/* Top Gold Accent Border */}
           <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#dfcca5] via-[#c2a878] to-[#dfcca5]" />
 
-          {/* Logo & Header */}
+          {/* logo_new & Header */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#f7f1eb] border border-[#c2a878]/35 mb-4 shadow-xs relative group">
               <Image
-                src="/logo.png"
+                src="/logo_new.png"
                 alt="The Color Palette"
                 width={42}
                 height={42}

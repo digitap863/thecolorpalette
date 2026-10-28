@@ -7,7 +7,7 @@ import { useRouter, usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   ExternalLink,
-  LogOut,
+  logo_newut,
   ShieldCheck,
   User,
   Image as ImageIcon,
@@ -30,15 +30,15 @@ export default function AdminHeader({ admin }: AdminHeaderProps) {
   const [loggingOut, setLoggingOut] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const handleLogout = async () => {
+  const handlelogo_newut = async () => {
     if (loggingOut) return;
     setLoggingOut(true);
     try {
-      await fetch("/api/admin/auth/logout", { method: "POST" });
+      await fetch("/api/admin/auth/logo_newut", { method: "POST" });
       router.push("/admin/login");
       router.refresh();
     } catch (err) {
-      console.error("Logout failed:", err);
+      console.error("logo_newut failed:", err);
       router.push("/admin/login");
     } finally {
       setLoggingOut(false);
@@ -81,7 +81,7 @@ export default function AdminHeader({ admin }: AdminHeaderProps) {
             <Link href="/admin" className="flex items-center gap-3 group">
               <div className="w-10 h-10 rounded-xl bg-white border border-[#c2a878]/35 flex items-center justify-center p-1.5 shadow-xs transition-transform group-hover:scale-105">
                 <Image
-                  src="/logo.png"
+                  src="/logo_new.png"
                   alt="The Color Palette"
                   width={28}
                   height={28}
@@ -109,11 +109,10 @@ export default function AdminHeader({ admin }: AdminHeaderProps) {
                     href={link.href}
                     target={link.external ? "_blank" : undefined}
                     rel={link.external ? "noopener noreferrer" : undefined}
-                    className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs uppercase tracking-[0.15em] font-poppins transition-all ${
-                      link.active
+                    className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs uppercase tracking-[0.15em] font-poppins transition-all ${link.active
                         ? "bg-[#1c1917] text-[#f7f1eb] font-semibold shadow-xs"
                         : "text-[#1c1917]/70 hover:text-[#1c1917] hover:bg-black/5"
-                    }`}
+                      }`}
                   >
                     <Icon className="w-3.5 h-3.5" />
                     {link.name}
@@ -123,7 +122,7 @@ export default function AdminHeader({ admin }: AdminHeaderProps) {
             </nav>
           </div>
 
-          {/* Right: Admin Profile & Logout */}
+          {/* Right: Admin Profile & logo_newut */}
           <div className="hidden sm:flex items-center gap-4">
             {/* Admin Badge */}
             <div className="flex items-center gap-3 px-3.5 py-1.5 rounded-xl bg-white border border-[#c2a878]/30 shadow-xs">
@@ -145,14 +144,14 @@ export default function AdminHeader({ admin }: AdminHeaderProps) {
               </div>
             </div>
 
-            {/* Logout Button */}
+            {/* logo_newut Button */}
             <button
-              onClick={handleLogout}
+              onClick={handlelogo_newut}
               disabled={loggingOut}
               className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-red-200 bg-red-50 text-red-700 hover:bg-red-100 hover:border-red-300 transition-all text-xs font-poppins uppercase tracking-[0.15em] font-medium disabled:opacity-50 cursor-pointer shadow-2xs"
               title="Sign Out"
             >
-              <LogOut className="w-3.5 h-3.5" />
+              <logo_newut className="w-3.5 h-3.5" />
               <span>{loggingOut ? "Exiting..." : "Log Out"}</span>
             </button>
           </div>
@@ -199,11 +198,11 @@ export default function AdminHeader({ admin }: AdminHeaderProps) {
             </div>
 
             <button
-              onClick={handleLogout}
+              onClick={handlelogo_newut}
               disabled={loggingOut}
               className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg border border-red-200 bg-red-50 text-red-700 text-xs font-poppins uppercase tracking-wider"
             >
-              <LogOut className="w-4 h-4" />
+              <logo_newut className="w-4 h-4" />
               <span>{loggingOut ? "Exiting..." : "Log Out"}</span>
             </button>
           </div>

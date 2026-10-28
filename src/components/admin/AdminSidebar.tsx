@@ -12,7 +12,7 @@ import {
   Image as ImageIcon,
   SlidersHorizontal,
   ExternalLink,
-  LogOut,
+  logo_newut,
   Menu,
   X,
   Settings,
@@ -47,15 +47,15 @@ export default function AdminSidebar({ admin, pendingCount }: AdminSidebarProps)
   const [loggingOut, setLoggingOut] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const handleLogout = async () => {
+  const handlelogo_newut = async () => {
     if (loggingOut) return;
     setLoggingOut(true);
     try {
-      await fetch("/api/admin/auth/logout", { method: "POST" });
+      await fetch("/api/admin/auth/logo_newut", { method: "POST" });
       router.push("/admin/login");
       router.refresh();
     } catch (err) {
-      console.error("Logout failed:", err);
+      console.error("logo_newut failed:", err);
       router.push("/admin/login");
     } finally {
       setLoggingOut(false);
@@ -136,7 +136,7 @@ export default function AdminSidebar({ admin, pendingCount }: AdminSidebarProps)
         <Link href="/admin" className="flex items-center gap-3 group">
           <div className="w-10 h-10 rounded-xl bg-[#f7f1eb] border border-[#c2a878]/30 flex items-center justify-center p-2 shrink-0 transition-transform group-hover:scale-105">
             <Image
-              src="/logo.png"
+              src="/logo_new.png"
               alt="The Color Palette"
               width={26}
               height={26}
@@ -171,30 +171,27 @@ export default function AdminSidebar({ admin, pendingCount }: AdminSidebarProps)
                     target={item.external ? "_blank" : undefined}
                     rel={item.external ? "noopener noreferrer" : undefined}
                     onClick={() => setMobileOpen(false)}
-                    className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-medium transition-colors ${
-                      item.active
+                    className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-medium transition-colors ${item.active
                         ? "bg-[#1c1917] text-[#f7f1eb] font-semibold shadow-xs"
                         : "text-[#1c1917]/75 hover:text-[#1c1917] hover:bg-[#f7f1eb]"
-                    }`}
+                      }`}
                   >
                     <div className="flex items-center gap-3 min-w-0">
                       <Icon
-                        className={`w-4 h-4 shrink-0 ${
-                          item.active
+                        className={`w-4 h-4 shrink-0 ${item.active
                             ? "text-[#c2a878]"
                             : "text-[#1c1917]/50 group-hover:text-[#1c1917]"
-                        }`}
+                          }`}
                       />
                       <span className="truncate">{item.name}</span>
                     </div>
 
                     {item.badge ? (
                       <span
-                        className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
-                          item.active
+                        className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${item.active
                             ? "bg-[#c2a878] text-[#1c1917]"
                             : "bg-[#c2a878]/30 text-[#8c6d36]"
-                        }`}
+                          }`}
                       >
                         {item.badge}
                       </span>
@@ -209,7 +206,7 @@ export default function AdminSidebar({ admin, pendingCount }: AdminSidebarProps)
         ))}
       </div>
 
-      {/* Profile & Logout Footer */}
+      {/* Profile & logo_newut Footer */}
       <div className="p-3.5 border-t border-[#c2a878]/30 bg-[#f7f1eb]/40">
         <div className="flex items-center justify-between gap-2.5 p-2.5 rounded-xl bg-white border border-[#c2a878]/25 shadow-2xs">
           <div className="flex items-center gap-2.5 min-w-0">
@@ -226,12 +223,12 @@ export default function AdminSidebar({ admin, pendingCount }: AdminSidebarProps)
             </div>
           </div>
           <button
-            onClick={handleLogout}
+            onClick={handlelogo_newut}
             disabled={loggingOut}
             title="Sign Out"
             className="p-1.5 rounded-lg text-[#1c1917]/50 hover:text-red-700 hover:bg-red-50 transition-colors disabled:opacity-50 cursor-pointer"
           >
-            <LogOut className="w-4 h-4" />
+            <logo_newut className="w-4 h-4" />
           </button>
         </div>
       </div>
@@ -250,8 +247,8 @@ export default function AdminSidebar({ admin, pendingCount }: AdminSidebarProps)
         <Link href="/admin" className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-[#f7f1eb] border border-[#c2a878]/30 flex items-center justify-center p-1">
             <Image
-              src="/logo.png"
-              alt="Logo"
+              src="/logo_new.png"
+              alt="logo_new"
               width={22}
               height={22}
               className="object-contain"

@@ -98,9 +98,9 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Center Cluster: Left Nav Links + Brand Logo + Right Nav Links (Left-aligned on mobile, centered on desktop) */}
+          {/* Center Cluster: Left Nav Links + Brand logo_new + Right Nav Links (Left-aligned on mobile, centered on desktop) */}
           <div className="flex items-center gap-6 sm:gap-10 lg:mx-auto">
-            {/* Left Nav Links (next to logo) */}
+            {/* Left Nav Links (next to logo_new) */}
             <nav className="hidden lg:flex items-center gap-6 sm:gap-8">
               {navLinksLeft.map((link) => (
                 <NavLink
@@ -113,14 +113,14 @@ const Navbar = () => {
               ))}
             </nav>
 
-            {/* Brand Logo Image (Left-aligned on mobile) */}
+            {/* Brand logo_new Image (Left-aligned on mobile) */}
             <Link
               href="/"
               className="flex items-center justify-start lg:justify-center group py-1 shrink-0"
             >
               <Image
-                src="/Logo/logo.png"
-                alt="colorpellet logo"
+                src="/logo_new/logo_new.png"
+                alt="colorpellet logo_new"
                 width={300}
                 height={120}
                 className="h-44 xs:h-48 sm:h-52 lg:h-56 max-w-[76vw] sm:max-w-none w-auto object-contain transition-transform group-hover:scale-105"
@@ -128,7 +128,7 @@ const Navbar = () => {
               />
             </Link>
 
-            {/* Right Nav Links (next to logo) */}
+            {/* Right Nav Links (next to logo_new) */}
             <nav className="hidden lg:flex items-center gap-6 sm:gap-8">
               {/* Services Dropdown */}
               <div className="relative group py-2">
