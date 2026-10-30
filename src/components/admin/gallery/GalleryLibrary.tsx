@@ -1,16 +1,13 @@
 "use client";
 
-import { Grid3X3, ImagePlus, LayoutGrid, List, Loader2 } from "lucide-react";
+import { ImagePlus, LayoutGrid, Loader2 } from "lucide-react";
 import { GalleryItem, GALLERY_CATEGORIES } from "./types";
 import GalleryGridItem from "./GalleryGridItem";
-import GalleryListItem from "./GalleryListItem";
 
 interface GalleryLibraryProps {
   items: GalleryItem[];
   loading: boolean;
-  viewMode: "grid" | "list";
   filterCategory: string;
-  onViewModeChange: (mode: "grid" | "list") => void;
   onFilterChange: (category: string) => void;
   onEdit: (item: GalleryItem) => void;
   onToggleVisibility: (item: GalleryItem) => void;
@@ -20,9 +17,7 @@ interface GalleryLibraryProps {
 export default function GalleryLibrary({
   items,
   loading,
-  viewMode,
   filterCategory,
-  onViewModeChange,
   onFilterChange,
   onEdit,
   onToggleVisibility,
@@ -48,7 +43,7 @@ export default function GalleryLibrary({
               Gallery Library
             </h2>
             <p className="font-poppins text-[10px] text-[#1c1917]/50">
-              {filteredItems.length} image
+              {filteredItems.length} item
               {filteredItems.length !== 1 ? "s" : ""}
               {filterCategory !== "all" ? ` in ${filterCategory}` : ""}
             </p>
@@ -60,7 +55,7 @@ export default function GalleryLibrary({
           <select
             value={filterCategory}
             onChange={(e) => onFilterChange(e.target.value)}
-            className="px-3 py-1.5 rounded-xl border border-[#c2a878]/35 bg-white text-xs font-poppins text-[#1c1917] focus:outline-none focus:border-[#c2a878] focus:ring-2 focus:ring-[#c2a878]/20 transition-all"
+            className="px-3 py-1.5 rounded-xl border border-[#c2a878]/35 bg-white text-xs font-poppins text-[#1c1917] focus:outline-none focus:border-[#c2a878] focus:ring-2 focus:ring-[#c2a878]/20 transition-all cursor-pointer"
           >
             <option value="all">All Categories</option>
             {GALLERY_CATEGORIES.map((c) => (
@@ -69,36 +64,10 @@ export default function GalleryLibrary({
               </option>
             ))}
           </select>
-
-          {/* View toggle */}
-          <div className="flex rounded-xl border border-[#c2a878]/30 overflow-hidden">
-            <button
-              onClick={() => onViewModeChange("grid")}
-              className={`p-2 transition-colors ${
-                viewMode === "grid"
-                  ? "bg-[#1c1917] text-[#f7f1eb]"
-                  : "bg-white text-[#1c1917]/60 hover:bg-[#f7f1eb]"
-              }`}
-              title="Grid view"
-            >
-              <Grid3X3 className="w-3.5 h-3.5" />
-            </button>
-            <button
-              onClick={() => onViewModeChange("list")}
-              className={`p-2 transition-colors ${
-                viewMode === "list"
-                  ? "bg-[#1c1917] text-[#f7f1eb]"
-                  : "bg-white text-[#1c1917]/60 hover:bg-[#f7f1eb]"
-              }`}
-              title="List view"
-            >
-              <List className="w-3.5 h-3.5" />
-            </button>
-          </div>
         </div>
       </div>
 
-      {/* ── Content ──────────────────────────────────────────────────────── */}
+      {/* ── Content (Grid View Only) ────────────────────────────────────────── */}
       {loading ? (
         <div className="flex items-center justify-center py-20 gap-3">
           <Loader2 className="w-6 h-6 animate-spin text-[#c2a878]" />
@@ -112,28 +81,16 @@ export default function GalleryLibrary({
             <ImagePlus className="w-7 h-7 text-[#c2a878]/60" />
           </div>
           <p className="font-poppins text-base uppercase tracking-wider text-[#1c1917] mb-1">
-            No Images Yet
+            No Items Yet
           </p>
           <p className="font-poppins text-xs text-[#1c1917]/50 max-w-sm">
-            Upload your first images using the upload zone above.
+            Upload your first images or reels using the upload zone above.
           </p>
         </div>
-      ) : viewMode === "grid" ? (
+      ) : (
         <div className="p-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {filteredItems.map((item) => (
             <GalleryGridItem
-              key={item.id}
-              item={item}
-              onEdit={onEdit}
-              onToggleVisibility={onToggleVisibility}
-              onDelete={onDelete}
-            />
-          ))}
-        </div>
-      ) : (
-        <div className="divide-y divide-[#c2a878]/15">
-          {filteredItems.map((item) => (
-            <GalleryListItem
               key={item.id}
               item={item}
               onEdit={onEdit}

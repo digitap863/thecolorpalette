@@ -6,4 +6,7 @@ export interface GalleryItem {
   title: string;
   order?: number;
   isActive?: boolean;
+  socialUrl?: string;
+  socialPlatform?: "instagram" | "facebook" | "tiktok" | "youtube" | "pinterest" | "other" | string;
+  isSocialPost?: boolean;
 }

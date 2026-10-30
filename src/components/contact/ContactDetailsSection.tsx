@@ -121,7 +121,7 @@ export default function ContactDetailsSection() {
 
               <div className="flex items-center gap-3">
                 <a
-                  href="https://www.instagram.com/the_color_palette_aesthetics"
+                  href="https://www.instagram.com/the_color_pallete"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"

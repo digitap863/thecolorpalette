@@ -41,7 +41,7 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
     await dbConnect();
 
     const body = await request.json();
-    const { src, alt, category, title, order, isActive } = body;
+    const { src, alt, category, title, order, isActive, socialUrl, socialPlatform, isSocialPost } = body;
 
     const updateData: Record<string, unknown> = {};
     if (src !== undefined) updateData.src = src;
@@ -50,6 +50,12 @@ export async function PATCH(request: NextRequest, context: RouteContext) {
     if (title !== undefined) updateData.title = title;
     if (order !== undefined) updateData.order = order;
     if (isActive !== undefined) updateData.isActive = isActive;
+    if (socialUrl !== undefined) {
+      updateData.socialUrl = socialUrl;
+      updateData.isSocialPost = Boolean(isSocialPost !== undefined ? isSocialPost : socialUrl);
+    }
+    if (socialPlatform !== undefined) updateData.socialPlatform = socialPlatform;
+    if (isSocialPost !== undefined && socialUrl === undefined) updateData.isSocialPost = isSocialPost;
 
     const updated = await GalleryImage.findByIdAndUpdate(id, updateData, {
       new: true,
@@ -80,7 +86,7 @@ export async function DELETE(request: NextRequest, context: RouteContext) {
     const { id } = await context.params;
     await dbConnect();
 
-    const image = await GalleryImage.findById(id).lean() as any;
+    const image = (await GalleryImage.findById(id).lean()) as { src?: string } | null;
     if (!image) {
       return NextResponse.json({ error: "Image not found" }, { status: 404 });
     }

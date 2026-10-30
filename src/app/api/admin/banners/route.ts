@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import BannerSlide from "@/models/BannerSlide";
 import { getCurrentAdmin } from "@/lib/auth";
-import { DEFAULT_BANNER_SLIDES } from "@/lib/defaultBanners";
 
 export const dynamic = "force-dynamic";
 
@@ -10,7 +9,19 @@ export const dynamic = "force-dynamic";
  * GET /api/admin/banners
  * Returns ALL banner slides for admin management.
  */
-export async function GET(request: NextRequest) {
+interface RawBannerSlide {
+  _id: { toString: () => string } | string;
+  title?: string;
+  subtitle?: string;
+  images?: string[];
+  mobileImages?: string[];
+  order?: number;
+  isActive?: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export async function GET() {
   try {
     const admin = await getCurrentAdmin();
     if (!admin) {
@@ -19,34 +30,14 @@ export async function GET(request: NextRequest) {
 
     const conn = await dbConnect();
     if (!conn) {
-      return NextResponse.json(DEFAULT_BANNER_SLIDES, { status: 200 });
+      return NextResponse.json([], { status: 200 });
     }
 
-    let slides = await BannerSlide.find()
+    const slides = await BannerSlide.find()
       .sort({ order: 1, createdAt: 1 })
       .lean();
 
-    // If database has no banner slides yet, seed with defaults
-    if (!slides || slides.length === 0) {
-      const count = await BannerSlide.countDocuments();
-      if (count === 0) {
-        await BannerSlide.insertMany(
-          DEFAULT_BANNER_SLIDES.map((s, idx) => ({
-            title: s.title,
-            subtitle: s.subtitle,
-            images: s.images,
-            mobileImages: s.mobileImages,
-            order: s.order ?? idx + 1,
-            isActive: true,
-          }))
-        );
-        slides = await BannerSlide.find()
-          .sort({ order: 1, createdAt: 1 })
-          .lean();
-      }
-    }
-
-    const items = slides.map((s: any) => ({
+    const items = (slides as unknown as RawBannerSlide[]).map((s) => ({
       id: s._id.toString(),
       _id: s._id.toString(),
       title: s.title || "",

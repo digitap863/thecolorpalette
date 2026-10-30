@@ -8,6 +8,9 @@ export interface GalleryItem {
   title: string;
   order: number;
   isActive: boolean;
+  socialUrl?: string;
+  socialPlatform?: string;
+  isSocialPost?: boolean;
 }
 
 export interface UploadingFile {
@@ -22,6 +25,8 @@ export interface UploadingFile {
   alt: string;
   category: string;
   order: number;
+  socialUrl?: string;
+  socialPlatform?: string;
 }
 
 export const GALLERY_CATEGORIES = [
@@ -34,3 +39,11 @@ export const GALLERY_CATEGORIES = [
   "Bridal",
   "Other",
 ] as const;
+
+export const REEL_PLATFORMS = [
+  { id: "instagram", name: "Instagram Reel", placeholder: "https://www.instagram.com/reel/... or post" },
+  { id: "tiktok", name: "TikTok Reel", placeholder: "https://www.tiktok.com/@.../video/..." },
+  { id: "youtube", name: "YouTube Shorts", placeholder: "https://www.youtube.com/shorts/... or watch" },
+] as const;
+
+export const SOCIAL_PLATFORMS = REEL_PLATFORMS;

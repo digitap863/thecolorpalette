@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { Upload, CloudUpload, ImagePlus } from "lucide-react";
+import { Upload, CloudUpload, ImagePlus, Film } from "lucide-react";
 import { UploadingFile } from "./types";
 import UploadQueueCard from "./UploadQueueCard";
 
@@ -18,6 +18,7 @@ interface GalleryUploadZoneProps {
   onUploadFile: (item: UploadingFile) => void;
   onUploadAll: () => void;
   onClearQueue: () => void;
+  onOpenSocialModal?: () => void;
 }
 
 export default function GalleryUploadZone({
@@ -33,6 +34,7 @@ export default function GalleryUploadZone({
   onUploadFile,
   onUploadAll,
   onClearQueue,
+  onOpenSocialModal,
 }: GalleryUploadZoneProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const dropZoneRef = useRef<HTMLDivElement>(null);
@@ -40,30 +42,43 @@ export default function GalleryUploadZone({
   return (
     <div className="rounded-2xl bg-white border border-[#c2a878]/30 shadow-xs overflow-hidden">
       {/* ── Panel Header ─────────────────────────────────────────────────── */}
-      <div className="px-6 py-4 border-b border-[#c2a878]/20 flex items-center justify-between">
+      <div className="px-6 py-4 border-b border-[#c2a878]/20 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-sky-50 border border-sky-200 flex items-center justify-center">
             <Upload className="w-4 h-4 text-sky-700" />
           </div>
           <div>
             <h2 className="font-poppins text-base uppercase tracking-[0.1em] text-[#1c1917]">
-              Upload Images
+              Upload Images &amp; Reels
             </h2>
             <p className="font-poppins text-[10px] text-[#1c1917]/50">
-              Drag &amp; drop or click to select — uploads directly to Cloudinary
+              Drag &amp; drop photos or add an Instagram, TikTok, or YouTube reel link
             </p>
           </div>
         </div>
 
-        {pendingCount > 0 && (
-          <button
-            onClick={onUploadAll}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1c1917] hover:bg-black text-[#f7f1eb] text-xs font-poppins uppercase tracking-wider transition-all shadow-md"
-          >
-            <CloudUpload className="w-3.5 h-3.5" />
-            Upload All ({pendingCount})
-          </button>
-        )}
+        <div className="flex items-center gap-2">
+          {onOpenSocialModal && (
+            <button
+              type="button"
+              onClick={onOpenSocialModal}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-[#c2a878]/40 bg-[#f7f1eb] hover:bg-[#efe4d5] text-[#7a5f2a] text-xs font-poppins font-medium uppercase tracking-wider transition-all cursor-pointer shadow-2xs"
+            >
+              <Film className="w-3.5 h-3.5" />
+              <span>+ Add Reel</span>
+            </button>
+          )}
+
+          {pendingCount > 0 && (
+            <button
+              onClick={onUploadAll}
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#1c1917] hover:bg-black text-[#f7f1eb] text-xs font-poppins uppercase tracking-wider transition-all shadow-md cursor-pointer"
+            >
+              <CloudUpload className="w-3.5 h-3.5" />
+              Upload All ({pendingCount})
+            </button>
+          )}
+        </div>
       </div>
 
       {/* ── Drop Zone ────────────────────────────────────────────────────── */}

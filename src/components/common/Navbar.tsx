@@ -304,7 +304,9 @@ const Navbar = () => {
           </h3>
           <div className="flex items-center gap-3">
             <a
-              href="https://www.instagram.com/the_color_palette_aesthetics"
+              href="https://www.instagram.com/the_color_pallete"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Instagram"
               className="w-10 h-10 rounded-full border border-neutral-800 flex items-center justify-center text-neutral-900 hover:bg-neutral-900 hover:text-[#f7f1eb] transition-colors"
             >

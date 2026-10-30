@@ -3,7 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Pencil, X, AlertCircle, Loader2, Save } from "lucide-react";
-import { GalleryItem, GALLERY_CATEGORIES } from "./types";
+import { GalleryItem, GALLERY_CATEGORIES, SOCIAL_PLATFORMS } from "./types";
+import SocialIcon, { detectSocialPlatform } from "@/components/common/SocialIcon";
+import { getSocialEmbedInfo } from "@/lib/socialEmbed";
 
 interface EditImageModalProps {
   item: GalleryItem;
@@ -22,19 +24,34 @@ export default function EditImageModal({
     category: item.category,
     order: item.order,
     isActive: item.isActive,
+    socialUrl: item.socialUrl || "",
+    socialPlatform: item.socialPlatform || "instagram",
   });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const isReel = Boolean(item.isSocialPost || item.socialUrl);
+  const embedInfo = isReel ? getSocialEmbedInfo(form.socialUrl || item.socialUrl) : null;
+  const isImageValid = item.src && (item.src.includes("res.cloudinary.com") || item.src.match(/\.(jpg|jpeg|png|webp|avif)/i));
+
   const handleSave = async () => {
-    if (!form.title.trim() || !form.alt.trim() || !form.category) {
-      setError("Title, alt text, and category are required.");
+    if (!form.title.trim()) {
+      setError("Title/Caption is required.");
+      return;
+    }
+    if (!isReel && (!form.alt.trim() || !form.category)) {
+      setError("Alt text and category are required.");
       return;
     }
     setSaving(true);
     setError(null);
     try {
-      await onSave(form);
+      await onSave({
+        ...form,
+        title: form.title.trim(),
+        alt: isReel ? form.title.trim() : form.alt.trim(),
+        category: isReel ? "Reel" : form.category,
+      });
       onClose();
     } catch {
       setError("Failed to save changes.");
@@ -53,7 +70,7 @@ export default function EditImageModal({
               <Pencil className="w-4 h-4 text-[#7a5f2a]" />
             </div>
             <h3 className="font-poppins text-base uppercase tracking-[0.1em] text-[#1c1917]">
-              Edit Image
+              {isReel ? "Edit Reel" : "Edit Image"}
             </h3>
           </div>
           <button
@@ -66,8 +83,27 @@ export default function EditImageModal({
 
         {/* ── Preview ───────────────────────────────────────────────────── */}
         <div className="px-6 pt-4">
-          <div className="relative w-full h-40 rounded-xl overflow-hidden bg-[#f7f1eb] border border-[#c2a878]/20">
-            <Image src={item.src} alt={item.alt} fill className="object-cover" />
+          <div className="relative w-full h-44 rounded-xl overflow-hidden bg-black/90 border border-[#c2a878]/20 flex items-center justify-center">
+            {isReel && embedInfo?.embedUrl ? (
+              embedInfo.type === "video" ? (
+                <video src={embedInfo.embedUrl} controls playsInline className="w-full h-full object-contain" />
+              ) : (
+                <iframe
+                  src={embedInfo.embedUrl}
+                  title="Reel Preview"
+                  className="w-full h-full border-0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              )
+            ) : isImageValid ? (
+              <Image src={item.src} alt={item.alt || item.title} fill className="object-cover" />
+            ) : (
+              <div className="text-white/60 text-xs font-poppins flex flex-col items-center gap-1">
+                <SocialIcon platform={form.socialPlatform} className="w-6 h-6 text-[#c2a878]" />
+                <span>{form.title || "Reel"}</span>
+              </div>
+            )}
           </div>
         </div>
 
@@ -81,54 +117,57 @@ export default function EditImageModal({
           )}
 
           <div className="grid grid-cols-2 gap-3">
-            {/* Title */}
+            {/* Title / Caption */}
             <div className="col-span-2">
               <label className="block text-[10px] uppercase tracking-wider font-poppins text-[#1c1917]/60 mb-1">
-                Title *
+                {isReel ? "Caption *" : "Title *"}
               </label>
               <input
                 type="text"
                 value={form.title}
                 onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))}
                 className="w-full px-3 py-2 rounded-xl border border-[#c2a878]/35 bg-white text-xs font-poppins text-[#1c1917] focus:outline-none focus:border-[#c2a878] focus:ring-2 focus:ring-[#c2a878]/20 transition-all"
-                placeholder="e.g. Bridal Hair Transformation"
+                placeholder={isReel ? "e.g. Russian Lips Transformation" : "e.g. Bridal Hair"}
               />
             </div>
 
-            {/* Alt Text */}
-            <div className="col-span-2">
-              <label className="block text-[10px] uppercase tracking-wider font-poppins text-[#1c1917]/60 mb-1">
-                Alt Text *
-              </label>
-              <input
-                type="text"
-                value={form.alt}
-                onChange={(e) => setForm((f) => ({ ...f, alt: e.target.value }))}
-                className="w-full px-3 py-2 rounded-xl border border-[#c2a878]/35 bg-white text-xs font-poppins text-[#1c1917] focus:outline-none focus:border-[#c2a878] focus:ring-2 focus:ring-[#c2a878]/20 transition-all"
-                placeholder="Descriptive alt text for accessibility"
-              />
-            </div>
+            {/* If NOT Reel: Alt Text & Category */}
+            {!isReel && (
+              <>
+                <div className="col-span-2">
+                  <label className="block text-[10px] uppercase tracking-wider font-poppins text-[#1c1917]/60 mb-1">
+                    Alt Text *
+                  </label>
+                  <input
+                    type="text"
+                    value={form.alt}
+                    onChange={(e) => setForm((f) => ({ ...f, alt: e.target.value }))}
+                    className="w-full px-3 py-2 rounded-xl border border-[#c2a878]/35 bg-white text-xs font-poppins text-[#1c1917] focus:outline-none focus:border-[#c2a878] focus:ring-2 focus:ring-[#c2a878]/20 transition-all"
+                    placeholder="Descriptive alt text for accessibility"
+                  />
+                </div>
 
-            {/* Category */}
-            <div>
-              <label className="block text-[10px] uppercase tracking-wider font-poppins text-[#1c1917]/60 mb-1">
-                Category *
-              </label>
-              <select
-                value={form.category}
-                onChange={(e) => setForm((f) => ({ ...f, category: e.target.value }))}
-                className="w-full px-3 py-2 rounded-xl border border-[#c2a878]/35 bg-white text-xs font-poppins text-[#1c1917] focus:outline-none focus:border-[#c2a878] focus:ring-2 focus:ring-[#c2a878]/20 transition-all"
-              >
-                {GALLERY_CATEGORIES.map((c) => (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
-                ))}
-              </select>
-            </div>
+                <div>
+                  <label className="block text-[10px] uppercase tracking-wider font-poppins text-[#1c1917]/60 mb-1">
+                    Category *
+                  </label>
+                  <select
+                    value={form.category}
+                    onChange={(e) => setForm((f) => ({ ...f, category: e.target.value }))}
+                    className="w-full px-3 py-2 rounded-xl border border-[#c2a878]/35 bg-white text-xs font-poppins text-[#1c1917] focus:outline-none focus:border-[#c2a878] focus:ring-2 focus:ring-[#c2a878]/20 transition-all"
+                  >
+                    {GALLERY_CATEGORIES.map((c) => (
+                      <option key={c} value={c}>
+                        {c}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </>
+            )}
 
             {/* Display Order */}
-            <div>
+            <div className={isReel ? "col-span-2" : "col-span-1"}>
               <label className="block text-[10px] uppercase tracking-wider font-poppins text-[#1c1917]/60 mb-1">
                 Display Order
               </label>
@@ -142,6 +181,62 @@ export default function EditImageModal({
                 min={0}
               />
             </div>
+
+            {/* Social Media Link (optional) */}
+            <div className="col-span-2">
+              <label className="block text-[10px] uppercase tracking-wider font-poppins text-[#1c1917]/60 mb-1">
+                Social Media Post / Reel Link (optional)
+              </label>
+              <div className="relative">
+                <div className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400">
+                  <SocialIcon platform={form.socialPlatform} className="w-4 h-4 text-[#8c6d36]" />
+                </div>
+                <input
+                  type="url"
+                  value={form.socialUrl}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    const detected = val.trim() ? detectSocialPlatform(val.trim()) : form.socialPlatform;
+                    setForm((f) => ({
+                      ...f,
+                      socialUrl: val,
+                      socialPlatform: detected,
+                    }));
+                  }}
+                  className="w-full pl-9 pr-3 py-2 rounded-xl border border-[#c2a878]/35 bg-white text-xs font-poppins text-[#1c1917] focus:outline-none focus:border-[#c2a878] focus:ring-2 focus:ring-[#c2a878]/20 transition-all"
+                  placeholder="https://www.instagram.com/p/... or reel link"
+                />
+              </div>
+            </div>
+
+            {/* Social Platform Selection */}
+            {form.socialUrl && (
+              <div className="col-span-2">
+                <label className="block text-[10px] uppercase tracking-wider font-poppins text-[#1c1917]/60 mb-1">
+                  Social Platform
+                </label>
+                <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5">
+                  {SOCIAL_PLATFORMS.map((p) => {
+                    const isSelected = form.socialPlatform?.toLowerCase() === p.id;
+                    return (
+                      <button
+                        key={p.id}
+                        type="button"
+                        onClick={() => setForm((f) => ({ ...f, socialPlatform: p.id }))}
+                        className={`flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg border text-[10px] font-poppins transition-all cursor-pointer ${
+                          isSelected
+                            ? "border-[#c2a878] bg-[#f7f1eb] text-[#8c6d36] font-semibold"
+                            : "border-stone-200 text-stone-600 hover:border-stone-300"
+                        }`}
+                      >
+                        <SocialIcon platform={p.id} className="w-3.5 h-3.5" />
+                        <span>{p.name}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
             {/* Visibility toggle */}
             <div className="col-span-2">

@@ -32,7 +32,18 @@ export async function GET(request: NextRequest) {
       .sort({ order: 1, createdAt: -1 })
       .lean();
 
-    const items = images.map((img: any) => ({
+    const items = (images as unknown as Array<{
+      _id: { toString: () => string };
+      src: string;
+      alt: string;
+      category: string;
+      title: string;
+      order?: number;
+      isActive?: boolean;
+      socialUrl?: string;
+      socialPlatform?: string;
+      isSocialPost?: boolean;
+    }>).map((img) => ({
       id: img._id.toString(),
       src: img.src,
       alt: img.alt,
@@ -40,6 +51,9 @@ export async function GET(request: NextRequest) {
       title: img.title,
       order: img.order ?? 0,
       isActive: img.isActive !== false,
+      socialUrl: img.socialUrl || "",
+      socialPlatform: img.socialPlatform || "",
+      isSocialPost: img.isSocialPost || false,
     }));
 
     return NextResponse.json(items, { status: 200 });

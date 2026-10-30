@@ -15,17 +15,28 @@ export async function GET(request: NextRequest) {
       return NextResponse.json([], { status: 200 });
     }
 
-    const query: any = { isActive: true };
+    const query: Record<string, unknown> = { isActive: true };
 
     if (categoryParam && categoryParam !== "all") {
       query.category = { $regex: new RegExp(`^${categoryParam}$`, "i") };
     }
 
-    let dbImages = await GalleryImage.find(query).sort({ order: 1, createdAt: -1 }).lean();
+    const dbImages = await GalleryImage.find(query).sort({ order: 1, createdAt: -1 }).lean();
 
     let items: GalleryItem[] = [];
     if (dbImages && dbImages.length > 0) {
-      items = dbImages.map((img: any, idx: number) => ({
+      items = (dbImages as unknown as Array<{
+        _id?: { toString: () => string } | string;
+        src: string;
+        alt: string;
+        category: string;
+        title: string;
+        order?: number;
+        isActive?: boolean;
+        socialUrl?: string;
+        socialPlatform?: string;
+        isSocialPost?: boolean;
+      }>).map((img, idx) => ({
         id: img._id ? img._id.toString() : String(idx + 1),
         src: img.src,
         alt: img.alt,
@@ -33,6 +44,9 @@ export async function GET(request: NextRequest) {
         title: img.title,
         order: img.order ?? idx + 1,
         isActive: img.isActive !== false,
+        socialUrl: img.socialUrl || "",
+        socialPlatform: img.socialPlatform || "",
+        isSocialPost: img.isSocialPost || false,
       }));
     }
 
@@ -61,22 +75,36 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { src, alt, category, title, order, isActive } = body;
+    const { src, alt, category, title, order, isActive, socialUrl, socialPlatform, isSocialPost } = body;
 
-    if (!src || !alt || !category || !title) {
-      return NextResponse.json(
-        { error: "Missing required fields: src, alt, category, title" },
-        { status: 400 }
-      );
+    const isReel = Boolean(isSocialPost || socialUrl);
+
+    if (isReel) {
+      if (!socialUrl || !title) {
+        return NextResponse.json(
+          { error: "Reel URL and Caption are required" },
+          { status: 400 }
+        );
+      }
+    } else {
+      if (!src || !alt || !category || !title) {
+        return NextResponse.json(
+          { error: "Missing required fields: src, alt, category, title" },
+          { status: 400 }
+        );
+      }
     }
 
     const newImage = await GalleryImage.create({
-      src,
-      alt,
-      category,
-      title,
-      order: order ?? 0,
-      isActive: isActive !== undefined ? isActive : true,
+      src: src || socialUrl || "",
+      alt: alt || title || "Reel",
+      category: category || (isReel ? "Reel" : "General"),
+      title: title.trim(),
+      order: order !== undefined ? Number(order) : 0,
+      isActive: isActive !== undefined ? Boolean(isActive) : true,
+      socialUrl: socialUrl || "",
+      socialPlatform: socialPlatform || "instagram",
+      isSocialPost: isReel,
     });
 
     return NextResponse.json(
@@ -88,6 +116,9 @@ export async function POST(request: NextRequest) {
         title: newImage.title,
         order: newImage.order,
         isActive: newImage.isActive,
+        socialUrl: newImage.socialUrl,
+        socialPlatform: newImage.socialPlatform,
+        isSocialPost: newImage.isSocialPost,
       },
       { status: 201 }
     );

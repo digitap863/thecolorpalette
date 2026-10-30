@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { BannerSlide } from "@/types/banner";
-import { DEFAULT_BANNER_SLIDES } from "@/lib/defaultBanners";
+
 
 export type { BannerSlide };
 
@@ -22,16 +22,19 @@ export default function Banner({
   className = "",
 }: BannerProps) {
   const [slides, setSlides] = useState<BannerSlide[]>(
-    initialSlides && initialSlides.length > 0 ? initialSlides : DEFAULT_BANNER_SLIDES
+    initialSlides && initialSlides.length > 0 ? initialSlides : []
   );
   const [currentIndex, setCurrentIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(0);
   const [slideKey, setSlideKey] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isLoading, setIsLoading] = useState(!initialSlides || initialSlides.length === 0);
 
   // Fetch banners dynamically from MongoDB API if no custom slides provided
   useEffect(() => {
-    if (initialSlides && initialSlides.length > 0) return;
+    if (initialSlides && initialSlides.length > 0) {
+      return;
+    }
 
     let isMounted = true;
     async function fetchBanners() {
@@ -45,6 +48,10 @@ export default function Banner({
         }
       } catch (err) {
         console.error("Failed to load banner slides from database:", err);
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
       }
     }
 
@@ -54,11 +61,8 @@ export default function Banner({
     };
   }, [initialSlides]);
 
-  const activeSlide = slides[currentIndex] || DEFAULT_BANNER_SLIDES[0];
-  const prevSlide = slides[prevIndex] || DEFAULT_BANNER_SLIDES[0];
-
   const changeSlide = (nextIndex: number) => {
-    if (isAnimating || nextIndex === currentIndex) return;
+    if (isAnimating || nextIndex === currentIndex || slides.length <= 1) return;
     setIsAnimating(true);
     setPrevIndex(currentIndex);
     setCurrentIndex(nextIndex);
@@ -66,11 +70,13 @@ export default function Banner({
   };
 
   const handlePrev = () => {
+    if (slides.length <= 1) return;
     const nextIdx = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
     changeSlide(nextIdx);
   };
 
   const handleNext = () => {
+    if (slides.length <= 1) return;
     const nextIdx = currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
     changeSlide(nextIdx);
   };
@@ -89,18 +95,42 @@ export default function Banner({
   useEffect(() => {
     if (!autoPlay || slides.length <= 1) return;
     const interval = setInterval(() => {
-      handleNext();
+      if (isAnimating || slides.length <= 1) return;
+      setIsAnimating(true);
+      setPrevIndex(currentIndex);
+      const nextIdx = currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
+      setCurrentIndex(nextIdx);
+      setSlideKey((prev) => prev + 1);
     }, autoPlayInterval);
     return () => clearInterval(interval);
   }, [autoPlay, autoPlayInterval, slides.length, currentIndex, isAnimating]);
 
-  const isTransitioning = currentIndex !== prevIndex;
+  if (isLoading) {
+    return (
+      <section className={`relative w-full overflow-hidden bg-neutral-950 ${className}`}>
+        <div className="relative w-full h-[calc(100dvh-5rem)] select-none bg-neutral-950" />
+      </section>
+    );
+  }
+
+  if (!slides || slides.length === 0) {
+    return null;
+  }
+
+  const safeCurrentIndex = currentIndex < slides.length ? currentIndex : 0;
+  const safePrevIndex = prevIndex < slides.length ? prevIndex : 0;
+  const activeSlide = slides[safeCurrentIndex];
+  const prevSlide = slides[safePrevIndex];
+
+  if (!activeSlide) return null;
+
+  const isTransitioning = safeCurrentIndex !== safePrevIndex;
 
   // Prepare Desktop Images (3 images)
   const desktopImages =
     activeSlide.images && activeSlide.images.length > 0
       ? activeSlide.images.slice(0, 3)
-      : DEFAULT_BANNER_SLIDES[0].images;
+      : [];
 
   const prevDesktopImages =
     prevSlide.images && prevSlide.images.length > 0

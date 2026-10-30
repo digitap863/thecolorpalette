@@ -7,6 +7,9 @@ export interface IGalleryImage extends Document {
   title: string;
   order: number;
   isActive: boolean;
+  socialUrl?: string;
+  socialPlatform?: string;
+  isSocialPost?: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -15,17 +18,17 @@ const GalleryImageSchema: Schema<IGalleryImage> = new Schema(
   {
     src: {
       type: String,
-      required: [true, "Image source URL is required"],
+      default: "",
       trim: true,
     },
     alt: {
       type: String,
-      required: [true, "Alt text is required"],
+      default: "",
       trim: true,
     },
     category: {
       type: String,
-      required: [true, "Category is required"],
+      default: "General",
       trim: true,
     },
     title: {
@@ -40,6 +43,20 @@ const GalleryImageSchema: Schema<IGalleryImage> = new Schema(
     isActive: {
       type: Boolean,
       default: true,
+    },
+    socialUrl: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+    socialPlatform: {
+      type: String,
+      default: "instagram",
+      trim: true,
+    },
+    isSocialPost: {
+      type: Boolean,
+      default: false,
     },
   },
   {

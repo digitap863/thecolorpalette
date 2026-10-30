@@ -9,6 +9,7 @@ import {
   CloudUpload,
 } from "lucide-react";
 import { UploadingFile, GALLERY_CATEGORIES } from "./types";
+import { detectSocialPlatform } from "@/components/common/SocialIcon";
 
 interface UploadQueueCardProps {
   item: UploadingFile;
@@ -166,6 +167,30 @@ export default function UploadQueueCard({
                 disabled={!isEditable}
                 className="w-full px-3.5 py-2.5 rounded-xl border-2 border-[#c2a878]/30 bg-white text-sm font-poppins text-[#1c1917] placeholder-[#1c1917]/30 focus:outline-none focus:border-[#c2a878] focus:ring-2 focus:ring-[#c2a878]/10 transition-all disabled:opacity-50 disabled:bg-stone-50"
                 placeholder="e.g. Before and after hair coloring treatment"
+              />
+            </div>
+
+            {/* Optional Social Post Link */}
+            <div className="sm:col-span-2">
+              <label className="flex items-center gap-1.5 text-xs font-semibold font-poppins text-[#1c1917] mb-1.5">
+                Social Media Link
+                <span className="text-[10px] font-normal text-[#1c1917]/50 font-poppins ml-1">
+                  (optional — Instagram, TikTok, Facebook reel/post link)
+                </span>
+              </label>
+              <input
+                type="url"
+                value={item.socialUrl || ""}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  onUpdate(item.id, {
+                    socialUrl: val,
+                    socialPlatform: val.trim() ? detectSocialPlatform(val.trim()) : "instagram",
+                  });
+                }}
+                disabled={!isEditable}
+                className="w-full px-3.5 py-2.5 rounded-xl border-2 border-[#c2a878]/30 bg-white text-sm font-poppins text-[#1c1917] placeholder-[#1c1917]/30 focus:outline-none focus:border-[#c2a878] focus:ring-2 focus:ring-[#c2a878]/10 transition-all disabled:opacity-50 disabled:bg-stone-50"
+                placeholder="https://www.instagram.com/p/... or reel"
               />
             </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { CloudUpload, RefreshCw, CheckCircle2, AlertCircle } from "lucide-react";
+import { CheckCircle2, AlertCircle, RefreshCw } from "lucide-react";
 
 import { GalleryItem, UploadingFile } from "@/components/admin/gallery/types";
 import { uploadToCloudinary } from "@/components/admin/gallery/uploadHelpers";
@@ -9,6 +9,7 @@ import GalleryStatsBar from "@/components/admin/gallery/GalleryStatsBar";
 import GalleryUploadZone from "@/components/admin/gallery/GalleryUploadZone";
 import GalleryLibrary from "@/components/admin/gallery/GalleryLibrary";
 import EditImageModal from "@/components/admin/gallery/EditImageModal";
+import AddSocialPostModal from "@/components/admin/gallery/AddSocialPostModal";
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
@@ -18,9 +19,9 @@ export default function AdminGalleryPage() {
   const [loading, setLoading] = useState(true);
   const [uploadQueue, setUploadQueue] = useState<UploadingFile[]>([]);
   const [isDragging, setIsDragging] = useState(false);
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [filterCategory, setFilterCategory] = useState("all");
   const [editingItem, setEditingItem] = useState<GalleryItem | null>(null);
+  const [showSocialModal, setShowSocialModal] = useState(false);
   const [toast, setToast] = useState<{
     type: "success" | "error";
     msg: string;
@@ -34,28 +35,47 @@ export default function AdminGalleryPage() {
 
   // ── Fetch all gallery images (admin endpoint includes hidden ones) ────────
   const fetchGallery = useCallback(async () => {
-    setLoading(true);
     try {
       const res = await fetch("/api/admin/gallery");
       const data: GalleryItem[] = await res.json();
       setItems(Array.isArray(data) ? data : []);
     } catch {
       showToast("error", "Failed to load gallery images.");
-    } finally {
-      setLoading(false);
     }
   }, []);
 
   useEffect(() => {
-    fetchGallery();
-  }, [fetchGallery]);
+    let ignore = false;
+    async function loadInitial() {
+      try {
+        const res = await fetch("/api/admin/gallery");
+        const data: GalleryItem[] = await res.json();
+        if (!ignore) {
+          setItems(Array.isArray(data) ? data : []);
+        }
+      } catch {
+        if (!ignore) {
+          showToast("error", "Failed to load gallery images.");
+        }
+      } finally {
+        if (!ignore) {
+          setLoading(false);
+        }
+      }
+    }
+
+    loadInitial();
+    return () => {
+      ignore = true;
+    };
+  }, []);
 
   // ── Drag & Drop handlers (passed down to GalleryUploadZone) ─────────────
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(true);
   };
-  const handleDragLeave = (e: React.DragEvent) => {
+  const handleDragLeave = () => {
     setIsDragging(false);
   };
   const handleDrop = (e: React.DragEvent) => {
@@ -133,6 +153,9 @@ export default function AdminGalleryPage() {
           title: item.title,
           order: item.order,
           isActive: true,
+          socialUrl: item.socialUrl || "",
+          socialPlatform: item.socialPlatform || "instagram",
+          isSocialPost: Boolean(item.socialUrl),
         }),
       });
 
@@ -141,10 +164,11 @@ export default function AdminGalleryPage() {
       updateQueueItem(item.id, { status: "done", progress: 100 });
       showToast("success", `"${item.title}" uploaded successfully!`);
       setTimeout(fetchGallery, 500);
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Upload failed";
       updateQueueItem(item.id, {
         status: "error",
-        error: err?.message || "Upload failed",
+        error: message,
       });
     }
   };
@@ -286,20 +310,30 @@ export default function AdminGalleryPage() {
         onUploadFile={uploadFile}
         onUploadAll={uploadAllPending}
         onClearQueue={clearQueue}
+        onOpenSocialModal={() => setShowSocialModal(true)}
       />
 
       {/* ── Gallery library ────────────────────────────────────────────── */}
       <GalleryLibrary
         items={items}
         loading={loading}
-        viewMode={viewMode}
         filterCategory={filterCategory}
-        onViewModeChange={setViewMode}
         onFilterChange={setFilterCategory}
         onEdit={setEditingItem}
         onToggleVisibility={toggleVisibility}
         onDelete={deleteItem}
       />
+
+      {/* ── Add Reel Modal ───────────────────────────────────────── */}
+      {showSocialModal && (
+        <AddSocialPostModal
+          onClose={() => setShowSocialModal(false)}
+          onSuccess={(newItem) => {
+            setItems((prev) => [newItem, ...prev]);
+            showToast("success", `Reel "${newItem.title}" added to gallery!`);
+          }}
+        />
+      )}
     </div>
   );
 }
