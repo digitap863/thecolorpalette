@@ -59,92 +59,95 @@ jobs:
             set -eu
 
             export NVM_DIR="$HOME/.nvm"
-
             if [ -s "$NVM_DIR/nvm.sh" ]; then
               . "$NVM_DIR/nvm.sh"
             fi
 
-            # Always deploy to the actual Next.js repository.
             TARGET_DIR="${{ secrets.HOSTINGER_TARGET_DIR }}"
-
             if [ -z "$TARGET_DIR" ]; then
               TARGET_DIR="/var/www/colorpellet/thecolorpalette"
             fi
 
             echo "Deployment directory: $TARGET_DIR"
 
-            # Validate the deployment directory.
+            # Validate the project directory.
             if [ ! -d "$TARGET_DIR/.git" ]; then
-              echo "ERROR: Git repository not found in $TARGET_DIR"
+              echo "ERROR: Git repository not found: $TARGET_DIR"
               exit 1
             fi
 
-            if [ ! -f "$TARGET_DIR/package.json" ]; then
-              echo "ERROR: package.json not found."
-              exit 1
-            fi
-
-            if [ ! -f "$TARGET_DIR/ecosystem.config.js" ]; then
-              echo "ERROR: ecosystem.config.js not found."
+            if [ ! -f "$TARGET_DIR/package.json" ] ||
+               [ ! -f "$TARGET_DIR/package-lock.json" ]; then
+              echo "ERROR: Project package files are missing."
               exit 1
             fi
 
             cd "$TARGET_DIR"
 
-            # Verify Node.js and npm.
             node --version
             npm --version
 
-            # Use HTTPS without saving the token in the remote URL.
-            git remote set-url origin \
-              "https://github.com/${GITHUB_REPOSITORY}.git"
-
+            # Fetch the latest code without saving credentials in Git config.
             AUTH_HEADER="$(printf 'x-access-token:%s' \
-              "$GITHUB_TOKEN" | base64 -w 0)"
-
-            echo "Fetching latest main branch..."
+              "$GITHUB_TOKEN" | base64 | tr -d '\n')"
 
             git -c http.extraheader="AUTHORIZATION: basic $AUTH_HEADER" \
               fetch origin main
 
             unset AUTH_HEADER
 
-            # Deploy the latest committed code.
+            # Deploy the committed main branch.
             git reset --hard origin/main
 
-            # Confirm that the project files are present.
-            if [ ! -f package-lock.json ]; then
-              echo "ERROR: package-lock.json not found."
+            # Protect the production environment file from accidental
+            # removal if it is untracked or ignored.
+            if [ ! -f .env ]; then
+              echo "ERROR: Production .env file is missing."
               exit 1
             fi
 
-            echo "Installing production project dependencies..."
+            # Install dependencies and build the production application.
             npm ci
-
-            echo "Building Next.js application..."
             NEXT_TELEMETRY_DISABLED=1 npm run build
 
-            # Confirm a production build exists.
             if [ ! -d .next ]; then
-              echo "ERROR: Next.js production build was not created."
+              echo "ERROR: Next.js build directory is missing."
               exit 1
             fi
 
-            # Make sure PM2 is available in this SSH environment.
             if ! command -v pm2 >/dev/null 2>&1; then
-              echo "ERROR: PM2 is not available in PATH."
+              echo "ERROR: PM2 is not installed or not in PATH."
               exit 1
             fi
 
-            echo "Reloading the configured PM2 application..."
+            # Manage only the intended application.
+            if pm2 describe colorpalette >/dev/null 2>&1; then
+              pm2 restart colorpalette --update-env
+            else
+              pm2 start npm \
+                --name colorpalette \
+                --cwd "$TARGET_DIR" \
+                -- start -- --hostname 127.0.0.1 --port 3015
+            fi
 
-            # Reload only the application(s) defined in this file.
-            pm2 startOrReload ecosystem.config.js --update-env
+            # Wait briefly for the application to become ready.
+            READY=0
+            for i in $(seq 1 15); do
+              if curl -fsS http://127.0.0.1:3015/ \
+                -o /dev/null; then
+                READY=1
+                break
+              fi
+              sleep 2
+            done
 
-            # Save the current PM2 process list.
+            if [ "$READY" -ne 1 ]; then
+              echo "ERROR: Application failed its local health check."
+              pm2 logs colorpalette --lines 50 --nostream || true
+              exit 1
+            fi
+
             pm2 save
-
-            echo "Checking PM2 status..."
             pm2 status
 
-            echo "Deployment completed."
+            echo "Deployment completed and local health check passed."
