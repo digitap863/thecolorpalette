@@ -15,7 +15,7 @@ export default function ServicesSection() {
         <div className="lg:col-span-5 flex justify-center w-full">
           <div className="relative w-full max-w-[440px] aspect-[4/5] rounded-tl-[160px] sm:rounded-tl-[200px] rounded-br-[160px] sm:rounded-br-[200px] rounded-tr-md rounded-bl-md overflow-hidden border border-black/10 shadow-2xl group">
             <Image
-              src="/Banner/vlcsnap-2026-09-30-11h16m23s869.png"
+              src="/images/service.png"
               alt="Colorpellet Salon Services"
               fill
               className="object-cover object-center transform transition-transform duration-1000 group-hover:scale-105"
